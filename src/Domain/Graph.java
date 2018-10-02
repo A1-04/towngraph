@@ -4,59 +4,64 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import javax.xml.soap.Node;
-
 public class Graph {
 
 	private ArrayList<Node> nodes;
+	private ArrayList<Arc> arcs;
 	private HashMap<Node, ArrayList<Node>> adjlist;;
 
 	public Graph(String filename) {
-		ArrayList<Node> adjlist;
+		ArrayList<Node> aux;
+		for (Node i : nodes) {
+			for (Arc a : arcs) {
+				if (i.getID() == a.getSource() || i.getID() == a.getTarget()) {
+					aux.add(a);
+				}	
+			}
+			adjlist.put(i, aux);
+		}
 	}
 
 	public boolean belongNode(int id) {
-		Node aux;
 		for (Node i : nodes) {
 			if (i.getID() == id) {
-				aux = i;
+				if (adjlist.containsKey(i)) {
+					return true;
+				}
 			}
-		}
-		if (adjlist.containsKey(aux)) {
-			return true;
 		}
 		return false;
 	}
 
 	public int[] positionNode(int id) {
-		int[] xy = new int[2];
+		int[] pos = new int[2];
 		if (!belongNode(id)) {
 			return null;
 		} else {
 			for (Node i : nodes) {
 				if (i.getID() == id) {
-					xy[0] = i.getX();
-					xy[1] = i.getY();
+					pos[0] = i.getX();
+					pos[1] = i.getY();
 				}
 			}
 		}
 	}
 
-	public Collection adjacentNode(int id) {
-		Collection values;
+	public ArrayList<Node> adjacentNode(int id) {
+		ArrayList<Node> values;
 		Node aux;
 		if (!belongNode(id)) {
 			return null;
 		} else {
 			aux = returnNode(id);
 			if (adjlist.containsKey(aux)) {
-				// values = adjlist.values(); necesitamos un método que devuelva los valores de
-				// una key
+				values = adjlist.get(aux);
 			}
 		}
 		return values;
 	}
 
+	// to return the object node from an id
 	public Node returnNode(int id) {
 		for (Node i : nodes) {
 			if (id == i.getID()) {
@@ -65,6 +70,5 @@ public class Graph {
 		}
 		return null;
 	}
-	// método para recuperar el nodo de una id
 
 }
