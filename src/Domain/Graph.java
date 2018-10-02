@@ -1,7 +1,6 @@
 package Domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Graph {
@@ -11,12 +10,17 @@ public class Graph {
 	private HashMap<Node, ArrayList<Node>> adjlist;;
 
 	public Graph(String filename) {
-		ArrayList<Node> aux;
+		// xml readed with a method: readNodes() and readArcs
+		ArrayList<Node> aux = new ArrayList<Node>();
 		for (Node i : nodes) {
 			for (Arc a : arcs) {
-				if (i.getID() == a.getSource() || i.getID() == a.getTarget()) {
-					aux.add(a);
-				}	
+				if (i.getID() == a.getSource()) {
+					Node n = returnNode(a.getTarget());
+					aux.add(n);
+				} else if (i.getID() == a.getTarget()) {
+					Node n = returnNode(a.getSource());
+					aux.add(n);
+				}
 			}
 			adjlist.put(i, aux);
 		}
@@ -33,8 +37,8 @@ public class Graph {
 		return false;
 	}
 
-	public int[] positionNode(int id) {
-		int[] pos = new int[2];
+	public double[] positionNode(int id) {
+		double[] pos = new double[2];
 		if (!belongNode(id)) {
 			return null;
 		} else {
@@ -45,10 +49,11 @@ public class Graph {
 				}
 			}
 		}
+		return pos;
 	}
 
 	public ArrayList<Node> adjacentNode(int id) {
-		ArrayList<Node> values;
+		ArrayList<Node> values = new ArrayList<Node>();
 		Node aux;
 		if (!belongNode(id)) {
 			return null;
