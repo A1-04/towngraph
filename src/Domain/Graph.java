@@ -1,22 +1,29 @@
 package Domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
-public class Graph<N, A> {
+import javax.xml.soap.Node;
 
-	private ArrayList<N> nodes;
-	private ArrayList<A> arcs;
+public class Graph {
+
+	private ArrayList<Node> nodes;
+	private HashMap<Node, ArrayList<Node>> adjlist;;
 
 	public Graph(String filename) {
-		ArrayList<N> nodes;
-		ArrayList<A> arcs;
+		ArrayList<Node> adjlist;
 	}
 
 	public boolean belongNode(int id) {
-		for (N i : nodes) {
+		Node aux;
+		for (Node i : nodes) {
 			if (i.getID() == id) {
-				return true;
+				aux = i;
 			}
+		}
+		if (adjlist.containsKey(aux)) {
+			return true;
 		}
 		return false;
 	}
@@ -26,7 +33,7 @@ public class Graph<N, A> {
 		if (!belongNode(id)) {
 			return null;
 		} else {
-			for (N i : nodes) {
+			for (Node i : nodes) {
 				if (i.getID() == id) {
 					xy[0] = i.getX();
 					xy[1] = i.getY();
@@ -35,18 +42,29 @@ public class Graph<N, A> {
 		}
 	}
 
-	public ArrayList<A> adjacentNode(int id) {
-		ArrayList<A> adjlist;
+	public Collection adjacentNode(int id) {
+		Collection values;
+		Node aux;
 		if (!belongNode(id)) {
 			return null;
 		} else {
-			for (A i : arcs) {
-				if (id == i.getSource() || id == i.getTarget()) {
-					adjlist.add(i);
-				}
+			aux = returnNode(id);
+			if (adjlist.containsKey(aux)) {
+				// values = adjlist.values(); necesitamos un método que devuelva los valores de
+				// una key
 			}
 		}
-
+		return values;
 	}
+
+	public Node returnNode(int id) {
+		for (Node i : nodes) {
+			if (id == i.getID()) {
+				return i;
+			}
+		}
+		return null;
+	}
+	// método para recuperar el nodo de una id
 
 }
