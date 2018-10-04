@@ -35,6 +35,8 @@ public class Principal {
 				start();
 			} catch (IOException e) {
 				System.out.print(e.getMessage());
+				System.out.println("---> Program closed.");
+				System.exit(0);
 			}
 			P1(g);
 			System.out.println("\nPress 0 to exit the program. Press any key to try again.");
