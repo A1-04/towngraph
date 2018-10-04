@@ -39,10 +39,14 @@ public class TSFGraph {
 		}
 	}
 
+	public TSFGraph() {
+		
+	}
+
 	private void readXML(String filename) throws IOException {
 		Graph graph = new TinkerGraph();
 		GraphMLReader reader = new GraphMLReader(graph);
-		reader.setEdgeIdKey("d7");
+		//reader.setEdgeIdKey("d7");
 
 		InputStream is = new BufferedInputStream(new FileInputStream(filename));
 		reader.inputGraph(is);

@@ -4,20 +4,43 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import domain.Node;
 import domain.TSFGraph;
 
 public class Principal {
-	public static void main(String[] args) throws IOException {
-		Scanner read = new Scanner(System.in);
-		System.out.println("-----\tTowngraph P1 (v0.2)\t-----");
+	public static void main(String[] args) {
+		System.out.println("-----\tTowngraph P1 (v0.2.1)\t-----");
 		System.out.println();
-		System.out.println("Enter the name of the town:");
-		File f = new File(".");
-		String filename = read.nextLine();
-		TSFGraph g = new TSFGraph(f.getCanonicalPath() + "/data/" + filename + ".graphml.xml");
-		P1(g);
+		start();
+	}
+
+	public static void start() {
+		char exit = 0;
+		do {
+			Scanner read = new Scanner(System.in);
+			System.out.println("Enter the name of the town: (or 0 to exit the program)");
+			File f = new File(".");
+			String filename = read.nextLine();
+			if (filename.length() == 1 && filename.charAt(0) == '0') {
+				System.out.println("---> Program closed.");
+				System.exit(0);
+			}
+			TSFGraph g = new TSFGraph();
+			try {
+				g = new TSFGraph(f.getCanonicalPath() + "/data/" + filename + ".graphml.xml");
+			} catch (FileNotFoundException e) {
+				System.out.println("----- ERROR: File not found, try again.");
+				start();
+			} catch (IOException e) {
+				System.out.print(e.getMessage());
+			}
+			P1(g);
+			System.out.println("\nPress 0 to exit the program. Press any key to try again.");
+			exit = read.next().charAt(0);
+		} while (exit != '0');
+		System.out.println("--> Program closed.");
 	}
 
 	public static void P1(TSFGraph g) {
@@ -42,6 +65,7 @@ public class Principal {
 			}
 		} else {
 			System.out.println("This node does not belong to the graph.");
+			System.out.println();
 		}
 
 	}
