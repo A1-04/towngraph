@@ -17,7 +17,7 @@ public class Arc {
 	}
 
 	public Arc() {
-		
+
 	}
 
 	public String getID() {
@@ -38,9 +38,5 @@ public class Arc {
 
 	public String getDistance() {
 		return distance;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 }
