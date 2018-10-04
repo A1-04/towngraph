@@ -49,6 +49,7 @@ public class Principal {
 	public static void P1(TSFGraph g) {
 		Scanner read = new Scanner(System.in);
 		boolean belong;
+		String swap[] = new String[2];
 		System.out.println("Insert the node:");
 		String node = read.next();
 		System.out.print("--> Belong the node to the graph? ");
@@ -64,7 +65,8 @@ public class Principal {
 			System.out.print("--> Adjacent Nodes: ");
 			ArrayList<Arc> a = g.adjacentNode(node);
 			for (Arc i : a) {
-				System.out.println("\n" + i.getID() + " " + i.getName() + " " + i.getDistance());
+				swap = i.getID().split(" ");
+				System.out.println("\n" + swap[1] + " " + swap[0] + "  " + i.getName() + "  " + i.getDistance());
 			}
 		} else {
 			System.out.println("This node does not belong to the graph.");
