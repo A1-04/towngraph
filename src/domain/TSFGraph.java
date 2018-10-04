@@ -40,13 +40,12 @@ public class TSFGraph {
 	}
 
 	public TSFGraph() {
-		
+
 	}
 
 	private void readXML(String filename) throws IOException {
 		Graph graph = new TinkerGraph();
 		GraphMLReader reader = new GraphMLReader(graph);
-		//reader.setEdgeIdKey("d7");
 
 		InputStream is = new BufferedInputStream(new FileInputStream(filename));
 		reader.inputGraph(is);
@@ -69,8 +68,17 @@ public class TSFGraph {
 				Edge edge = edgesIterator.next();
 				edge.setProperty("d7",
 						edge.getVertex(Direction.IN).getId() + " " + edge.getVertex(Direction.OUT).getId());
-				Arc arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
-						edge.getVertex(Direction.OUT).getId().toString());
+				Arc arc = null;
+				if (edge.getProperty("name") == null) {
+					arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
+							edge.getVertex(Direction.OUT).getId().toString(), "Unnamed",
+							edge.getProperty("length").toString());
+				} else {
+					arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
+							edge.getVertex(Direction.OUT).getId().toString(), edge.getProperty("name").toString(),
+							edge.getProperty("length").toString());
+				}
+
 				arcs.add(arc);
 			}
 
