@@ -6,12 +6,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import domain.Arc;
 import domain.Node;
 import domain.TSFGraph;
 
 public class Principal {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P1 (v0.2.1)\t-----");
+		System.out.println("-----\tTowngraph P1 (v0.5)\t-----");
 		System.out.println();
 		start();
 	}
@@ -61,9 +62,9 @@ public class Principal {
 				System.out.print(coor[i] + " ");
 			System.out.println();
 			System.out.print("--> Adjacent Nodes: ");
-			ArrayList<Node> a = g.adjacentNode(node);
-			for (Node i : a) {
-				System.out.print(i.getID() + " ");
+			ArrayList<Arc> a = g.adjacentNode(node);
+			for (Arc i : a) {
+				System.out.println("\n" + i.getID() + " " + i.getName() + " " + i.getDistance());
 			}
 		} else {
 			System.out.println("This node does not belong to the graph.");

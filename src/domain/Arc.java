@@ -16,6 +16,10 @@ public class Arc {
 		this.distance = distance;
 	}
 
+	public Arc() {
+		
+	}
+
 	public String getID() {
 		return id;
 	}

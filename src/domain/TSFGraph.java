@@ -68,7 +68,8 @@ public class TSFGraph {
 				Edge edge = edgesIterator.next();
 				edge.setProperty("d7",
 						edge.getVertex(Direction.IN).getId() + " " + edge.getVertex(Direction.OUT).getId());
-				Arc arc = null;
+				Arc arc = new Arc();
+
 				if (edge.getProperty("name") == null) {
 					arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
 							edge.getVertex(Direction.OUT).getId().toString(), "Unnamed",
@@ -78,10 +79,8 @@ public class TSFGraph {
 							edge.getVertex(Direction.OUT).getId().toString(), edge.getProperty("name").toString(),
 							edge.getProperty("length").toString());
 				}
-
 				arcs.add(arc);
 			}
-
 		}
 
 	}
@@ -112,8 +111,9 @@ public class TSFGraph {
 		return pos;
 	}
 
-	public ArrayList<Node> adjacentNode(String id) {
+	public ArrayList<Arc> adjacentNode(String id) {
 		ArrayList<Node> values = new ArrayList<Node>();
+		ArrayList<Arc> adjacents = new ArrayList<Arc>();
 		Node aux;
 		if (!belongNode(id)) {
 			return null;
@@ -124,14 +124,39 @@ public class TSFGraph {
 			}
 		}
 		values = filterNodes(values);
-		return values;
+		adjacents = createArcs(values, aux);
+		return adjacents;
+	}
+
+	public ArrayList<Arc> createArcs(ArrayList<Node> values, Node aux) {
+		ArrayList<Arc> adjnodes = new ArrayList<Arc>();
+		Arc arc = new Arc();
+		for (Node i : values) {
+			arc = returnArc(aux.getID() + " " + i.getID());
+			adjnodes.add(arc);
+		}
+		return adjnodes;
 	}
 
 	// to return the object node from an id
-	public Node returnNode(String string) {
+	public Node returnNode(String id) {
 		for (Node i : nodes) {
-			if (string.equals(i.getID())) {
+			if (id.equals(i.getID())) {
 				return i;
+			}
+		}
+		return null;
+	}
+
+	// to return the object arc from an id
+	public Arc returnArc(String id) {
+		String[] splited = new String[2];
+		String aux = "";
+		for (Arc a : arcs) {
+			splited = id.split(" ");
+			aux = splited[1] + " " + splited[0];
+			if (id.equals(a.getID()) || aux.equals(a.getID())){
+				return a;
 			}
 		}
 		return null;
@@ -146,7 +171,5 @@ public class TSFGraph {
 			}
 		}
 		return aux;
-
 	}
-
 }
