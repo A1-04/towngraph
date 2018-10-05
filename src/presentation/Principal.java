@@ -7,17 +7,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import domain.Arc;
-import domain.Node;
 import domain.TSFGraph;
 
 public class Principal {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P1 (v0.5)\t-----");
+		System.out.println("-----\tTowngraph P1 (v0.5.1)\t-----");
 		System.out.println();
 		start();
 	}
 
-	public static void start() {
+	public static int start() {
 		char exit = 0;
 		do {
 			Scanner read = new Scanner(System.in);
@@ -44,6 +43,7 @@ public class Principal {
 			exit = read.next().charAt(0);
 		} while (exit != '0');
 		System.out.println("--> Program closed.");
+		return 0;
 	}
 
 	public static void P1(TSFGraph g) {
@@ -66,7 +66,7 @@ public class Principal {
 			ArrayList<Arc> a = g.adjacentNode(node);
 			for (Arc i : a) {
 				swap = i.getID().split(" ");
-				System.out.println("\n" + swap[1] + " " + swap[0] + "  " + i.getName() + "  " + i.getDistance());
+				System.out.println("\n" + swap[1] + "\t" + swap[0] + "\t" + i.getName() + "\t" + i.getDistance());
 			}
 		} else {
 			System.out.println("This node does not belong to the graph.");
