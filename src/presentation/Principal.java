@@ -11,7 +11,7 @@ import domain.TSFGraph;
 
 public class Principal {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P1 (v0.5.2)\t-----");
+		System.out.println("-----\tTowngraph P1 (v1.0)\t-----");
 		System.out.println();
 		start();
 		System.exit(0);
