@@ -8,5 +8,5 @@ This project is made by:
 
 
 # about the documentation
-The online version of the documentation could present some errors due to the transcription of github of the pdf to the raw view.
+The online version of the documentation could present some errors due to the github transcription of the pdf to the raw view.
 Download if possible to obtain the correct version.
