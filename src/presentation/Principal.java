@@ -3,6 +3,11 @@ package presentation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -10,14 +15,14 @@ import domain.Arc;
 import domain.TSFGraph;
 
 public class Principal {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParserConfigurationException, SAXException {
 		System.out.println("-----\tTowngraph P1 (v1.0)\t-----");
 		System.out.println();
 		start();
 		System.exit(0);
 	}
 
-	public static int start() {
+	public static int start() throws ParserConfigurationException, SAXException {
 		char exit = 0;
 		do {
 			Scanner read = new Scanner(System.in);
@@ -50,7 +55,6 @@ public class Principal {
 	public static void P1(TSFGraph g) {
 		Scanner read = new Scanner(System.in);
 		boolean belong;
-		String swap[] = new String[2];
 		System.out.println("Insert the node:");
 		String node = read.next();
 		System.out.print("--> Belong the node to the graph? ");

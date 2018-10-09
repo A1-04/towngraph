@@ -1,19 +1,16 @@
 package domain;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import com.tinkerpop.blueprints.Direction;
-import com.tinkerpop.blueprints.Edge;
-import com.tinkerpop.blueprints.Graph;
-import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
-import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
 
 public class TSFGraph {
 
@@ -21,7 +18,7 @@ public class TSFGraph {
 	private ArrayList<Arc> arcs = new ArrayList<Arc>();
 	private HashMap<Node, ArrayList<Node>> adjlist = new HashMap<Node, ArrayList<Node>>();
 
-	public TSFGraph(String filename) throws IOException {
+	public TSFGraph(String filename) throws IOException, ParserConfigurationException, SAXException {
 		readXML(filename);
 		ArrayList<Node> aux = new ArrayList<Node>();
 		for (Node i : nodes) {
@@ -43,45 +40,23 @@ public class TSFGraph {
 
 	}
 
-	private void readXML(String filename) throws IOException {
-		Graph graph = new TinkerGraph();
-		GraphMLReader reader = new GraphMLReader(graph);
+	private void readXML(String filename) throws IOException, ParserConfigurationException, SAXException {
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		SAXParser saxParser = factory.newSAXParser();
+		File file = new File(filename);
+		GraphHandler handler = new GraphHandler();
+		saxParser.parse(file, handler);
 
-		InputStream is = new BufferedInputStream(new FileInputStream(filename));
-		reader.inputGraph(is);
+		ArrayList<Node> nodes = handler.getNodes();
+		ArrayList<Arc> arcs = handler.getArcs();
 
-		Iterable<Vertex> vertices = graph.getVertices();
-		Iterator<Vertex> verticesIterator = vertices.iterator();
-
-		while (verticesIterator.hasNext()) {
-
-			Vertex vertex = verticesIterator.next();
-
-			Node node = new Node(vertex.getProperty("x").toString(), vertex.getProperty("y").toString(),
-					vertex.getId().toString());
-			nodes.add(node);
-			Iterable<Edge> edges = vertex.getEdges(Direction.BOTH);
-			Iterator<Edge> edgesIterator = edges.iterator();
-
-			while (edgesIterator.hasNext()) {
-				Edge edge = edgesIterator.next();
-				edge.setProperty("d7",
-						edge.getVertex(Direction.IN).getId() + " " + edge.getVertex(Direction.OUT).getId());
-				Arc arc = new Arc();
-
-				if (edge.getProperty("name") == null) {
-					arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
-							edge.getVertex(Direction.OUT).getId().toString(), "Unnamed",
-							edge.getProperty("length").toString());
-				} else {
-					arc = new Arc(edge.getProperty("d7").toString(), edge.getVertex(Direction.IN).getId().toString(),
-							edge.getVertex(Direction.OUT).getId().toString(), edge.getProperty("name").toString(),
-							edge.getProperty("length").toString());
-				}
-				arcs.add(arc);
-			}
+		for (Arc a : arcs) {
+			System.out.println(a.getID());
 		}
 
+		System.out.println(arcs.size());
+
+		System.out.println(nodes.size());
 	}
 
 	public boolean belongNode(String id) {

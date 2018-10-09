@@ -12,6 +12,10 @@ public class Node {
 		this.id = id;
 	}
 
+	public Node() {
+
+	}
+
 	public String getID() {
 		return id;
 	}
@@ -22,5 +26,17 @@ public class Node {
 
 	public String getY() {
 		return y;
+	}
+
+	public void setID(String id) {
+		this.id = id;
+	}
+
+	public void setY(String y) {
+		this.y = y;
+	}
+
+	public void setX(String x) {
+		this.x = x;
 	}
 }

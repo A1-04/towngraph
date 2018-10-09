@@ -39,4 +39,16 @@ public class Arc {
 	public String getDistance() {
 		return distance;
 	}
+
+	public void setID(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 }
