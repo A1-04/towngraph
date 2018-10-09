@@ -60,11 +60,10 @@ public class TSFGraph {
 			Node node = new Node(vertex.getProperty("x").toString(), vertex.getProperty("y").toString(),
 					vertex.getId().toString());
 			nodes.add(node);
-			Iterable<Edge> edges = vertex.getEdges(Direction.IN);
+			Iterable<Edge> edges = vertex.getEdges(Direction.BOTH);
 			Iterator<Edge> edgesIterator = edges.iterator();
 
 			while (edgesIterator.hasNext()) {
-
 				Edge edge = edgesIterator.next();
 				edge.setProperty("d7",
 						edge.getVertex(Direction.IN).getId() + " " + edge.getVertex(Direction.OUT).getId());
@@ -133,7 +132,9 @@ public class TSFGraph {
 		Arc arc = new Arc();
 		for (Node i : values) {
 			arc = returnArc(aux.getID() + " " + i.getID());
-			adjnodes.add(arc);
+			if (arc != null) {
+				adjnodes.add(arc);
+			}
 		}
 		return adjnodes;
 	}
@@ -150,12 +151,8 @@ public class TSFGraph {
 
 	// to return the object arc from an id
 	public Arc returnArc(String id) {
-		String[] splited = new String[2];
-		String aux = "";
 		for (Arc a : arcs) {
-			splited = id.split(" ");
-			aux = splited[1] + " " + splited[0];
-			if (id.equals(a.getID()) || aux.equals(a.getID())){
+			if (id.equals(a.getID())) {
 				return a;
 			}
 		}

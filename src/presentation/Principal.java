@@ -66,8 +66,7 @@ public class Principal {
 			System.out.print("--> Adjacent Nodes: ");
 			ArrayList<Arc> a = g.adjacentNode(node);
 			for (Arc i : a) {
-				swap = i.getID().split(" ");
-				System.out.println("\n" + swap[1] + "\t" + swap[0] + "\t" + i.getName() + "\t" + i.getDistance());
+				System.out.println("\n" + i.getID() + "\t" + i.getName() + "\t" + i.getDistance());
 			}
 		} else {
 			System.out.println("This node does not belong to the graph.");
