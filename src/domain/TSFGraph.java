@@ -47,16 +47,14 @@ public class TSFGraph {
 		GraphHandler handler = new GraphHandler();
 		saxParser.parse(file, handler);
 
-		ArrayList<Node> nodes = handler.getNodes();
-		ArrayList<Arc> arcs = handler.getArcs();
+		nodes = handler.getNodes();
+		System.out.println(nodes.get(0).getY());
+		System.out.println(nodes.get(0).getX());
+		System.out.println(nodes.get(0).getID());
+		arcs = handler.getArcs();
 
-		for (Arc a : arcs) {
-			System.out.println(a.getID());
-		}
+		
 
-		System.out.println(arcs.size());
-
-		System.out.println(nodes.size());
 	}
 
 	public boolean belongNode(String id) {
