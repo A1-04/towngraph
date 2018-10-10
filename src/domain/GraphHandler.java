@@ -77,7 +77,6 @@ public class GraphHandler extends DefaultHandler {
 			arc.setSource(attributes.getValue("source"));
 			arc.setTarget(attributes.getValue("target"));
 			arc.setID(arc.getSource() + " " + arc.getTarget());
-
 			break;
 		}
 	}
