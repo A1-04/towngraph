@@ -27,26 +27,12 @@ public class TSFGraph {
 		for (Node i : nodes) {
 			aux = new ArrayList<Node>();
 			for (Arc a : arcs) {
-				if (i.getID() == a.getSource()) {
+				if (i.getID().equals(a.getSource())) {
 					Node n = returnNode(a.getTarget());
-					aux.add(n);
-				} else if (i.getID() == a.getTarget()) {
-					Node n = returnNode(a.getSource());
 					aux.add(n);
 				}
 			}
 			adjlist.put(i, aux);
-		}
-		// Iterator<Entry<Node, ArrayList<Node>>> it = adjlist.entrySet().iterator();
-		for (Entry<Node, ArrayList<Node>> entry : adjlist.entrySet()) {
-			Node key = entry.getKey();
-			System.out.print(key.getID() + "\t");
-			ArrayList<Node> value = entry.getValue();
-			for (Node i : value) {
-				System.out.print(i.getID() + " ");
-			}
-			System.out.println();
-			
 		}
 	}
 
@@ -104,7 +90,6 @@ public class TSFGraph {
 				values = adjlist.get(aux);
 			}
 		}
-		values = filterNodes(values);
 		adjacents = createArcs(values, aux);
 		return adjacents;
 	}
@@ -139,16 +124,5 @@ public class TSFGraph {
 			}
 		}
 		return null;
-	}
-
-	public ArrayList<Node> filterNodes(ArrayList<Node> values) {
-		ArrayList<Node> aux = new ArrayList<Node>();
-		aux.add(values.get(0));
-		for (Node i : values) {
-			if (!aux.contains(i)) {
-				aux.add(i);
-			}
-		}
-		return aux;
 	}
 }
