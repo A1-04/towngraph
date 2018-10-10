@@ -16,7 +16,7 @@ import domain.TSFGraph;
 
 public class Principal {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException {
-		System.out.println("-----\tTowngraph P1 (v1.1beta)\t-----");
+		System.out.println("-----\tTowngraph P1 (v2.0 beta)\t-----");
 		System.out.println();
 		start();
 		System.exit(0);

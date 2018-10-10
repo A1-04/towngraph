@@ -5,7 +5,7 @@ public class Arc {
 	private String id;
 	private String source;
 	private String target;
-	private String name;
+	private String name = "Unnamed";
 	private String distance;
 
 	public Arc(String id, String source, String target, String name, String distance) {
@@ -30,6 +30,14 @@ public class Arc {
 
 	public String getTarget() {
 		return target;
+	}
+
+	public void setSource(String id) {
+		this.source = id;
+	}
+
+	public void setTarget(String id) {
+		this.target = id;
 	}
 
 	public String getName() {

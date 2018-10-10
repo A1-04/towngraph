@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.SAXParserFactory;
 
@@ -34,6 +37,17 @@ public class TSFGraph {
 			}
 			adjlist.put(i, aux);
 		}
+		// Iterator<Entry<Node, ArrayList<Node>>> it = adjlist.entrySet().iterator();
+		for (Entry<Node, ArrayList<Node>> entry : adjlist.entrySet()) {
+			Node key = entry.getKey();
+			System.out.print(key.getID() + "\t");
+			ArrayList<Node> value = entry.getValue();
+			for (Node i : value) {
+				System.out.print(i.getID() + " ");
+			}
+			System.out.println();
+			
+		}
 	}
 
 	public TSFGraph() {
@@ -48,12 +62,7 @@ public class TSFGraph {
 		saxParser.parse(file, handler);
 
 		nodes = handler.getNodes();
-		System.out.println(nodes.get(0).getY());
-		System.out.println(nodes.get(0).getX());
-		System.out.println(nodes.get(0).getID());
 		arcs = handler.getArcs();
-
-		
 
 	}
 
