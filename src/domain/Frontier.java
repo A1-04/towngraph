@@ -15,7 +15,7 @@ public class Frontier {
 		treenodes = new ArrayList<TreeNode>();
 		Collections.sort(treenodes, new Comparator<TreeNode>() {
 			public int compare(TreeNode a, TreeNode b) {
-				return new Integer(a.getF()).compareTo(new Integer(b.getF()));
+				return new Float(a.getF()).compareTo(new Float(b.getF()));
 			}
 		});
 		return treenodes;
