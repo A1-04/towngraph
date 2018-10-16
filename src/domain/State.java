@@ -20,6 +20,10 @@ public class State {
 		this.md5 = getMD5(actualNode,n_list);
 	}
 
+	public Node getActualNode() {
+		return actualNode;
+	}
+
 	public static String getMD5(Node n1, ArrayList<Node> nList) {
 		
 		String input = n1.getID() + ",[";
@@ -43,6 +47,10 @@ public class State {
 		catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public ArrayList<Node> getN_list() {
+		return n_list;
 	}
 
 	public ArrayList<Node> sortNodes(ArrayList<Node> nl){

@@ -54,7 +54,7 @@ public class TreeNode {
 		this.d = d;
 	}
 
-	public int getF() {
+	public float getF() {
 		return f;
 	}
 
