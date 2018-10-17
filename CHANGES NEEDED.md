@@ -1,2 +1,3 @@
-- X not working (same value that IDs)
-- Arc: nulls in Name and Length 
+- Understanding the State list of nodes
+- Understanding the successor function in SpaceState
+- Implement the JSON reader
