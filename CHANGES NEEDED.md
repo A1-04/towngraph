@@ -1,3 +1,4 @@
+- Implement the JSON reader
 - Understanding the State list of nodes
 - Understanding the successor function in SpaceState
-- Implement the JSON reader
+- Deacoupling ReadXML
