@@ -1,15 +1,34 @@
 package domain;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 public class StateSpace {
-	
+
 	private ArrayList<State> states = new ArrayList<State>();
 
-	public void successors(State s) {
-		for(Node n : s.getN_list()) {
-			//System.out.printf("\nI am in %s and I go to %s \n New State: %s\n", s.getID, n.getID(), n.getID());
-		}
+	public StateSpace(String filename) throws IOException, ParserConfigurationException, SAXException {
+
+	}
+
+	public StateSpace() {
+		
+	}
+
+	public String successors(State s) {
+		/*
+		 * TSFGraph g = new TSFGraph(); String st = "Im in " + s.getActualNode().getID()
+		 * + " and I go to " + g.adjacentNode(s.getActualNode().getID()) + ", " +
+		 * s.getActualNode().getID(); String cost =
+		 * g.returnArc(s.getActualNode().getID() + " " +
+		 * g.adjacentNode(s.getActualNode().getID())) .getDistance();
+		 */
+		states.add(s);
+		return null;
 	}
 
 	public boolean belongNode(State s) {

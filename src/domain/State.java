@@ -17,7 +17,11 @@ public class State {
 		super();
 		this.actualNode = actualNode;
 		this.n_list = sortNodes(n_list);
-		this.md5 = getMD5(actualNode,n_list);
+		this.md5 = getMD5(actualNode, n_list);
+	}
+
+	public State() {
+
 	}
 
 	public Node getActualNode() {
@@ -25,14 +29,14 @@ public class State {
 	}
 
 	public static String getMD5(Node n1, ArrayList<Node> nList) {
-		
+
 		String input = n1.getID() + ",[";
-		for(Node i : nList) {
+		for (Node i : nList) {
 			input += i.getID() + ",";
 		}
-		input = input.substring(0, input.length()-1);
-		input+="]";
-		
+		input = input.substring(0, input.length() - 1);
+		input += "]";
+
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] messageDigest = md.digest(input.getBytes());
@@ -43,8 +47,7 @@ public class State {
 				hashtext = "0" + hashtext;
 			}
 			return hashtext;
-		}
-		catch (NoSuchAlgorithmException e) {
+		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -53,7 +56,7 @@ public class State {
 		return n_list;
 	}
 
-	public ArrayList<Node> sortNodes(ArrayList<Node> nl){
+	public ArrayList<Node> sortNodes(ArrayList<Node> nl) {
 
 		Collections.sort(nl, new Comparator<Node>() {
 			@Override
@@ -68,8 +71,5 @@ public class State {
 
 		return nl;
 	}
-
-
-
 
 }
