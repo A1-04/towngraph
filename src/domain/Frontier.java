@@ -8,21 +8,26 @@ public class Frontier {
 	private ArrayList<TreeNode> treenodes;
 
 	public Frontier() {
-
+		createFrontier();
 	}
 
-	public ArrayList<TreeNode> createFrontier() {
+	private void createFrontier() {
 		treenodes = new ArrayList<TreeNode>();
-		Collections.sort(treenodes, new Comparator<TreeNode>() {
-			public int compare(TreeNode a, TreeNode b) {
-				return new Float(a.getF()).compareTo(new Float(b.getF()));
-			}
-		});
-		return treenodes;
 	}
 
 	public void insert(TreeNode tn) {
-		treenodes.add(tn);
+		if (treenodes.isEmpty()) {
+			treenodes.add(tn);
+		} else {
+			for (int i = 0; i < treenodes.size(); i++) {
+				if (treenodes.get(i).getF() < tn.getF()) {
+					treenodes.add(i, tn);
+					break;
+				} else if (tn.getF() < treenodes.get(treenodes.size() - 1).getF()) {
+					treenodes.add(tn);
+				}
+			}
+		}
 	}
 
 	public TreeNode remove() {

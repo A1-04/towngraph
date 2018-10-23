@@ -20,13 +20,47 @@ public class Problem {
 		Scanner read = new Scanner(System.in);
 		String filename = "";
 		System.out.println("---P2 testing---\n");
+		stresstest();
+	}
+
+	public static void demo() {
+		String filename = "";
+		Scanner read = new Scanner(System.in);
+		System.out.println("--Demo started--");
 		System.out.print("Insert the json filename: ");
+
 		filename = read.next();
 
 		TSFGraph g = new TSFGraph();
 		StateSpace space = new StateSpace();
 		State first = new State();
-		readJSON(space, first, filename, g);
+		try {
+			readJSON(space, first, filename, g);
+		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void stresstest() {
+		TreeNode n = new TreeNode();
+
+		double t = 0;
+		System.out.println("Time consumed (with ArrayList)");
+		t = System.nanoTime();
+		Frontier f = new Frontier();
+		f.insert(n);
+		f.isEmpty();
+		f.remove();
+		t = System.nanoTime() - t;
+		System.out.println(t + " ns");
+
+		/*
+		 * System.out.println("LISTS TEST:"); f.insert(n); f.insert(n2); f.insert(n3);
+		 * 
+		 * System.out.println(f.remove().getF()); System.out.println(f.remove().getF());
+		 * System.out.println(f.remove().getF());
+		 */
+
 	}
 
 	public static boolean isGoal(State s) {

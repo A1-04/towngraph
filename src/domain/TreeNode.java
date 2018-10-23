@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TreeNode {
 	private Node parent;
@@ -11,7 +12,8 @@ public class TreeNode {
 	private float f; // value that determines the insertion order in the frontier
 
 	public TreeNode() {
-		this.f = (float) ((Math.random() * 1000) + 1);
+		Random rnd = new Random();
+		this.f = rnd.nextFloat() * 1000 + 1;
 	}
 
 	public Node getParent() {
