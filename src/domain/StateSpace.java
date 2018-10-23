@@ -21,22 +21,22 @@ public class StateSpace {
 
 	public ArrayList<Object[]> successors(State s) {
 		ArrayList<Node> adj = g.adjacentNodes(s.getActualNode().getID());
-		ArrayList<Node> n_list = s.getN_list();
-		ArrayList<Node> aux = n_list;
+		ArrayList<Node> o_list = s.getN_list();
+		ArrayList<Node> n_list = o_list;
 		Object[] auxReturn = new Object[3];
 		ArrayList<Object[]> toReturn = new ArrayList<Object[]>();
 		Arc ar = new Arc();
 		State st = new State();
 
 		for (Node a : adj) {
-			aux = n_list;
+			n_list = o_list;
 			for (Node b : n_list) {
 				if (a.getID().equals(b.getID())) {
-					aux.remove(b);
+					n_list.remove(b);
 				}
 			}
 			String a1 = "I am in " + s.getActualNode().getID() + " and I go to " + a.getID();
-			st = new State(a, aux);
+			st = new State(a, n_list);
 			ar = g.returnArc(s.getActualNode().getID() + " " + a.getID());
 
 			auxReturn[0] = (Object) a1;

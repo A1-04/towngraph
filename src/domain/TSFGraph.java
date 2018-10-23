@@ -1,16 +1,12 @@
 package domain;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
 
 public class TSFGraph {
 
@@ -19,7 +15,8 @@ public class TSFGraph {
 	private HashMap<Node, ArrayList<Node>> adjlist = new HashMap<Node, ArrayList<Node>>();
 
 	public TSFGraph(String filename) throws IOException, ParserConfigurationException, SAXException {
-		readXML(filename);
+		nodes = ReadXML.parseXMLnodes(filename);
+		arcs = ReadXML.parseXMLarcs(filename);
 		ArrayList<Node> aux = new ArrayList<Node>();
 		for (Node i : nodes) {
 			aux = new ArrayList<Node>();
@@ -34,18 +31,6 @@ public class TSFGraph {
 	}
 
 	public TSFGraph() {
-
-	}
-
-	private void readXML(String filename) throws IOException, ParserConfigurationException, SAXException {
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		SAXParser saxParser = factory.newSAXParser();
-		File file = new File(filename);
-		GraphHandler handler = new GraphHandler();
-		saxParser.parse(file, handler);
-
-		nodes = handler.getNodes();
-		arcs = handler.getArcs();
 
 	}
 
@@ -90,7 +75,7 @@ public class TSFGraph {
 		adjacents = createArcs(values, aux);
 		return adjacents;
 	}
-	
+
 	public ArrayList<Node> adjacentNodes(String id) {
 		ArrayList<Node> values = new ArrayList<Node>();
 		Node aux;
@@ -98,14 +83,13 @@ public class TSFGraph {
 			return null;
 		} else {
 			aux = returnNode(id);
-			if (adjlist.containsKey(aux)){
+			if (adjlist.containsKey(aux)) {
 				values = adjlist.get(aux);
 			}
 		}
 		return values;
 	}
-	
-	
+
 	public ArrayList<Arc> createArcs(ArrayList<Node> values, Node aux) {
 		ArrayList<Arc> adjnodes = new ArrayList<Arc>();
 		Arc arc = new Arc();

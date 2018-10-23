@@ -1,4 +1,1 @@
-- Implement the JSON reader
-- Understanding the State list of nodes
-- Understanding the successor function in SpaceState
-- Deacoupling ReadXML
+- Stress tests
