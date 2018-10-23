@@ -90,7 +90,22 @@ public class TSFGraph {
 		adjacents = createArcs(values, aux);
 		return adjacents;
 	}
-
+	
+	public ArrayList<Node> adjacentNodes(String id) {
+		ArrayList<Node> values = new ArrayList<Node>();
+		Node aux;
+		if (!belongNode(id)) {
+			return null;
+		} else {
+			aux = returnNode(id);
+			if (adjlist.containsKey(aux)){
+				values = adjlist.get(aux);
+			}
+		}
+		return values;
+	}
+	
+	
 	public ArrayList<Arc> createArcs(ArrayList<Node> values, Node aux) {
 		ArrayList<Arc> adjnodes = new ArrayList<Arc>();
 		Arc arc = new Arc();

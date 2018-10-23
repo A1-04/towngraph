@@ -13,7 +13,7 @@ public class State {
 	private ArrayList<Node> n_list;
 	private String md5;
 
-	public State(Node actualNode, ArrayList<Node> n_list, String md5) {
+	public State(Node actualNode, ArrayList<Node> n_list) {
 		super();
 		this.actualNode = actualNode;
 		this.n_list = sortNodes(n_list);
