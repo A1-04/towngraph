@@ -15,8 +15,8 @@ public class TSFGraph {
 	private HashMap<Node, ArrayList<Node>> adjlist = new HashMap<Node, ArrayList<Node>>();
 
 	public TSFGraph(String filename) throws IOException, ParserConfigurationException, SAXException {
-		nodes = ReadXML.parseXMLnodes(filename);
-		arcs = ReadXML.parseXMLarcs(filename);
+		nodes = TSFReader.parseXMLnodes(filename);
+		arcs = TSFReader.parseXMLarcs(filename);
 		ArrayList<Node> aux = new ArrayList<Node>();
 		for (Node i : nodes) {
 			aux = new ArrayList<Node>();
