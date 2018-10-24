@@ -1,28 +1,32 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Frontier {
-	private ArrayList<TreeNode> treenodes;
+	private List<TreeNode> treenodes;
 
 	public Frontier() {
-
+		createFrontier();
 	}
 
-	public ArrayList<TreeNode> createFrontier() {
-		treenodes = new ArrayList<TreeNode>();
-		Collections.sort(treenodes, new Comparator<TreeNode>() {
-			public int compare(TreeNode a, TreeNode b) {
-				return new Integer(a.getF()).compareTo(new Integer(b.getF()));
-			}
-		});
-		return treenodes;
+	private void createFrontier() {
+		treenodes = new LinkedList<TreeNode>();
 	}
 
 	public void insert(TreeNode tn) {
-		treenodes.add(tn);
+		if (treenodes.isEmpty()) {
+			treenodes.add(tn);
+		} else {
+			for (int i = 0; i < treenodes.size(); i++) {
+				if (treenodes.get(i).getF() <= tn.getF()) {
+					treenodes.add(i, tn);
+					break;
+				} else if (tn.getF() < treenodes.get(treenodes.size() - 1).getF()) {
+					treenodes.add(tn);
+				}
+			}
+		}
 	}
 
 	public TreeNode remove() {
