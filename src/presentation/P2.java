@@ -13,14 +13,13 @@ import domain.Frontier;
 import domain.Node;
 import domain.State;
 import domain.StateSpace;
-import domain.TSFGraph;
 import domain.TSFReader;
 import domain.TreeNode;
 
 public class P2 {
 	public static void main(String[] args)
 			throws IOException, ParserConfigurationException, SAXException, ParseException {
-		System.out.println("---P2 testing---");
+		System.out.println("-----\tTowngraph P2 (v3)\t-----");
 		demo();
 		listtest();
 		stresstest();
@@ -43,7 +42,7 @@ public class P2 {
 			state = (State) ss[1];
 			// FIX THAT LINE
 			System.out.println("\nNode: " + state.getActualNode().getID());
-			System.out.print("listNodes:");
+			System.out.print("listNodes: ");
 			for (Node i : state.getN_list()) {
 				System.out.print(i.getID() + " ");
 			}
@@ -75,7 +74,8 @@ public class P2 {
 
 		t = System.currentTimeMillis() - t;
 		System.out.println(t + " ms");
-		System.out.println("\nLinkedList give us the best results among the 3 DS chosen.");
+		System.out.println(
+				"\nLinkedList give us the best results among the 3 DS chosen so we chose it (more info in doc).");
 
 	}
 

@@ -61,7 +61,6 @@ public class TSFReader {
 
 		// Reading the array
 		JSONArray JSlistNodes = (JSONArray) intst.get("listNodes");
-		String id = (String) intst.get("id");
 
 		// Printing all the values
 		n = space.getGraph().returnNode(node);
