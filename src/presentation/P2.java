@@ -93,8 +93,7 @@ public class P2 {
 				f.insert(n2);
 				f.insert(n3);
 			} catch (Exception e) {
-				System.err.println("Limit reached.");
-				e.printStackTrace();
+				System.err.println(e.getMessage());
 			}
 		}
 	}
