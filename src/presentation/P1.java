@@ -1,7 +1,7 @@
 package presentation;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -73,7 +73,7 @@ public class P1 {
 				System.out.print(coor[i] + " ");
 			System.out.println();
 			System.out.print("--> Adjacent Nodes: ");
-			ArrayList<Arc> a = g.adjacentNode(node);
+			LinkedList<Arc> a = g.adjacentNode(node);
 			for (Arc i : a) {
 				System.out.println("\n" + i.getID() + "\t" + i.getName() + "\t" + i.getDistance());
 			}

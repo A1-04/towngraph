@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,10 +10,10 @@ import java.security.NoSuchAlgorithmException;
 public class State {
 
 	private Node actualNode;
-	private ArrayList<Node> n_list;
+	private LinkedList<Node> n_list;
 	private String md5;
 
-	public State(Node actualNode, ArrayList<Node> n_list) {
+	public State(Node actualNode, LinkedList<Node> n_list) {
 		super();
 		this.actualNode = actualNode;
 		this.n_list = sortNodes(n_list);
@@ -28,7 +28,7 @@ public class State {
 		return actualNode;
 	}
 
-	public static String getMD5(Node n1, ArrayList<Node> nList) {
+	public static String getMD5(Node n1, LinkedList<Node> nList) {
 
 		String input = n1.getID() + ",[";
 		for (Node i : nList) {
@@ -52,11 +52,11 @@ public class State {
 		}
 	}
 
-	public ArrayList<Node> getN_list() {
+	public LinkedList<Node> getN_list() {
 		return n_list;
 	}
 
-	public ArrayList<Node> sortNodes(ArrayList<Node> nl) {
+	public LinkedList<Node> sortNodes(LinkedList<Node> nl) {
 
 		Collections.sort(nl, new Comparator<Node>() {
 			@Override

@@ -1,5 +1,6 @@
 package presentation;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -30,14 +31,18 @@ public class P2 {
 		Scanner read = new Scanner(System.in);
 		System.out.println("\n--Demo started--");
 		System.out.print("Insert the json filename: ");
-
 		filename = read.next();
+
+		System.out.println("----- ERROR: File not found, try again.");
 
 		TSFGraph g = new TSFGraph();
 		StateSpace space = new StateSpace();
 		State first = new State();
 		try {
 			TSFReader.parseJSON(space, first, filename, g);
+		} catch (FileNotFoundException e) {
+			System.out.println("----- ERROR: File not found, try again.");
+			demo();
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
 		}

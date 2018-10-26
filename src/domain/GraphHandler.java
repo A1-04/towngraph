@@ -1,23 +1,24 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class GraphHandler extends DefaultHandler {
-	private ArrayList<Node> nodes = new ArrayList<Node>();
-	private ArrayList<Arc> arcs = new ArrayList<Arc>();
+	private LinkedList<Node> nodes = new LinkedList<Node>();
+	private LinkedList<Arc> arcs = new LinkedList<Arc>();
 	private Node node;
 	private Arc arc;
 	private StringBuilder buffer = new StringBuilder();
 	private String d, d_length, d_name;
 
-	public ArrayList<Node> getNodes() {
+	public LinkedList<Node> getNodes() {
 		return nodes;
 	}
 
-	public ArrayList<Arc> getArcs() {
+	public LinkedList<Arc> getArcs() {
 		return arcs;
 	}
 

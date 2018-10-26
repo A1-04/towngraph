@@ -1,7 +1,7 @@
 package domain;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 public class StateSpace {
 	private TSFGraph g;
 
-	private ArrayList<State> states = new ArrayList<State>();
+	private LinkedList<State> states = new LinkedList<State>();
 
 	public StateSpace(String filename) throws IOException, ParserConfigurationException, SAXException {
 		g = new TSFGraph(filename);
@@ -19,12 +19,12 @@ public class StateSpace {
 	public StateSpace() {
 	}
 
-	public ArrayList<Object[]> successors(State s) {
-		ArrayList<Node> adj = g.adjacentNodes(s.getActualNode().getID());
-		ArrayList<Node> o_list = s.getN_list();
-		ArrayList<Node> n_list = o_list;
+	public LinkedList<Object[]> successors(State s) {
+		LinkedList<Node> adj = g.adjacentNodes(s.getActualNode().getID());
+		LinkedList<Node> o_list = s.getN_list();
+		LinkedList<Node> n_list = o_list;
 		Object[] auxReturn = new Object[3];
-		ArrayList<Object[]> toReturn = new ArrayList<Object[]>();
+		LinkedList<Object[]> toReturn = new LinkedList<Object[]>();
 		Arc ar = new Arc();
 		State st = new State();
 

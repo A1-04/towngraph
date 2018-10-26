@@ -1,13 +1,13 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class TreeNode {
 	private Node parent;
 	private State currentState;
 	private int pathcost;
-	private ArrayList<State> action;
+	private LinkedList<State> action;
 	private int d;
 	private float f; // value that determines the insertion order in the frontier
 
@@ -40,11 +40,11 @@ public class TreeNode {
 		this.pathcost = pathcost;
 	}
 
-	public ArrayList<State> getAction() {
+	public LinkedList<State> getAction() {
 		return action;
 	}
 
-	public void setAction(ArrayList<State> action) {
+	public void setAction(LinkedList<State> action) {
 		this.action = action;
 	}
 

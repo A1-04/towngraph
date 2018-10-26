@@ -1,8 +1,8 @@
 package domain;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.xml.sax.SAXException;
 
@@ -10,16 +10,16 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class TSFGraph {
 
-	private ArrayList<Node> nodes = new ArrayList<Node>();
-	private ArrayList<Arc> arcs = new ArrayList<Arc>();
-	private HashMap<Node, ArrayList<Node>> adjlist = new HashMap<Node, ArrayList<Node>>();
+	private LinkedList<Node> nodes = new LinkedList<Node>();
+	private LinkedList<Arc> arcs = new LinkedList<Arc>();
+	private HashMap<Node, LinkedList<Node>> adjlist = new HashMap<Node, LinkedList<Node>>();
 
 	public TSFGraph(String filename) throws IOException, ParserConfigurationException, SAXException {
 		nodes = TSFReader.parseXMLnodes(filename);
 		arcs = TSFReader.parseXMLarcs(filename);
-		ArrayList<Node> aux = new ArrayList<Node>();
+		LinkedList<Node> aux = new LinkedList<Node>();
 		for (Node i : nodes) {
-			aux = new ArrayList<Node>();
+			aux = new LinkedList<Node>();
 			for (Arc a : arcs) {
 				if (i.getID().equals(a.getSource())) {
 					Node n = returnNode(a.getTarget());
@@ -60,9 +60,9 @@ public class TSFGraph {
 		return pos;
 	}
 
-	public ArrayList<Arc> adjacentNode(String id) {
-		ArrayList<Node> values = new ArrayList<Node>();
-		ArrayList<Arc> adjacents = new ArrayList<Arc>();
+	public LinkedList<Arc> adjacentNode(String id) {
+		LinkedList<Node> values = new LinkedList<Node>();
+		LinkedList<Arc> adjacents = new LinkedList<Arc>();
 		Node aux;
 		if (!belongNode(id)) {
 			return null;
@@ -76,8 +76,8 @@ public class TSFGraph {
 		return adjacents;
 	}
 
-	public ArrayList<Node> adjacentNodes(String id) {
-		ArrayList<Node> values = new ArrayList<Node>();
+	public LinkedList<Node> adjacentNodes(String id) {
+		LinkedList<Node> values = new LinkedList<Node>();
 		Node aux;
 		if (!belongNode(id)) {
 			return null;
@@ -90,8 +90,8 @@ public class TSFGraph {
 		return values;
 	}
 
-	public ArrayList<Arc> createArcs(ArrayList<Node> values, Node aux) {
-		ArrayList<Arc> adjnodes = new ArrayList<Arc>();
+	public LinkedList<Arc> createArcs(LinkedList<Node> values, Node aux) {
+		LinkedList<Arc> adjnodes = new LinkedList<Arc>();
 		Arc arc = new Arc();
 		for (Node i : values) {
 			arc = returnArc(aux.getID() + " " + i.getID());
