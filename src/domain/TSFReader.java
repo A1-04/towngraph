@@ -40,7 +40,7 @@ public class TSFReader {
 		return handler.getArcs();
 	}
 
-	public static void parseJSON(StateSpace space, State instate, String filename)
+	public static Object[] parseJSON(StateSpace space, State instate, String filename)
 			throws IOException, ParseException, ParserConfigurationException, SAXException, FileNotFoundException {
 		JSONParser parser = new JSONParser();
 		File f = new File(".");
@@ -48,7 +48,7 @@ public class TSFReader {
 		Object object = parser.parse(new FileReader(f.getCanonicalPath() + "/data/" + filename + ".json"));
 		Node n = new Node();
 		LinkedList<Node> listNodes = new LinkedList<Node>();
-		// TSFGraph g = new TSFGraph();
+		Object[] toReturn = new Object[2];
 
 		// convert Object to JSONObject
 		JSONObject jsonObject = (JSONObject) object;
@@ -64,17 +64,16 @@ public class TSFReader {
 		String id = (String) intst.get("id");
 
 		// Printing all the values
-		// System.out.println("Name: " + name);
 		n = space.getGraph().returnNode(node);
 
 		for (Object a : JSlistNodes) {
 			Node aux = space.getGraph().returnNode(a.toString());
 			listNodes.add(aux);
-			// System.out.print("\t" + a.toString() + "\n");
 		}
-		// System.out.println("Id: " + id);
 
 		instate = new State(n, listNodes);
-		// System.out.println("MD5 FOR REAL: " + instate.getMD5());
+		toReturn[0] = space;
+		toReturn[1] = instate;
+		return toReturn;
 	}
 }

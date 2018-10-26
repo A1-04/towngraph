@@ -34,17 +34,20 @@ public class P2 {
 		System.out.print("Insert the json filename: ");
 		filename = read.next();
 
-		// TSFGraph g = new TSFGraph();
 		StateSpace space = new StateSpace();
 		State state = new State();
+		Object[] ss = new Object[2];
 		try {
-			TSFReader.parseJSON(space, state, filename);
+			ss = TSFReader.parseJSON(space, state, filename);
+			space = (StateSpace) ss[0];
+			state = (State) ss[1];
 			// FIX THAT LINE
-			System.out.println("Node: " + state.getActualNode().getID());
+			System.out.println("\nNode: " + state.getActualNode().getID());
 			System.out.print("listNodes:");
 			for (Node i : state.getN_list()) {
-				System.out.println(i.getID());
+				System.out.print(i.getID() + " ");
 			}
+			System.out.println();
 			System.out.println("MD5: " + state.getMD5());
 		} catch (FileNotFoundException fe) {
 			System.out.print("----- ERROR: " + fe.getMessage());
