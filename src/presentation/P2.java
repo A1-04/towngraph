@@ -40,7 +40,6 @@ public class P2 {
 			ss = TSFReader.parseJSON(space, state, filename);
 			space = (StateSpace) ss[0];
 			state = (State) ss[1];
-			// FIX THAT LINE
 			System.out.println("\nNode: " + state.getActualNode().getID());
 			System.out.print("listNodes: ");
 			for (Node i : state.getN_list()) {
@@ -48,6 +47,7 @@ public class P2 {
 			}
 			System.out.println();
 			System.out.println("MD5: " + state.getMD5());
+			System.out.println("Is goal? " + isGoal(state));
 		} catch (FileNotFoundException fe) {
 			System.out.print("----- ERROR: " + fe.getMessage());
 			demo();
