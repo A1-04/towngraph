@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import domain.Arc;
 import domain.TSFGraph;
 
-public class Principal {
+public class P1 {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException {
 		System.out.println("-----\tTowngraph P1 (v2.1beta)\t-----");
 		System.out.println();
@@ -30,7 +30,7 @@ public class Principal {
 			System.out.println("Enter the name of the town: (or 0 to exit the program)");
 			File f = new File(".");
 			String filename = read.nextLine();
-			//long timeIni = System.nanoTime();
+			// long timeIni = System.nanoTime();
 			if (filename.length() == 1 && filename.charAt(0) == '0') {
 				System.out.println("---> Program closed.");
 				System.exit(0);
@@ -46,7 +46,7 @@ public class Principal {
 				System.out.println("---> Program closed.");
 				System.exit(0);
 			}
-			P1(g /*timeIni*/);
+			test(g /* timeIni */);
 			System.out.println("\nPress 0 to exit the program. Press any key to try again.");
 			exit = read.next().charAt(0);
 		} while (exit != '0');
@@ -54,14 +54,14 @@ public class Principal {
 		return 0;
 	}
 
-	public static void P1(TSFGraph g /*long timeIni*/) {
+	public static void test(TSFGraph g /* long timeIni */) {
 		Scanner read = new Scanner(System.in);
 		boolean belong;
-		//long timeFin = System.nanoTime();
-		//System.out.println("\nTime elapsed: " + (timeFin - timeIni) + " ns");
+		// long timeFin = System.nanoTime();
+		// System.out.println("\nTime elapsed: " + (timeFin - timeIni) + " ns");
 		System.out.println("Insert the node:");
 		String node = read.next();
-		//long timeAdjI = System.nanoTime();
+		// long timeAdjI = System.nanoTime();
 		System.out.print("--> Belong the node to the graph? ");
 
 		belong = g.belongNode(node);
@@ -81,7 +81,7 @@ public class Principal {
 			System.out.println("This node does not belong to the graph.");
 			System.out.println();
 		}
-		//long timeAdjF = System.nanoTime();
-		//System.out.println("\nTime elapsed: " + (timeAdjF - timeAdjI) + " ns");
+		// long timeAdjF = System.nanoTime();
+		// System.out.println("\nTime elapsed: " + (timeAdjF - timeAdjI) + " ns");
 	}
 }
