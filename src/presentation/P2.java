@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
 import domain.Frontier;
+import domain.Node;
 import domain.State;
 import domain.StateSpace;
 import domain.TSFGraph;
@@ -33,11 +34,18 @@ public class P2 {
 		System.out.print("Insert the json filename: ");
 		filename = read.next();
 
-		TSFGraph g = new TSFGraph();
+		// TSFGraph g = new TSFGraph();
 		StateSpace space = new StateSpace();
-		State first = new State();
+		State state = new State();
 		try {
-			TSFReader.parseJSON(space, first, filename, g);
+			TSFReader.parseJSON(space, state, filename);
+			// FIX THAT LINE
+			System.out.println("Node: " + state.getActualNode().getID());
+			System.out.print("listNodes:");
+			for (Node i : state.getN_list()) {
+				System.out.println(i.getID());
+			}
+			System.out.println("MD5: " + state.getMD5());
 		} catch (FileNotFoundException fe) {
 			System.out.print("----- ERROR: " + fe.getMessage());
 			demo();

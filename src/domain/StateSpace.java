@@ -54,4 +54,8 @@ public class StateSpace {
 		}
 		return false;
 	}
+	
+	public TSFGraph getGraph() {
+		return g;
+	}
 }

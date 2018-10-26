@@ -28,6 +28,14 @@ public class State {
 		return actualNode;
 	}
 
+	public String getMD5() {
+		return md5;
+	}
+
+	public void setMD5(String md5) {
+		this.md5 = md5;
+	}
+
 	public static String getMD5(Node n1, LinkedList<Node> nList) {
 
 		String input = n1.getID() + ",[";
@@ -61,9 +69,11 @@ public class State {
 		Collections.sort(nl, new Comparator<Node>() {
 			@Override
 			public int compare(Node n1, Node n2) {
-				if (Integer.parseInt(n1.getID()) > Integer.parseInt(n2.getID()))
+				if (Integer.parseInt(n1.getID().substring(1, n1.getID().length() - 1)) > Integer
+						.parseInt(n2.getID().substring(1, n2.getID().length() - 1)))
 					return 1;
-				if (Integer.parseInt(n1.getID()) < Integer.parseInt(n2.getID()))
+				if (Integer.parseInt(n1.getID().substring(1, n1.getID().length() - 1)) < Integer
+						.parseInt(n2.getID().substring(1, n2.getID().length() - 1)))
 					return -1;
 				return 0;
 			}
