@@ -40,11 +40,10 @@ public class TSFReader {
 	}
 
 	public static void parseJSON(StateSpace space, State first, String filename, TSFGraph g)
-			throws IOException, ParseException, ParserConfigurationException, SAXException {
+			throws IOException, ParseException, ParserConfigurationException, SAXException, FileNotFoundException{
 		JSONParser parser = new JSONParser();
 		File f = new File(".");
 		String[] ab = new String[3];
-		try {
 			Object object = parser.parse(new FileReader(f.getCanonicalPath() + "/data/" + filename + ".json"));
 
 			// convert Object to JSONObject
@@ -69,9 +68,5 @@ public class TSFReader {
 				System.out.print("\t" + a.toString() + "\n");
 			}
 			System.out.println("Id: " + id);
-
-		} catch (FileNotFoundException fe) {
-			fe.printStackTrace();
-		}
 	}
 }

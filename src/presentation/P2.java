@@ -33,18 +33,16 @@ public class P2 {
 		System.out.print("Insert the json filename: ");
 		filename = read.next();
 
-		System.out.println("----- ERROR: File not found, try again.");
-
 		TSFGraph g = new TSFGraph();
 		StateSpace space = new StateSpace();
 		State first = new State();
 		try {
 			TSFReader.parseJSON(space, first, filename, g);
-		} catch (FileNotFoundException e) {
-			System.out.println("----- ERROR: File not found, try again.");
+		} catch (FileNotFoundException fe) {
+			System.out.print("----- ERROR: " + fe.getMessage());
 			demo();
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
