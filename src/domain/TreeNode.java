@@ -12,6 +12,15 @@ public class TreeNode {
 	private float f; // value that determines the insertion order in the frontier
 
 	public TreeNode() {
+
+	}
+
+	public TreeNode(Node parent, State currentState, int pathcost, int d, float f) {
+		super();
+		this.parent = parent;
+		this.currentState = currentState;
+		this.pathcost = pathcost;
+		this.d = d;
 		Random rnd = new Random();
 		this.f = rnd.nextFloat() * 1000 + 1;
 	}

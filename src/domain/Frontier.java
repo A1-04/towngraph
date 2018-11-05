@@ -28,6 +28,12 @@ public class Frontier {
 			}
 		}
 	}
+	
+	public void insertList(LinkedList<TreeNode> nodesList) {
+		for(TreeNode i : nodesList) {
+			insert(i);
+		}
+	}
 
 	public TreeNode remove() {
 		return treenodes.remove(0);

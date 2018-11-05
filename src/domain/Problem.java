@@ -20,6 +20,10 @@ public class Problem {
 		i_state = (State) ss[1];
 	}
 
+	public Problem() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public StateSpace getSpace() {
 		return space;
 	}
