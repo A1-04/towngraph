@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 
 import domain.Frontier;
 import domain.Node;
+import domain.Problem;
 import domain.State;
 import domain.StateSpace;
 import domain.TSFReader;
@@ -26,34 +27,17 @@ public class P2 {
 		System.out.println("---P2 closed---");
 	}
 
-	public static void demo() {
+	public static void demo()
+			throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
 		String filename = "";
 		Scanner read = new Scanner(System.in);
 		System.out.println("\n--Demo started--");
 		System.out.print("Insert the json filename: ");
 		filename = read.next();
 
-		StateSpace space = new StateSpace();
-		State state = new State();
-		Object[] ss = new Object[2];
-		try {
-			ss = TSFReader.parseJSON(space, state, filename);
-			space = (StateSpace) ss[0];
-			state = (State) ss[1];
-			System.out.println("\nNode: " + state.getActualNode().getID());
-			System.out.print("listNodes: ");
-			for (Node i : state.getN_list()) {
-				System.out.print(i.getID() + " ");
-			}
-			System.out.println();
-			System.out.println("MD5: " + state.getMD5());
-			System.out.println("Is goal? " + isGoal(state));
-		} catch (FileNotFoundException fe) {
-			System.out.print("----- ERROR: " + fe.getMessage());
-			demo();
-		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
-			System.out.println(e.getMessage());
-		}
+		Problem p = new Problem(filename);
+
+		System.out.print("-Problem created succesfully.\n");
 	}
 
 	public static void listtest() {
