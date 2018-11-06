@@ -23,16 +23,33 @@ public class TreeNode {
 		this.d = d;
 		Random rnd = new Random();
 		if (strategy == "BFS") {
-			f = d;
+			this.f = d;
 		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
-			f = -d;
+			this.f = -d;
 		} else if (strategy.equals("UCS")) {
-			f = pathcost;
+			this.f = pathcost;
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
 	}
 
+	public TreeNode(LinkedList<Object[]> succesorsList, TreeNode actualN, int depth, String strategy) {
+		//succesorsList is a List of objects and action list is a list of atate
+		this.action = succesorsList;
+		this.parent = actualN;
+		this.pathcost = depth;
+		Random rnd = new Random();
+		if (strategy == "BFS") {
+			this.f = d;
+		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
+			this.f = -d;
+		} else if (strategy.equals("UCS")) {
+			this.f = pathcost;
+		} else {
+			this.f = rnd.nextFloat() * 1000 + 1;
+		}
+		
+	}
 	public TreeNode getParent() {
 		return parent;
 	}
