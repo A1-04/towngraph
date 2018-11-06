@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class TreeNode {
-	private Node parent;
+	private TreeNode parent;
 	private State currentState;
 	private int pathcost;
 	private LinkedList<State> action;
@@ -15,7 +15,7 @@ public class TreeNode {
 
 	}
 
-	public TreeNode(Node parent, State currentState, int pathcost, int d, float f, String strategy) {
+	public TreeNode(TreeNode parent, State currentState, int pathcost, int d, float f, String strategy) {
 		super();
 		this.parent = parent;
 		this.currentState = currentState;
@@ -33,11 +33,11 @@ public class TreeNode {
 		}
 	}
 
-	public Node getParent() {
+	public TreeNode getParent() {
 		return parent;
 	}
 
-	public void setParent(Node parent) {
+	public void setParent(TreeNode parent) {
 		this.parent = parent;
 	}
 

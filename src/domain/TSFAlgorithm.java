@@ -1,7 +1,11 @@
 package domain;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
@@ -95,6 +99,19 @@ public class TSFAlgorithm {
 
 	public TreeNode prIDS(int depth) {
 		return null;
+	}
+
+	public LinkedList<TreeNode> Create_solution(TreeNode n_actual) throws IOException {
+		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
+		sol.add(n_actual);
+		
+		while (n_actual.getParent() != null) {
+			sol.add(n_actual.getParent());
+			n_actual = n_actual.getParent();
+		}
+		Collections.reverse(sol);
+
+		return sol;
 	}
 
 }
