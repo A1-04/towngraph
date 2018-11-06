@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class TreeNode {
-	private Node parent;
+	private TreeNode parent;
 	private State currentState;
 	private int pathcost;
 	private LinkedList<State> action;
@@ -15,7 +15,7 @@ public class TreeNode {
 
 	}
 
-	public TreeNode(Node parent, State currentState, int pathcost, int d, float f, String strategy) {
+	public TreeNode(TreeNode parent, State currentState, int pathcost, int d, float f, String strategy) {
 		super();
 		this.parent = parent;
 		this.currentState = currentState;
@@ -23,21 +23,38 @@ public class TreeNode {
 		this.d = d;
 		Random rnd = new Random();
 		if (strategy == "BFS") {
-			f = d;
+			this.f = d;
 		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
-			f = -d;
+			this.f = -d;
 		} else if (strategy.equals("UCS")) {
-			f = pathcost;
+			this.f = pathcost;
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
 	}
 
-	public Node getParent() {
+	public TreeNode(LinkedList<Object[]> succesorsList, TreeNode actualN, int depth, String strategy) {
+		//succesorsList is a List of objects and action list is a list of atate
+		this.action = succesorsList;
+		this.parent = actualN;
+		this.pathcost = depth;
+		Random rnd = new Random();
+		if (strategy == "BFS") {
+			this.f = d;
+		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
+			this.f = -d;
+		} else if (strategy.equals("UCS")) {
+			this.f = pathcost;
+		} else {
+			this.f = rnd.nextFloat() * 1000 + 1;
+		}
+		
+	}
+	public TreeNode getParent() {
 		return parent;
 	}
 
-	public void setParent(Node parent) {
+	public void setParent(TreeNode parent) {
 		this.parent = parent;
 	}
 

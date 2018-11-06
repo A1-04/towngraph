@@ -1,7 +1,11 @@
 package domain;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
@@ -27,17 +31,17 @@ public class TSFAlgorithm {
 		this.p = new Problem(Jname);
 	}
 
-	public TreeNode Search(Problem p, String technique, int prof_max, int inc_prof) {
+	public boolean Search(Problem p, String technique, int prof_max, int inc_prof) throws IOException {
 		int prof_actual = inc_prof;
-		TreeNode solution = new TreeNode();
-		while (/* NoSolution */prof_actual <= prof_max) {
+		boolean solution = false;
+		while (!solution && prof_actual <= prof_max) {
 			solution = Busqueda_acotada(p, technique, prof_actual);
 			prof_actual += inc_prof;
 		}
 		return solution;
 	}
 
-	public TreeNode Busqueda_acotada(Problem p, String technique, int depth) {
+	public boolean Busqueda_acotada(Problem p, String technique, int depth) throws IOException {
 		boolean sol = false;// boolean o TreeNode
 		Frontier fringe = new Frontier();
 		TreeNode n = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
@@ -45,22 +49,21 @@ public class TSFAlgorithm {
 		TreeNode actualN = new TreeNode();
 
 		while (!sol && !fringe.isEmpty()) {
-			actualN = null; // selecciona_nodo(fringe)
+			actualN = fringe.remove();
 
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
 			} else {
 				LinkedList<Object[]> succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				LinkedList<TreeNode> nodesList = null; // CreaListaNodosArbol(succesorsList,actualN,depth,"estrategia")
+				 TreeNode a = new TreeNode(succesorsList, actualN, depth, technique);
 				fringe.insertList(nodesList);
 			}
 		}
-
-		if (sol) {
-			return null; // CreaSolución(actualN);
-		} else {
-			return null;
-		}
+		if (sol)
+			return true;
+		else
+			return false;
 	}
 
 	public TreeNode BFS() {
@@ -95,6 +98,19 @@ public class TSFAlgorithm {
 
 	public TreeNode prIDS(int depth) {
 		return null;
+	}
+
+	public LinkedList<TreeNode> Create_solution(TreeNode n_actual) throws IOException {
+		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
+		sol.add(n_actual);
+
+		while (n_actual.getParent() != null) {
+			sol.add(n_actual.getParent());
+			n_actual = n_actual.getParent();
+		}
+		Collections.reverse(sol);
+
+		return sol;
 	}
 
 }
