@@ -40,7 +40,7 @@ public class TSFAlgorithm {
 	public TreeNode Busqueda_acotada(Problem p, String technique, int depth) {
 		boolean sol = false;// boolean o TreeNode
 		Frontier fringe = new Frontier();
-		TreeNode n = new TreeNode(null, p.getI_state(), 0, 0, 0);
+		TreeNode n = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
 		fringe.insert(n);
 		TreeNode actualN = new TreeNode();
 
