@@ -15,14 +15,22 @@ public class TreeNode {
 
 	}
 
-	public TreeNode(Node parent, State currentState, int pathcost, int d, float f) {
+	public TreeNode(Node parent, State currentState, int pathcost, int d, float f, String strategy) {
 		super();
 		this.parent = parent;
 		this.currentState = currentState;
 		this.pathcost = pathcost;
 		this.d = d;
 		Random rnd = new Random();
-		this.f = rnd.nextFloat() * 1000 + 1;
+		if (strategy == "BFS") {
+			f = d;
+		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
+			f = -d;
+		} else if (strategy.equals("UCS")) {
+			f = pathcost;
+		} else {
+			this.f = rnd.nextFloat() * 1000 + 1;
+		}
 	}
 
 	public Node getParent() {
