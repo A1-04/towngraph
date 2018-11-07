@@ -28,6 +28,10 @@ public class State {
 		return actualNode;
 	}
 
+	public void setN_list(LinkedList<Node> n_list) {
+		this.n_list = n_list;
+	}
+
 	public String getMD5() {
 		return md5;
 	}

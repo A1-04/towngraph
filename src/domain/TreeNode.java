@@ -33,9 +33,8 @@ public class TreeNode {
 		}
 	}
 
-	public TreeNode(LinkedList<Object[]> succesorsList, TreeNode actualN, int depth, String strategy) {
-		//succesorsList is a List of objects and action list is a list of atate
-		this.action = succesorsList;
+	public TreeNode(State currentState, TreeNode actualN, int depth, String strategy) {
+		this.currentState = currentState;
 		this.parent = actualN;
 		this.pathcost = depth;
 		Random rnd = new Random();
@@ -48,8 +47,8 @@ public class TreeNode {
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
-		
 	}
+
 	public TreeNode getParent() {
 		return parent;
 	}

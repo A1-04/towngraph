@@ -3,16 +3,21 @@ package presentation;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.Scanner;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.json.simple.parser.ParseException;
+import org.xml.sax.SAXException;
+
+import domain.Problem;
 import domain.TSFAlgorithm;
 import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) {
 		System.out.println("-----\tTowngraph P3 (v3.1beta)\t-----");
-		String Jname = "";
 		select_strategy();
 		toFile();
 		return;
@@ -21,18 +26,31 @@ public class P3 {
 	public static void select_strategy() {
 		Scanner readt = new Scanner(System.in);
 		Scanner readp = new Scanner(System.in);
-		int depth = 0;
+		Scanner read = new Scanner(System.in);
+		String Jname = "";
+		int depth = 999;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
+		Problem p = new Problem();
 
-		TSFAlgorithm alg = new TSFAlgorithm();
-		TreeNode sol = new TreeNode();
+		LinkedList<TreeNode> sol = new LinkedList<>();
+
+		System.out.print("\n--Insert the json filename: ");
+		Jname = read.next();
+		try {
+			p = new Problem(Jname);
+		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
+			System.out.println(e.getMessage());
+			select_strategy();
+		}
+
 		System.out.println("\n-- Select an strategy to run the algorithm --");
-		System.out.print("Type the strategy (BFS, DFS, UCS or IDS): ");
+		System.out.print("Type the strategy (BFS, DFS, DLS, UCS or IDS): ");
 		technique = readt.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
-				&& !technique.equalsIgnoreCase("UCS") && !technique.equalsIgnoreCase("IDS")) {
+				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
+				&& !technique.equalsIgnoreCase("IDS")) {
 			System.out.print("\nThat is not a valid technique. Try again: ");
 			technique = readt.next();
 		}
@@ -57,35 +75,15 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique + " without pruning. Running the algorithm... --");
 		}
 
-		switch (technique) {
-		case "BFS":
-			if (!pruning) {
-				sol = alg.BFS();
-			} else {
-				sol = alg.prBFS();
+		try {
+			sol = TSFAlgorithm.search(p, technique, depth, 1);
+			for (int i = 0; i < sol.size(); i++) {
+				// temporal
+				System.out.println("----->" + sol.get(i).getCurrentState().getActualNode().getID());
 			}
-			break;
-		case "DFS":
-			if (!pruning) {
-				sol = alg.DFS(depth);
-			} else {
-				sol = alg.prDFS(depth);
-			}
-			break;
-		case "UCS":
-			if (!pruning) {
-				sol = alg.UCS();
-			} else {
-				sol = alg.prUCS();
-			}
-			break;
-		case "IDS":
-			if (!pruning) {
-				sol = alg.IDS(depth);
-			} else {
-				sol = alg.prIDS(depth);
-			}
-			break;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			select_strategy();
 		}
 	}
 

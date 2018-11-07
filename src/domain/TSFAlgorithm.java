@@ -28,25 +28,27 @@ public class TSFAlgorithm {
 		this.p = new Problem(Jname);
 	}
 
-	public boolean Search(Problem p, String technique, int prof_max, int inc_prof) throws IOException {
+	public static LinkedList<TreeNode> search(Problem p, String technique, int prof_max, int inc_prof)
+			throws IOException {
 		int prof_actual = inc_prof;
-		boolean solution = false;
-		while (!solution && prof_actual <= prof_max) {
-			solution = busqueda_acotada(p, technique, prof_actual);
+		LinkedList<TreeNode> solution = new LinkedList<>();
+		while (solution.isEmpty() && prof_actual <= prof_max) {
+			solution = bounded_search(p, technique, prof_actual);
 			prof_actual += inc_prof;
 		}
 		return solution;
 	}
 
-	public boolean busqueda_acotada(Problem p, String technique, int depth) throws IOException {
+	public static LinkedList<TreeNode> bounded_search(Problem p, String technique, int depth) throws IOException {
 		boolean sol = false; // boolean or TreeNode
 		Frontier fringe = new Frontier();
-		TreeNode n = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
-		fringe.insert(n);
+		TreeNode firstn = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
+		fringe.insert(firstn);
 		TreeNode actualN = new TreeNode();
 		LinkedList<Object[]> succesorsList = new LinkedList<>();
-		LinkedList<TreeNode> nodesList = new LinkedList<TreeNode>();
-		TreeNode a = new TreeNode();
+		TreeNode node = new TreeNode();
+		State s = new State();
+		Object[] thess = new Object[3];
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
@@ -55,52 +57,22 @@ public class TSFAlgorithm {
 				sol = true;
 			} else {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
-				nodesList = null; // CreaListaNodosArbol(succesorsList,actualN,depth,"estrategia")
-				a = new TreeNode(succesorsList, actualN, depth, technique);
-				fringe.insertList(nodesList);
+				while (!succesorsList.isEmpty()) {
+					thess = succesorsList.remove();
+					s = (State) thess[1];
+					node = new TreeNode(s, actualN, depth, technique);
+					fringe.insert(node);
+				}
 			}
 		}
-		if (sol)
-			return true;
-		else
-			return false;
+		if (sol) {
+			return create_solution(actualN);
+		} else {
+			return null;
+		}
 	}
 
-	public TreeNode BFS() {
-
-		return null;
-	}
-
-	public TreeNode DFS(int depth) {
-		return null;
-	}
-
-	public TreeNode UCS() {
-		return null;
-	}
-
-	public TreeNode IDS(int depth) {
-		return null;
-	}
-
-	public TreeNode prBFS() {
-
-		return null;
-	}
-
-	public TreeNode prDFS(int depth) {
-		return null;
-	}
-
-	public TreeNode prUCS() {
-		return null;
-	}
-
-	public TreeNode prIDS(int depth) {
-		return null;
-	}
-
-	public LinkedList<TreeNode> create_solution(TreeNode n_actual) throws IOException {
+	public static LinkedList<TreeNode> create_solution(TreeNode n_actual) throws IOException {
 		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
 		sol.add(n_actual);
 
