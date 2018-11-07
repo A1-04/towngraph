@@ -1,9 +1,6 @@
 package domain;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -35,18 +32,21 @@ public class TSFAlgorithm {
 		int prof_actual = inc_prof;
 		boolean solution = false;
 		while (!solution && prof_actual <= prof_max) {
-			solution = Busqueda_acotada(p, technique, prof_actual);
+			solution = busqueda_acotada(p, technique, prof_actual);
 			prof_actual += inc_prof;
 		}
 		return solution;
 	}
 
-	public boolean Busqueda_acotada(Problem p, String technique, int depth) throws IOException {
-		boolean sol = false;// boolean o TreeNode
+	public boolean busqueda_acotada(Problem p, String technique, int depth) throws IOException {
+		boolean sol = false; // boolean or TreeNode
 		Frontier fringe = new Frontier();
 		TreeNode n = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
 		fringe.insert(n);
 		TreeNode actualN = new TreeNode();
+		LinkedList<Object[]> succesorsList = new LinkedList<>();
+		LinkedList<TreeNode> nodesList = new LinkedList<TreeNode>();
+		TreeNode a = new TreeNode();
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
@@ -54,9 +54,9 @@ public class TSFAlgorithm {
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
 			} else {
-				LinkedList<Object[]> succesorsList = p.getSpace().successors(actualN.getCurrentState());
-				LinkedList<TreeNode> nodesList = null; // CreaListaNodosArbol(succesorsList,actualN,depth,"estrategia")
-				 TreeNode a = new TreeNode(succesorsList, actualN, depth, technique);
+				succesorsList = p.getSpace().successors(actualN.getCurrentState());
+				nodesList = null; // CreaListaNodosArbol(succesorsList,actualN,depth,"estrategia")
+				a = new TreeNode(succesorsList, actualN, depth, technique);
 				fringe.insertList(nodesList);
 			}
 		}
@@ -100,7 +100,7 @@ public class TSFAlgorithm {
 		return null;
 	}
 
-	public LinkedList<TreeNode> Create_solution(TreeNode n_actual) throws IOException {
+	public LinkedList<TreeNode> create_solution(TreeNode n_actual) throws IOException {
 		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
 		sol.add(n_actual);
 

@@ -40,7 +40,7 @@ public class Problem {
 		this.i_state = i_state;
 	}
 
-	public static boolean isGoal(State s) {
+	public boolean isGoal(State s) {
 		if (s.getN_list().isEmpty()) {
 			return true;
 		}
