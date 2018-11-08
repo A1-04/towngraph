@@ -15,13 +15,18 @@ public class Problem {
 	public Problem(String json)
 			throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
 		Object[] ss = new Object[2];
-		ss = TSFReader.parseJSON(space, i_state, json);
+		if ((ss = TSFReader.parseJSON(space, i_state, json)) == null) {
+			System.err.println(
+					"-- It is not possible to create a state with a node that does not belong to the space state of this city/town.\n\nProgram closed.");
+
+			System.exit(-1);
+		}
 		space = (StateSpace) ss[0];
 		i_state = (State) ss[1];
 	}
 
 	public Problem() {
-		
+
 	}
 
 	public StateSpace getSpace() {

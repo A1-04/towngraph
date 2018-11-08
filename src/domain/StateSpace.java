@@ -28,8 +28,6 @@ public class StateSpace {
 		Arc ar = new Arc();
 		State st = new State();
 
-		// debug the whole method
-
 		for (Node a : adj) {
 			auxReturn = new Object[3];
 			n_list = new LinkedList<>();

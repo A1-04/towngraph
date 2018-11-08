@@ -70,7 +70,12 @@ public class TSFReader {
 			listNodes.add(aux);
 		}
 
-		instate = new State(n, listNodes);
+		try {
+			instate = new State(n, listNodes);
+		} catch (NullPointerException e) {
+			return null;
+		}
+
 		toReturn[0] = space;
 		toReturn[1] = instate;
 		return toReturn;
