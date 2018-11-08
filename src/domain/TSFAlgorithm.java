@@ -32,6 +32,9 @@ public class TSFAlgorithm {
 		TreeNode node = new TreeNode();
 		State s = new State();
 		Object[] thess = new Object[3];
+		TSFGraph g = new TSFGraph();
+		g = p.getSpace().getGraph();
+		Arc arc = new Arc();
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
@@ -44,13 +47,19 @@ public class TSFAlgorithm {
 					thess = succesorsList.remove();
 					if (actualN.getParent() == null) {
 						s = (State) thess[1];
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						arc = g.returnArc(
+								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
+						Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
 					} else {
 						s = (State) thess[1];
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						arc = g.returnArc(
+								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
+								Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
 					}
 				}
@@ -66,7 +75,7 @@ public class TSFAlgorithm {
 	public static LinkedList<TreeNode> bounded_search_pruning(Problem p, String technique, int depth)
 			throws IOException {
 		Hashtable<String, Float> VL = new Hashtable<String, Float>();
-		boolean sol = false;
+		boolean sol = false; // boolean or TreeNode
 		Frontier fringe = new Frontier();
 		TreeNode firstn = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
 		fringe.insert(firstn);
@@ -75,11 +84,15 @@ public class TSFAlgorithm {
 		TreeNode node = new TreeNode();
 		State s = new State();
 		Object[] thess = new Object[3];
+		TSFGraph g = new TSFGraph();
+		g = p.getSpace().getGraph();
+		Arc arc = new Arc();
+
 		float aux = 0;
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
-			if (!VL.containsKey(actualN.getCurrentState().getMD5())) {
+			if (!VL.contains(actualN)) {
 				VL.put(actualN.getCurrentState().getMD5(), actualN.getF());
 			}
 
@@ -91,23 +104,26 @@ public class TSFAlgorithm {
 					thess = succesorsList.remove();
 					if (actualN.getParent() == null) {
 						s = (State) thess[1];
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						arc = g.returnArc(
+								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
+								Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
-						System.out.println("ACTION: " + thess[0]);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
 					} else {
 						s = (State) thess[1];
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
-						if (!VL.containsKey(node.getCurrentState().getMD5())) {
+						arc = g.returnArc(
+								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
+								Float.parseFloat(arc.getDistance()));
+						if (!VL.contains(node)) {
 							fringe.insert(node);
-							System.out.println("ACTION: " + thess[0]);
 						} else {
 							aux = VL.get(node.getCurrentState().getMD5());
 							if (node.getF() < aux) {
 								fringe.insert(node);
 								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
-								System.out.println("ACTION: " + thess[0]);
 							}
 						}
 

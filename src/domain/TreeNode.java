@@ -6,7 +6,7 @@ import java.util.Random;
 public class TreeNode {
 	private TreeNode parent;
 	private State currentState;
-	private int pathcost;
+	private float pathcost;
 	private LinkedList<State> action;
 	private int d;
 	private float f; // value that determines the insertion order in the frontier
@@ -15,7 +15,7 @@ public class TreeNode {
 
 	}
 
-	public TreeNode(TreeNode parent, State currentState, int pathcost, int d, float f, String strategy) {
+	public TreeNode(TreeNode parent, State currentState, float pathcost, int d, float f, String strategy) {
 		super();
 		this.parent = parent;
 		this.currentState = currentState;
@@ -33,10 +33,10 @@ public class TreeNode {
 		}
 	}
 
-	public TreeNode(State currentState, TreeNode actualN, int depth, String strategy) {
+	public TreeNode(State currentState, TreeNode actualN, int depth, String strategy, float pathcost) {
 		this.currentState = currentState;
 		this.parent = actualN;
-		this.pathcost = depth;
+		this.pathcost = pathcost;
 		this.d = depth;
 		Random rnd = new Random();
 		if (strategy.equals("BFS")) {
@@ -66,7 +66,7 @@ public class TreeNode {
 		this.currentState = currentState;
 	}
 
-	public int getPathcost() {
+	public float getPathcost() {
 		return pathcost;
 	}
 
