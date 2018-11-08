@@ -1,33 +1,11 @@
 package domain;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.json.simple.parser.ParseException;
-import org.xml.sax.SAXException;
-
 public class TSFAlgorithm {
-	private Hashtable<String, Float> VL = new Hashtable<String, Float>();
-	private String Jname = "";
-	private Problem p = new Problem();
-
-	public TSFAlgorithm() {
-
-	}
-
-	public TSFAlgorithm(Hashtable<String, Float> vL, String jname, Problem p)
-			throws FileNotFoundException, IOException, ParseException, ParserConfigurationException, SAXException {
-		super();
-		VL = vL;
-		Jname = jname;
-		this.p = new Problem(Jname);
-	}
-
 	public static LinkedList<TreeNode> search(Problem p, String technique, int prof_max, int inc_prof)
 			throws IOException {
 		int prof_actual = inc_prof;
@@ -59,7 +37,6 @@ public class TSFAlgorithm {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
-					// System.out.println("ACTION: " + thess[0]);
 					if (actualN.getParent() == null) {
 						s = (State) thess[1];
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
@@ -74,9 +51,63 @@ public class TSFAlgorithm {
 				}
 			}
 		}
-		if (sol)
+		if (sol) {
+			return create_solution(actualN);
+		} else {
+			return null;
+		}
+	}
 
-		{
+	public static LinkedList<TreeNode> bounded_search_pruning(Problem p, String technique, int depth)
+			throws IOException {
+		Hashtable<String, Float> VL = new Hashtable<String, Float>();
+		boolean sol = false; // boolean or TreeNode
+		Frontier fringe = new Frontier();
+		TreeNode firstn = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
+		fringe.insert(firstn);
+		TreeNode actualN = new TreeNode();
+		LinkedList<Object[]> succesorsList = new LinkedList<>();
+		TreeNode node = new TreeNode();
+		State s = new State();
+		Object[] thess = new Object[3];
+		float aux = 0;
+
+		while (!sol && !fringe.isEmpty()) {
+			actualN = fringe.remove();
+			if (!VL.contains(actualN)) {
+				VL.put(actualN.getCurrentState().getMD5(), actualN.getF());
+			}
+
+			if (p.isGoal(actualN.getCurrentState())) {
+				sol = true;
+			} else {
+				succesorsList = p.getSpace().successors(actualN.getCurrentState());
+				while (!succesorsList.isEmpty()) {
+					thess = succesorsList.remove();
+					if (actualN.getParent() == null) {
+						s = (State) thess[1];
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						fringe.insert(node);
+					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
+							.equals((((State) thess[1]).getActualNode().getID()))) {
+					} else {
+						s = (State) thess[1];
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						if (!VL.contains(node)) {
+							fringe.insert(node);
+						} else {
+							aux = VL.get(node.getCurrentState().getMD5());
+							if (node.getF() < aux) {
+								fringe.insert(node);
+								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
+							}
+						}
+
+					}
+				}
+			}
+		}
+		if (sol) {
 			return create_solution(actualN);
 		} else {
 			return null;
