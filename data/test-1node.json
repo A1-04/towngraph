@@ -1,8 +1,8 @@
 {
-    "graphlmfile":"Ciudad Real/data/Anchuras.graphml",
+    "graphlmfile":"Ciudad Real/data/Montiel.graphml",
     "IntSt":{
-        "node":"4331489739",
-        "listNodes":["4331489738"],
+        "node":"3096311483",
+        "listNodes":["3107942090", "3107942088"],
         "id":"f4b616551965fb586e608397c308bf0f"
     }
 }

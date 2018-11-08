@@ -59,13 +59,24 @@ public class TSFAlgorithm {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
-					s = (State) thess[1];
-					node = new TreeNode(s, actualN, depth, technique);
-					fringe.insert(node);
+					// System.out.println("ACTION: " + thess[0]);
+					if (actualN.getParent() == null) {
+						s = (State) thess[1];
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						fringe.insert(node);
+					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
+							.equals((((State) thess[1]).getActualNode().getID()))) {
+					} else {
+						s = (State) thess[1];
+						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
+						fringe.insert(node);
+					}
 				}
 			}
 		}
-		if (sol) {
+		if (sol)
+
+		{
 			return create_solution(actualN);
 		} else {
 			return null;

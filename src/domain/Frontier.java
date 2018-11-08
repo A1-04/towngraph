@@ -19,18 +19,18 @@ public class Frontier {
 			treenodes.add(tn);
 		} else {
 			for (int i = 0; i < treenodes.size(); i++) {
-				if (treenodes.get(i).getF() <= tn.getF()) {
+				if (treenodes.get(i).getF() >= tn.getF()) {
 					treenodes.add(i, tn);
 					break;
-				} else if (tn.getF() < treenodes.get(treenodes.size() - 1).getF()) {
+				} else if (tn.getF() > treenodes.get(treenodes.size() - 1).getF()) {
 					treenodes.add(tn);
 				}
 			}
 		}
 	}
-	
+
 	public void insertList(LinkedList<TreeNode> nodesList) {
-		for(TreeNode i : nodesList) {
+		for (TreeNode i : nodesList) {
 			insert(i);
 		}
 	}

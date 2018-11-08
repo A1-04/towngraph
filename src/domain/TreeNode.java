@@ -22,7 +22,7 @@ public class TreeNode {
 		this.pathcost = pathcost;
 		this.d = d;
 		Random rnd = new Random();
-		if (strategy == "BFS") {
+		if (strategy.equals("BFS")) {
 			this.f = d;
 		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
 			this.f = -d;
@@ -37,8 +37,9 @@ public class TreeNode {
 		this.currentState = currentState;
 		this.parent = actualN;
 		this.pathcost = depth;
+		this.d = depth;
 		Random rnd = new Random();
-		if (strategy == "BFS") {
+		if (strategy.equals("BFS")) {
 			this.f = d;
 		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
 			this.f = -d;
