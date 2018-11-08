@@ -121,7 +121,7 @@ public class TSFAlgorithm {
 							fringe.insert(node);
 						} else {
 							aux = VL.get(node.getCurrentState().getMD5());
-							if (node.getF() < aux) {
+							if (Math.abs(node.getF()) < Math.abs(aux)) {
 								fringe.insert(node);
 								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
 							}

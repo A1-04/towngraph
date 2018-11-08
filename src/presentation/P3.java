@@ -19,7 +19,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P3 (v3.1beta)\t-----");
+		System.out.println("-----\tTowngraph P3 (v3.2beta)\t-----");
 		select_strategy();
 		return;
 	}
