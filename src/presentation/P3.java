@@ -91,14 +91,11 @@ public class P3 {
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
 		float solution_cost = 0;
-		TSFGraph g = new TSFGraph();
-		g = p.getSpace().getGraph();
-		Arc arc = new Arc();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
 			FileWriter fw = new FileWriter(f);
-			fw.write("Solution to the algorithm");
+			fw.write("Solution of the algorithm");
 			fw.write(System.lineSeparator());
 			fw.write(System.lineSeparator());
 			for (int i = 0; i < solution.size() - 1; i++) {
@@ -106,10 +103,8 @@ public class P3 {
 						solution.get(i).getCurrentState().getActualNode().getID(),
 						solution.get(i + 1).getCurrentState().getActualNode().getID()));
 				fw.write(System.lineSeparator());
-				arc = g.returnArc(solution.get(i).getCurrentState().getActualNode().getID() + " "
-						+ solution.get(i + 1).getCurrentState().getActualNode().getID());
 
-				solution_cost += Float.parseFloat(arc.getDistance());
+				solution_cost += solution.get(i).getPathcost() + solution.get(i + 1).getPathcost();
 			}
 			fw.write(System.lineSeparator());
 			fw.write("Cost of the solution: " + solution_cost);
