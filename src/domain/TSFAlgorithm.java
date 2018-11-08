@@ -86,7 +86,6 @@ public class TSFAlgorithm {
 	public static LinkedList<TreeNode> create_solution(TreeNode n_actual) throws IOException {
 		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
 		sol.add(n_actual);
-
 		while (n_actual.getParent() != null) {
 			sol.add(n_actual.getParent());
 			n_actual = n_actual.getParent();

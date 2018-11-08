@@ -11,15 +11,16 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
+import domain.Arc;
 import domain.Problem;
 import domain.TSFAlgorithm;
+import domain.TSFGraph;
 import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) {
 		System.out.println("-----\tTowngraph P3 (v3.1beta)\t-----");
 		select_strategy();
-		toFile();
 		return;
 	}
 
@@ -77,22 +78,35 @@ public class P3 {
 
 		try {
 			sol = TSFAlgorithm.search(p, technique, depth, 1);
-			for (int i = 0; i < sol.size(); i++) {
-				// temporal
-				System.out.println("----->" + sol.get(i).getCurrentState().getActualNode().getID());
-			}
+			toFile(sol);
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			select_strategy();
 		}
 	}
 
-	public static void toFile(/* sequence of states */) {
+	public static void toFile(LinkedList<TreeNode> solution) {
+		float solution_cost = 0;
+		TSFGraph g = new TSFGraph();
+		Arc arc = new Arc();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
 			FileWriter fw = new FileWriter(f);
-			// fw.write(sequence of states);
+			fw.write("Solution to the algorithm");
+			for (int i = 0; i < solution.size() - 1; i++) {
+				// for (TreeNode i : solution) {
+				fw.write(String.format("From node %s to node %s",
+						solution.get(i).getCurrentState().getActualNode().getID(),
+						solution.get(i + 1).getCurrentState().getActualNode().getID()));
+				fw.write(System.lineSeparator());
+				arc = g.returnArc(solution.get(i).getCurrentState().getActualNode().getID() + " "
+						+ solution.get(i + 1).getCurrentState().getActualNode().getID());
+				solution_cost += Float.parseFloat(arc.getDistance());
+			}
+			fw.write("Cost of the solution: " + solution_cost);
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
