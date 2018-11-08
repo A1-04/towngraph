@@ -1,0 +1,5 @@
+Solution to the algorithm
+
+Go from node 3096311483 to node 3107942101
+
+Cost of the solution: 145.968

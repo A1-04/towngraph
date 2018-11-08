@@ -60,16 +60,15 @@ public class P3 {
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
 		aux = readp.next();
 		while (!aux.equalsIgnoreCase("y") && !aux.equalsIgnoreCase("n")) {
-			if (aux.equalsIgnoreCase("y")) {
-				pruning = true;
-			} else if (aux.equalsIgnoreCase("n")) {
-				pruning = false;
-				System.out.println();
-			} else {
-				System.out.print("\nThat is not a valid answer. Try again: ");
-				aux = readp.next();
-			}
+			System.out.print("\nThat is not a valid answer. Try again: ");
+			aux = readp.next();
 		}
+		if (aux.equalsIgnoreCase("y")) {
+			pruning = true;
+		} else if (aux.equalsIgnoreCase("n")) {
+			pruning = false;
+		}
+
 		if (pruning) {
 			System.out.println("\n-- You choose " + technique + " with pruning. Running the algorithm... --");
 		} else {
@@ -77,8 +76,12 @@ public class P3 {
 		}
 
 		try {
-			sol = TSFAlgorithm.search(p, technique, depth, 1);
-			toFile(sol);
+			sol = TSFAlgorithm.search(p, technique, depth, 1, pruning);
+			for (TreeNode i : sol) {
+				System.out.println(i.getCurrentState().getActualNode().getID());
+			}
+			System.out.println();
+			toFile(sol, p);
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -86,27 +89,31 @@ public class P3 {
 		}
 	}
 
-	public static void toFile(LinkedList<TreeNode> solution) {
+	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
 		float solution_cost = 0;
 		TSFGraph g = new TSFGraph();
+		g = p.getSpace().getGraph();
 		Arc arc = new Arc();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
 			FileWriter fw = new FileWriter(f);
 			fw.write("Solution to the algorithm");
+			fw.write(System.lineSeparator());
+			fw.write(System.lineSeparator());
 			for (int i = 0; i < solution.size() - 1; i++) {
-				// for (TreeNode i : solution) {
-				fw.write(String.format("From node %s to node %s",
+				fw.write(String.format("Go from node %s to node %s",
 						solution.get(i).getCurrentState().getActualNode().getID(),
 						solution.get(i + 1).getCurrentState().getActualNode().getID()));
 				fw.write(System.lineSeparator());
 				arc = g.returnArc(solution.get(i).getCurrentState().getActualNode().getID() + " "
 						+ solution.get(i + 1).getCurrentState().getActualNode().getID());
+
 				solution_cost += Float.parseFloat(arc.getDistance());
 			}
+			fw.write(System.lineSeparator());
 			fw.write("Cost of the solution: " + solution_cost);
-
+			fw.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
