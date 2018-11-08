@@ -1,5 +1,10 @@
 Solution to the algorithm
 
-Go from node 3096311483 to node 3107942101
+Go from node 3096311483 to node 3107942087
+Go from node 3107942087 to node 3107942086
+Go from node 3107942086 to node 3096311479
+Go from node 3096311479 to node 3107942099
+Go from node 3107942099 to node 3107942100
+Go from node 3107942100 to node 3107942101
 
-Cost of the solution: 145.968
+Cost of the solution: 535.026

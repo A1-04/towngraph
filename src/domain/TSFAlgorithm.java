@@ -93,7 +93,6 @@ public class TSFAlgorithm {
 						s = (State) thess[1];
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
 						fringe.insert(node);
-						System.out.println("ACTION: " + thess[0]);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
 					} else {
@@ -101,13 +100,11 @@ public class TSFAlgorithm {
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique);
 						if (!VL.containsKey(node.getCurrentState().getMD5())) {
 							fringe.insert(node);
-							System.out.println("ACTION: " + thess[0]);
 						} else {
 							aux = VL.get(node.getCurrentState().getMD5());
-							if (node.getF() < aux) {
+							if (Math.abs(node.getF()) < Math.abs(aux)) {
 								fringe.insert(node);
 								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
-								System.out.println("ACTION: " + thess[0]);
 							}
 						}
 
