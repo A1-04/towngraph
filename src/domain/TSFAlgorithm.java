@@ -46,7 +46,7 @@ public class TSFAlgorithm {
 
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
-			} else {
+			} else if (depth > actualN.getD()) {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
@@ -103,7 +103,7 @@ public class TSFAlgorithm {
 
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
-			} else {
+			} else if (depth > actualN.getD()) {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
