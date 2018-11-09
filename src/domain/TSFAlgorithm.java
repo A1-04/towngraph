@@ -10,15 +10,20 @@ public class TSFAlgorithm {
 			throws IOException {
 		int prof_actual = inc_prof;
 		LinkedList<TreeNode> solution = new LinkedList<>();
-		while (solution.isEmpty() && prof_actual <= prof_max) {
-			if (pruning) {
-				solution = bounded_search_pruning(p, technique, prof_actual);
-				prof_actual += inc_prof;
-			} else {
-				solution = bounded_search(p, technique, prof_actual);
-				prof_actual += inc_prof;
+		try {
+			while (solution.isEmpty() && prof_actual <= prof_max) {
+				if (pruning) {
+					solution = bounded_search_pruning(p, technique, prof_actual);
+					prof_actual += inc_prof;
+				} else {
+					solution = bounded_search(p, technique, prof_actual);
+					prof_actual += inc_prof;
+				}
 			}
+		} catch (NullPointerException e) {
+			return null;
 		}
+
 		return solution;
 	}
 

@@ -25,23 +25,27 @@ public class StateSpace {
 		LinkedList<Node> n_list = new LinkedList<>();
 		Object[] auxReturn = new Object[3];
 		LinkedList<Object[]> toReturn = new LinkedList<Object[]>();
+		LinkedList<Node> aux_list = new LinkedList<>();
 		Arc ar = new Arc();
 		State st = new State();
 
 		for (Node a : adj) {
 			auxReturn = new Object[3];
 			n_list = new LinkedList<>();
+			aux_list = new LinkedList<>();
 
 			// Copying the content of the parent list for security
 			for (Node i : o_list) {
 				n_list.add(i);
+				aux_list.add(i);
 			}
 
 			String a1 = "I am in " + s.getActualNode().getID() + " and I go to " + a.getID();
 			st = new State(a, n_list);
 			ar = g.returnArc(s.getActualNode().getID() + " " + a.getID());
 
-			for (Node b : st.getN_list()) {
+			// aux_list = st.getN_list();
+			for (Node b : aux_list) {
 				if (b.getID().equals(st.getActualNode().getID())) {
 					st.getN_list().remove(b);
 				}
