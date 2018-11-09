@@ -117,7 +117,9 @@ public class P3 {
 					solution_cost += solution.get(i).getPathcost() + solution.get(i + 1).getPathcost();
 				}
 				fw.write(System.lineSeparator());
-				fw.write("Cost of the solution: " + solution_cost);
+				fw.write("Cost of the solution: " + solution_cost );
+				fw.write(System.lineSeparator());
+				fw.write("Depth of the solution: " + solution.get(solution.size()-1).getD());
 			}
 
 			fw.close();
