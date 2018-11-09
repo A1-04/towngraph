@@ -17,7 +17,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P3 (v3.2beta)\t-----");
+		System.out.println("-----\tTowngraph P3 (v4.0)\t-----");
 		select_strategy();
 		return;
 	}
@@ -35,7 +35,7 @@ public class P3 {
 
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
-		System.out.print("\n--Insert the json filename: ");
+		System.out.print("\n-- Insert the json filename: ");
 		Jname = read.next();
 		try {
 			p = new Problem(Jname);
@@ -78,9 +78,11 @@ public class P3 {
 		}
 
 		if (pruning) {
-			System.out.println("\n-- You choose " + technique + " with pruning. Running the algorithm... --");
+			System.out.println("\n-- You choose " + technique
+					+ " with pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		} else {
-			System.out.println("\n-- You choose " + technique + " without pruning. Running the algorithm... --");
+			System.out.println("\n-- You choose " + technique
+					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
 
 		try {

@@ -10,11 +10,8 @@ import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
 import domain.Frontier;
-import domain.Node;
 import domain.Problem;
 import domain.State;
-import domain.StateSpace;
-import domain.TSFReader;
 import domain.TreeNode;
 
 public class P2 {
@@ -35,7 +32,7 @@ public class P2 {
 		System.out.print("Insert the json filename: ");
 		filename = read.next();
 
-		Problem p = new Problem(filename);
+		new Problem(filename);
 
 		System.out.print("-Problem created succesfully.\n");
 	}
