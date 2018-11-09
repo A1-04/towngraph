@@ -11,10 +11,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
-import domain.Arc;
 import domain.Problem;
 import domain.TSFAlgorithm;
-import domain.TSFGraph;
 import domain.TreeNode;
 
 public class P3 {

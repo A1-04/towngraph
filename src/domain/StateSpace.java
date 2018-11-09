@@ -45,7 +45,6 @@ public class StateSpace {
 				if (b.getID().equals(st.getActualNode().getID())) {
 					st.getN_list().remove(b);
 				}
-
 			}
 
 			auxReturn[0] = (Object) a1;

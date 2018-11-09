@@ -51,7 +51,7 @@ public class TSFAlgorithm {
 								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
 
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								Float.parseFloat(arc.getDistance()));
+								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
@@ -59,9 +59,8 @@ public class TSFAlgorithm {
 						s = (State) thess[1];
 						arc = g.returnArc(
 								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								Float.parseFloat(arc.getDistance()));
+								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
 					}
 				}
@@ -109,7 +108,7 @@ public class TSFAlgorithm {
 								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
 
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								Float.parseFloat(arc.getDistance()));
+								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
@@ -117,9 +116,8 @@ public class TSFAlgorithm {
 						s = (State) thess[1];
 						arc = g.returnArc(
 								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
 						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								Float.parseFloat(arc.getDistance()));
+								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
 						if (!VL.containsKey(node.getCurrentState().getMD5())) {
 							fringe.insert(node);
 						} else {
