@@ -84,7 +84,7 @@ public class P3 {
 		}
 
 		try {
-			sol = TSFAlgorithm.search(p, technique, depth, 1, pruning);
+			sol = TSFAlgorithm.search(p, technique, depth, pruning);
 			toFile(sol, p);
 
 		} catch (IOException e) {

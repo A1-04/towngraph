@@ -6,18 +6,15 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class TSFAlgorithm {
-	public static LinkedList<TreeNode> search(Problem p, String technique, int prof_max, int inc_prof, boolean pruning)
+	public static LinkedList<TreeNode> search(Problem p, String technique, int prof_max, boolean pruning)
 			throws IOException {
-		int prof_actual = inc_prof;
 		LinkedList<TreeNode> solution = new LinkedList<>();
 		try {
-			while (solution.isEmpty() && prof_actual <= prof_max) {
+			while (solution.isEmpty()) {
 				if (pruning) {
-					solution = bounded_search_pruning(p, technique, prof_actual);
-					prof_actual += inc_prof;
+					solution = bounded_search_pruning(p, technique, prof_max);
 				} else {
-					solution = bounded_search(p, technique, prof_actual);
-					prof_actual += inc_prof;
+					solution = bounded_search(p, technique, prof_max);
 				}
 			}
 		} catch (NullPointerException e) {
@@ -46,7 +43,7 @@ public class TSFAlgorithm {
 
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
-			} else if (depth > actualN.getD()) {
+				 } else if (depth > actualN.getD()) {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
@@ -137,6 +134,7 @@ public class TSFAlgorithm {
 				}
 			}
 		}
+
 		if (sol) {
 			return create_solution(actualN);
 		} else {
