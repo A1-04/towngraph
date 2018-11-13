@@ -27,7 +27,7 @@ public class P3 {
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
-		int depth = 999;
+		int depth = 80;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
@@ -109,15 +109,14 @@ public class P3 {
 				fw.write("There is no solution for this problem.");
 			} else {
 				for (int i = 0; i < solution.size() - 1; i++) {
-					fw.write(String.format("Go from node %s to node %s",
+					fw.write(String.format("%d. Go from node %s to node %s",i+1,
 							solution.get(i).getCurrentState().getActualNode().getID(),
 							solution.get(i + 1).getCurrentState().getActualNode().getID()));
 					fw.write(System.lineSeparator());
 
-					solution_cost += solution.get(i).getPathcost() + solution.get(i + 1).getPathcost();
 				}
 				fw.write(System.lineSeparator());
-				fw.write("Cost of the solution: " + solution_cost);
+				fw.write("Cost of the solution: " + solution.get(solution.size()-1).getPathcost());
 			}
 
 			fw.close();
