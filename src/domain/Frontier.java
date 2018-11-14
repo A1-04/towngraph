@@ -15,18 +15,8 @@ public class Frontier {
 	}
 
 	public void insert(TreeNode tn) {
-		if (treenodes.isEmpty()) {
-			treenodes.add(tn);
-		} else {
-			for (int i = 0; i < treenodes.size(); i++) {
-				if (treenodes.get(i).getF() >= tn.getF()) {
-					treenodes.add(i, tn);
-					break;
-				} else if (tn.getF() > treenodes.get(treenodes.size() - 1).getF()) {
-					treenodes.add(tn);
-				}
-			}
-		}
+		treenodes.add(tn);
+
 	}
 
 	public void insertList(LinkedList<TreeNode> nodesList) {

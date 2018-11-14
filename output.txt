@@ -1,45 +1,28 @@
 -- Solution of the algorithm:
 
-1. Go from node 4331489550 to node 4762868811
-2. Go from node 4762868811 to node 4331489711
-3. Go from node 4331489711 to node 4331489710
-4. Go from node 4331489710 to node 4762868812
-5. Go from node 4762868812 to node 4331489692
-6. Go from node 4331489692 to node 4331489662
-7. Go from node 4331489662 to node 4331489695
-8. Go from node 4331489695 to node 4331489691
-9. Go from node 4331489691 to node 4331489697
-10. Go from node 4331489697 to node 4331489686
-11. Go from node 4331489686 to node 4331489685
-12. Go from node 4331489685 to node 4331489558
-13. Go from node 4331489558 to node 4331489564
-14. Go from node 4331489564 to node 4331489573
-15. Go from node 4331489573 to node 4331489570
-16. Go from node 4331489570 to node 4331489627
-17. Go from node 4331489627 to node 946409159
-18. Go from node 946409159 to node 982621562
-19. Go from node 982621562 to node 4331489551
-20. Go from node 4331489551 to node 946409156
-21. Go from node 946409156 to node 4331489528
-22. Go from node 4331489528 to node 4331489718
-23. Go from node 4331489718 to node 946409139
-24. Go from node 946409139 to node 4331489532
-25. Go from node 4331489532 to node 4331489762
-26. Go from node 4331489762 to node 4845150944
-27. Go from node 4845150944 to node 4331431346
-28. Go from node 4331431346 to node 4331431338
-29. Go from node 4331431338 to node 4331431341
-30. Go from node 4331431341 to node 4331431332
-31. Go from node 4331431332 to node 4331431334
-32. Go from node 4331431334 to node 4331431346
-33. Go from node 4331431346 to node 4331431338
-34. Go from node 4331431338 to node 4845150950
-35. Go from node 4845150950 to node 4845150944
-36. Go from node 4845150944 to node 4331489762
-37. Go from node 4331489762 to node 4331489532
-38. Go from node 4331489532 to node 946409139
-39. Go from node 946409139 to node 4331489718
-40. Go from node 4331489718 to node 4331489716
-41. Go from node 4331489716 to node 4331489544
-
-Cost of the solution: 6926.65
+Cost:3507.5027
+Depht:24
+1. Go from node 4331489550 to node 4331489692
+2. Go from node 4331489692 to node 4331489691
+3. Go from node 4331489691 to node 4331489697
+4. Go from node 4331489697 to node 4331489689
+5. Go from node 4331489689 to node 4331489656
+6. Go from node 4331489656 to node 4331489564
+7. Go from node 4331489564 to node 4331489573
+8. Go from node 4331489573 to node 4331489570
+9. Go from node 4331489570 to node 4331489627
+10. Go from node 4331489627 to node 946409159
+11. Go from node 946409159 to node 946409158
+12. Go from node 946409158 to node 4331489684
+13. Go from node 4331489684 to node 946409156
+14. Go from node 946409156 to node 4331489537
+15. Go from node 4331489537 to node 4331489544
+16. Go from node 4331489544 to node 4331489716
+17. Go from node 4331489716 to node 4331489718
+18. Go from node 4331489718 to node 946409139
+19. Go from node 946409139 to node 4331489532
+20. Go from node 4331489532 to node 4331489762
+21. Go from node 4331489762 to node 4845150944
+22. Go from node 4845150944 to node 4845150950
+23. Go from node 4845150950 to node 4331431338
+24. Go from node 4331431338 to node 4331431341

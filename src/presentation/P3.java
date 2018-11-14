@@ -27,7 +27,7 @@ public class P3 {
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
-		int depth = 80;
+		int depth = 95;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
@@ -49,7 +49,7 @@ public class P3 {
 		technique = readt.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
 				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
-				&& !technique.equalsIgnoreCase("IDS")) {
+				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS") && !technique.equalsIgnoreCase("A*")) {
 			System.out.print("\nThat is not a valid technique. Try again: ");
 			technique = readt.next();
 		}
@@ -108,6 +108,11 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
+		        fw.write("Cost:" + solution.get(solution.size() - 1).getPathcost());
+		        fw.write(System.lineSeparator());
+		        fw.write("Depht:" + solution.get(solution.size() - 1).getD());
+				fw.write(System.lineSeparator());
+				fw.write(System.lineSeparator());
 				for (int i = 0; i < solution.size() - 1; i++) {
 					fw.write(String.format("%d. Go from node %s to node %s",i+1,
 							solution.get(i).getCurrentState().getActualNode().getID(),
@@ -115,8 +120,6 @@ public class P3 {
 					fw.write(System.lineSeparator());
 
 				}
-				fw.write(System.lineSeparator());
-				fw.write("Cost of the solution: " + solution.get(solution.size()-1).getPathcost());
 			}
 
 			fw.close();

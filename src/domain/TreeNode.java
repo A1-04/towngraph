@@ -3,7 +3,7 @@ package domain;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class TreeNode {
+public class TreeNode implements Comparable<TreeNode> {
 	private TreeNode parent;
 	private State currentState;
 	private float pathcost;
@@ -135,5 +135,16 @@ public class TreeNode {
 	public void setF(int f) {
 		this.f = f;
 	}
+
+	@Override
+	public int compareTo(TreeNode t) {
+	    // TODO Auto-generated method stub
+	    if (this.getF() > t.getF()) {
+	      return 1;
+	    } else if (this.getF() < t.getF()) {
+	      return -1;
+	    } else
+	      return 0;
+	  }
 
 }
