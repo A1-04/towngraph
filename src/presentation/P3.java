@@ -17,7 +17,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P3 (v4.0)\t-----");
+		System.out.println("-----\tTowngraph P3 (v4.0beta)\t-----");
 		select_strategy();
 		return;
 	}
@@ -27,7 +27,7 @@ public class P3 {
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
-		int depth = 95;
+		int depth = 0;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
@@ -45,24 +45,28 @@ public class P3 {
 		}
 
 		System.out.println("\n-- Select an strategy to run the algorithm --");
-		System.out.print("Type the strategy (BFS, DFS, DLS, UCS or IDS): ");
+		System.out.print("Type the strategy (BFS, DFS, DLS, UCS, IDS, GS or A*): ");
 		technique = readt.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
 				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
-				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS") && !technique.equalsIgnoreCase("A*")) {
+				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS")
+				&& !technique.equalsIgnoreCase("A*")) {
 			System.out.print("\nThat is not a valid technique. Try again: ");
 			technique = readt.next();
 		}
 
 		technique = technique.toUpperCase();
-		if (technique.equals("DLS") || technique.equals("IDS")) {
-			System.out.println("\n-- Tell me the maximum depth:");
-			try {
+		System.out.println("\n-- Tell me the maximum depth:");
+		try {
+			depth = readt.nextInt();
+			while (depth < 0) {
+				System.out.print("Please insert a valid number: ");
 				depth = readt.nextInt();
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				select_strategy();
 			}
+
+		} catch (Exception e) {
+			System.out.println("ERROR: You must insert a number. Restarting...");
+			select_strategy();
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
@@ -96,7 +100,6 @@ public class P3 {
 	}
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
-		float solution_cost = 0;
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
@@ -108,13 +111,13 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
-		        fw.write("Cost:" + solution.get(solution.size() - 1).getPathcost());
-		        fw.write(System.lineSeparator());
-		        fw.write("Depht:" + solution.get(solution.size() - 1).getD());
+				fw.write("Cost:" + solution.get(solution.size() - 1).getPathcost());
+				fw.write(System.lineSeparator());
+				fw.write("Depht:" + solution.get(solution.size() - 1).getD());
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
 				for (int i = 0; i < solution.size() - 1; i++) {
-					fw.write(String.format("%d. Go from node %s to node %s",i+1,
+					fw.write(String.format("%d. Go from node %s to node %s", i + 1,
 							solution.get(i).getCurrentState().getActualNode().getID(),
 							solution.get(i + 1).getCurrentState().getActualNode().getID()));
 					fw.write(System.lineSeparator());

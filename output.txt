@@ -1,28 +1,3 @@
 -- Solution of the algorithm:
 
-Cost:3507.5027
-Depht:24
-1. Go from node 4331489550 to node 4331489692
-2. Go from node 4331489692 to node 4331489691
-3. Go from node 4331489691 to node 4331489697
-4. Go from node 4331489697 to node 4331489689
-5. Go from node 4331489689 to node 4331489656
-6. Go from node 4331489656 to node 4331489564
-7. Go from node 4331489564 to node 4331489573
-8. Go from node 4331489573 to node 4331489570
-9. Go from node 4331489570 to node 4331489627
-10. Go from node 4331489627 to node 946409159
-11. Go from node 946409159 to node 946409158
-12. Go from node 946409158 to node 4331489684
-13. Go from node 4331489684 to node 946409156
-14. Go from node 946409156 to node 4331489537
-15. Go from node 4331489537 to node 4331489544
-16. Go from node 4331489544 to node 4331489716
-17. Go from node 4331489716 to node 4331489718
-18. Go from node 4331489718 to node 946409139
-19. Go from node 946409139 to node 4331489532
-20. Go from node 4331489532 to node 4331489762
-21. Go from node 4331489762 to node 4845150944
-22. Go from node 4845150944 to node 4845150950
-23. Go from node 4845150950 to node 4331431338
-24. Go from node 4331431338 to node 4331431341
+There is no solution for this problem.
