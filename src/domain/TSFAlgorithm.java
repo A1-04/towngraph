@@ -80,12 +80,6 @@ public class TSFAlgorithm {
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
-			for (TreeNode i : fringe.getTreenodes()) {
-				System.out.println(i.getCurrentState().getActualNode().getID() + "      " + i.getD());
-			}
-			System.out.println();
-			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println();
 
 			if (!VL.containsKey(actualN.getCurrentState().getMD5())) {
 				VL.put(actualN.getCurrentState().getMD5(), actualN.getF());
@@ -113,11 +107,14 @@ public class TSFAlgorithm {
 			}
 		}
 
-		if (sol) {
-			return create_solution(actualN);
-		} else {
-			return null;
-		}
+	if(sol)
+
+	{
+		return create_solution(actualN);
+	}else
+	{
+		return null;
+	}
 	}
 
 	private static TreeNode makeNode(Object[] thess, TSFGraph g, TreeNode actualN, Frontier fringe, String technique) {
@@ -133,9 +130,7 @@ public class TSFAlgorithm {
 		float aux = VL.get(node.getCurrentState().getMD5());
 		if (Math.abs(node.getF()) < Math.abs(aux)) {
 			fringe.insert(node);
-			System.out.println(VL.size());
 			VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
-			System.out.println(VL.size());
 		}
 	}
 

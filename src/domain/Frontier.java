@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,10 +28,6 @@ public class Frontier {
 
 	public List<TreeNode> getTreenodes() {
 		return treenodes;
-	}
-
-	public void setTreenodes(List<TreeNode> treenodes) {
-		this.treenodes = treenodes;
 	}
 
 	public TreeNode remove() {

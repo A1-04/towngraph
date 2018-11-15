@@ -113,7 +113,7 @@ public class P3 {
 			} else {
 				fw.write("Cost:" + solution.get(solution.size() - 1).getPathcost());
 				fw.write(System.lineSeparator());
-				fw.write("Depht:" + solution.get(solution.size() - 1).getD());
+				fw.write("Depth:" + solution.get(solution.size() - 1).getD());
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
 				for (int i = 0; i < solution.size() - 1; i++) {
