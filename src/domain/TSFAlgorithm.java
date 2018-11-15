@@ -32,37 +32,26 @@ public class TSFAlgorithm {
 		TreeNode actualN = new TreeNode();
 		LinkedList<Object[]> succesorsList = new LinkedList<>();
 		TreeNode node = new TreeNode();
-		State s = new State();
 		Object[] thess = new Object[3];
 		TSFGraph g = new TSFGraph();
 		g = p.getSpace().getGraph();
-		Arc arc = new Arc();
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
 
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
-				 } else if (depth > actualN.getD()) {
+			} else if (depth > actualN.getD()) {
 				succesorsList = p.getSpace().successors(actualN.getCurrentState());
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
 					if (actualN.getParent() == null) {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
+						node = makeNode(thess, g, actualN, fringe, technique);
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
 					} else {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
+						node = makeNode(thess, g, actualN, fringe, technique);
 						fringe.insert(node);
 					}
 				}
@@ -85,19 +74,22 @@ public class TSFAlgorithm {
 		TreeNode actualN = new TreeNode();
 		LinkedList<Object[]> succesorsList = new LinkedList<>();
 		TreeNode node = new TreeNode();
-		State s = new State();
 		Object[] thess = new Object[3];
-		float aux = 0;
 		TSFGraph g = new TSFGraph();
 		g = p.getSpace().getGraph();
-		Arc arc = new Arc();
 
 		while (!sol && !fringe.isEmpty()) {
 			actualN = fringe.remove();
+			for (TreeNode i : fringe.getTreenodes()) {
+				System.out.println(i.getCurrentState().getActualNode().getID() + "      " + i.getD());
+			}
+			System.out.println();
+			System.out.println("-------------------------------------------------------------------------------");
+			System.out.println();
+
 			if (!VL.containsKey(actualN.getCurrentState().getMD5())) {
 				VL.put(actualN.getCurrentState().getMD5(), actualN.getF());
 			}
-
 			if (p.isGoal(actualN.getCurrentState())) {
 				sol = true;
 			} else if (depth > actualN.getD()) {
@@ -105,31 +97,17 @@ public class TSFAlgorithm {
 				while (!succesorsList.isEmpty()) {
 					thess = succesorsList.remove();
 					if (actualN.getParent() == null) {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
+						node = makeNode(thess, g, actualN, fringe, technique);
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
 					} else {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
+						node = makeNode(thess, g, actualN, fringe, technique);
 						if (!VL.containsKey(node.getCurrentState().getMD5())) {
 							fringe.insert(node);
 						} else {
-							aux = VL.get(node.getCurrentState().getMD5());
-							if (Math.abs(node.getF()) < Math.abs(aux)) {
-								fringe.insert(node);
-								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
-							}
+							hasBetterF(VL, node, fringe);
 						}
-
 					}
 				}
 			}
@@ -139,6 +117,25 @@ public class TSFAlgorithm {
 			return create_solution(actualN);
 		} else {
 			return null;
+		}
+	}
+
+	private static TreeNode makeNode(Object[] thess, TSFGraph g, TreeNode actualN, Frontier fringe, String technique) {
+		State s = (State) thess[1];
+		Arc arc = g.returnArc(actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
+
+		TreeNode node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
+				actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
+		return node;
+	}
+
+	private static void hasBetterF(Hashtable<String, Float> VL, TreeNode node, Frontier fringe) {
+		float aux = VL.get(node.getCurrentState().getMD5());
+		if (Math.abs(node.getF()) < Math.abs(aux)) {
+			fringe.insert(node);
+			System.out.println(VL.size());
+			VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
+			System.out.println(VL.size());
 		}
 	}
 
