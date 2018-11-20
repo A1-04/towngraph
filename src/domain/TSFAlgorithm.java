@@ -92,14 +92,45 @@ public class TSFAlgorithm {
 					thess = succesorsList.remove();
 					if (actualN.getParent() == null) {
 						node = makeNode(thess, g, actualN, fringe, technique);
+									
+						System.out.println("\nNODE INSERTED: " + actualN.getCurrentState().getActualNode().getID() + " DEPTH: " + actualN.getD() + "\n");
+						System.out.println("\nSOLUCION: "+sol + "\n");
+						System.out.println("Estado del problema " + actualN.getCurrentState().getN_list().size() + "\n");
+						System.out.println("--FRINGE with size "+ fringe.getTreenodes().size() +"---------------------");						for(int i = 0; i < fringe.getTreenodes().size(); i++) {
+							System.out.println(fringe.getTreenodes().get(i).getCurrentState().getActualNode().getID() + " DEPTH: " + fringe.getTreenodes().get(i).getD());
+						}
+						System.out.println("---------------------------------------------");
+						
 						fringe.insert(node);
 					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
 							.equals((((State) thess[1]).getActualNode().getID()))) {
+					}else if (actualN.equals(node)) {
+
+				         
 					} else {
 						node = makeNode(thess, g, actualN, fringe, technique);
 						if (!VL.containsKey(node.getCurrentState().getMD5())) {
+							
+							System.out.println("\nNODE INSERTED: " + actualN.getCurrentState().getActualNode().getID() + " DEPTH: " + actualN.getD() + "\n");
+							System.out.println("\nSOLUCION: "+sol + "\n");
+							System.out.println("Estado del problema " + actualN.getCurrentState().getN_list().size() + "\n");
+							System.out.println("--FRINGE with size "+ fringe.getTreenodes().size() +"-------------------");
+							for(int i = 0; i < fringe.getTreenodes().size(); i++) {
+								System.out.println(fringe.getTreenodes().get(i).getCurrentState().getActualNode().getID() + " DEPTH: " + fringe.getTreenodes().get(i).getD());
+							}
+							System.out.println("---------------------------------------------");
+					
 							fringe.insert(node);
 						} else {
+							
+							System.out.println("\nNODE INSERTED: " + actualN.getCurrentState().getActualNode().getID() + " DEPTH: " + actualN.getD() + "\n");
+							System.out.println("\nSOLUCION: "+sol + "\n");
+							System.out.println("Estado del problema " + actualN.getCurrentState().getN_list().size() + "\n");
+							System.out.println("--FRINGE with size "+ fringe.getTreenodes().size() +"---------------------");							for(int i = 0; i < fringe.getTreenodes().size(); i++) {
+								System.out.println(fringe.getTreenodes().get(i).getCurrentState().getActualNode().getID() + " DEPTH: " + fringe.getTreenodes().get(i).getD());
+							}
+							System.out.println("---------------------------------------------");
+							
 							hasBetterF(VL, node, fringe);
 						}
 					}
