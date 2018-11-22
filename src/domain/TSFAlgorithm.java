@@ -5,17 +5,17 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TSFAlgorithm {
-	public static LinkedList<TreeNode> search(Problem p, String strategy, int prof_max, int inc_prof, boolean pruning) {
+	public static LinkedList<TreeNode> search(Problem p, String strategy, int prof_max, int inc_prof, boolean pruning, int[] n_generated) {
 		int prof_actual = inc_prof;
 		LinkedList<TreeNode> sol = new LinkedList<>();
-		while (sol.isEmpty() && prof_actual < prof_max) {
-			sol = bounded_search(p, strategy, prof_actual, pruning);
-			prof_actual = prof_actual + inc_prof;
+		while (sol.isEmpty() && prof_actual <= prof_max) {
+			sol = bounded_search(p, strategy, prof_actual, pruning, n_generated);
+			prof_actual += inc_prof;
 		}
 		return sol;
 	}
 
-	private static LinkedList<TreeNode> bounded_search(Problem p, String strategy, int prof_max, boolean pruning) {
+	private static LinkedList<TreeNode> bounded_search(Problem p, String strategy, int prof_max, boolean pruning, int[] n_generated) {
 		Frontier fringe = new Frontier();
 		TreeNode n_inicial = new TreeNode(null, p.getI_state(), 0, 0, strategy);
 		fringe.insert(n_inicial);
@@ -41,7 +41,7 @@ public class TSFAlgorithm {
 				sol = true;
 			} else {
 				LinkedList<Object[]> ls = p.getSpace().successors(n_actual.getCurrentState());
-				LinkedList<TreeNode> ln = makeListTreeNodes(ls, n_actual, prof_max, strategy, g);
+				LinkedList<TreeNode> ln = makeListTreeNodes(ls, n_actual, prof_max, strategy, g, n_generated);
 				if (pruning) {
 					makePruning(ln, VL, fringe);
 				} else {
@@ -85,7 +85,7 @@ public class TSFAlgorithm {
 	}
 
 	private static LinkedList<TreeNode> makeListTreeNodes(LinkedList<Object[]> ls, TreeNode n_actual, int prof_max,
-			String strategy, TSFGraph g) {
+			String strategy, TSFGraph g, int[] n_generated) {
 		LinkedList<TreeNode> ln = new LinkedList<>();
 		Iterator<Object[]> it = ls.iterator();
 		while (it.hasNext()) {
@@ -99,6 +99,7 @@ public class TSFAlgorithm {
 					TreeNode tn = new TreeNode(aux, n_actual, strategy, cost);
 					fulfillTreeNode(g, n_actual, aux, tn, it_object);
 					ln.add(tn);
+					n_generated[0]++;
 				} else {
 					if (!n_actual.getParent().equals(aux)) {
 						float cost = Float.parseFloat(g.returnArc(
@@ -107,6 +108,7 @@ public class TSFAlgorithm {
 						TreeNode tn = new TreeNode(aux, n_actual, strategy, cost);
 						fulfillTreeNode(g, n_actual, aux, tn, it_object);
 						ln.add(tn);
+						n_generated[0]++;
 					}
 				}
 			}

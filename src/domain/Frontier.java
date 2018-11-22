@@ -19,9 +19,7 @@ public class Frontier {
 	}
 
 	public void insertList(LinkedList<TreeNode> nodesList) {
-		for (TreeNode i : nodesList) {
-			this.insert(i);
-		}
+		treenodes.addAll(nodesList);
 	}
 
 	public PriorityQueue<TreeNode> getTreenodes() {

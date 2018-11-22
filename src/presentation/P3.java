@@ -17,7 +17,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P3 (v4.0beta)\t-----");
+		System.out.println("-----\tTowngraph P3 (v4.1)\t-----");
 		select_strategy();
 		return;
 	}
@@ -88,11 +88,14 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-		sol = TSFAlgorithm.search(p, technique, depth, 10, pruning);
-		toFile(sol, p);
+		int[] n_generated = new int[1];
+		long startTime = System.currentTimeMillis();
+		sol = TSFAlgorithm.search(p, technique, depth, 100, pruning, n_generated);
+		long endTime = System.currentTimeMillis() - startTime;
+		toFile(sol, p, endTime, technique, n_generated);
 	}
 
-	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
+	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique, int[] n_generated) {
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
@@ -104,9 +107,15 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
-				fw.write("Cost:" + solution.get(0).getPathcost());
+				fw.write("Strategy:" + technique);
+				fw.write(System.lineSeparator());
+				fw.write("Generated nodes:" + n_generated[0]);
 				fw.write(System.lineSeparator());
 				fw.write("Depth:" + solution.get(0).getD());
+				fw.write(System.lineSeparator());
+				fw.write("Cost:" + solution.get(0).getPathcost());
+				fw.write(System.lineSeparator());
+				fw.write("Time:" + endTime + " ms");
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
 				int a = 1;
