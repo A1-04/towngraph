@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 public class TreeNode implements Comparable<TreeNode> {
@@ -29,29 +28,30 @@ public class TreeNode implements Comparable<TreeNode> {
 		} else if (strategy.equals("UCS")) {
 			this.f = pathcost;
 		} else if (strategy.equals("GS")) {
-			f = h(currentState);
+			// f = h(currentState);
 		} else if (strategy.equals("A*")) {
-			f = h(currentState) + pathcost;
+			// f = h(currentState) + this.pathcost;
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
 	}
 
-	public TreeNode(State currentState, TreeNode actualN, String strategy) {
+	public TreeNode(State currentState, TreeNode actualN, String strategy, float pathcost) {
 		this.currentState = currentState;
 		this.parent = actualN;
 		this.d = actualN.getD() + 1;
+		this.pathcost += this.getParent().getPathcost() + pathcost;
 		Random rnd = new Random();
 		if (strategy.equals("BFS")) {
 			this.f = d;
 		} else if (strategy.equals("DFS") || strategy.equals("DLS") || strategy.equals("IDS")) {
 			this.f = -d;
 		} else if (strategy.equals("UCS")) {
-			this.f = pathcost;
+			this.f = this.pathcost;
 		} else if (strategy.equals("GS")) {
 			f = h(currentState);
 		} else if (strategy.equals("A*")) {
-			f = h(currentState) + pathcost;
+			f = h(currentState) + this.pathcost;
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
@@ -62,11 +62,11 @@ public class TreeNode implements Comparable<TreeNode> {
 	}
 
 	private float distance(Node node1, Node node2) {
-		int lng1 = Integer.parseInt(node1.getX());
-		int lng2 = Integer.parseInt(node2.getX());
-		int lat1 = Integer.parseInt(node1.getY());
-		int lat2 = Integer.parseInt(node1.getY());
-		int earth_radius = 6371009;
+		float lng1 = Float.parseFloat(node1.getX());
+		float lng2 = Float.parseFloat(node2.getX());
+		float lat1 = Float.parseFloat(node1.getY());
+		float lat2 = Float.parseFloat(node1.getY());
+		float earth_radius = 6371009;
 
 		double phi1 = Math.toRadians(lat1);
 		double phi2 = Math.toRadians(lat2);
@@ -107,8 +107,8 @@ public class TreeNode implements Comparable<TreeNode> {
 		return pathcost;
 	}
 
-	public void setPathcost(int pathcost) {
-		this.pathcost = pathcost;
+	public void setPathcost(float pathcost) {
+		this.pathcost += this.getParent().getPathcost() + pathcost;
 	}
 
 	public String getAction() {

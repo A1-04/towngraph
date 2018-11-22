@@ -13,7 +13,6 @@ import org.xml.sax.SAXException;
 
 import domain.Problem;
 import domain.TSFAlgorithm;
-import domain.TSFAlgorithm_v2;
 import domain.TreeNode;
 
 public class P3 {
@@ -37,7 +36,7 @@ public class P3 {
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
 		System.out.print("\n-- Insert the json filename: ");
-		Jname = read.next();
+		Jname = read.nextLine();
 		try {
 			p = new Problem(Jname);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
@@ -89,8 +88,7 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-		// sol = TSFAlgorithm.search(p, technique, depth, pruning);
-		sol = TSFAlgorithm_v2.search(p, technique, depth, 1, pruning);
+		sol = TSFAlgorithm.search(p, technique, depth, 10, pruning);
 		toFile(sol, p);
 	}
 
@@ -111,15 +109,17 @@ public class P3 {
 				fw.write("Depth:" + solution.get(0).getD());
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
-				int a = 0;
-				for (int i = solution.size() - 1; i >= 0; i--) {
-					fw.write((a++) + ". " + solution.get(i).getCurrentState().getActualNode().getID());
+				int a = 1;
+				for (int i = solution.size() - 2; i >= 0; i--) {
+					fw.write((a++) + ". " + solution.get(i).getAction() + "\t | Cost:" + solution.get(i).getPathcost());
 					fw.write(System.lineSeparator());
 				}
 			}
 
 			fw.close();
 		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 

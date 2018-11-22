@@ -20,7 +20,7 @@ public class Frontier {
 
 	public void insertList(LinkedList<TreeNode> nodesList) {
 		for (TreeNode i : nodesList) {
-			insert(i);
+			this.insert(i);
 		}
 	}
 
