@@ -7,7 +7,7 @@ public class TreeNode implements Comparable<TreeNode> {
 	private TreeNode parent;
 	private State currentState;
 	private float pathcost;
-	private LinkedList<State> action;
+	private String action;
 	private int d;
 	private float f; // value that determines the insertion order in the frontier
 
@@ -15,7 +15,7 @@ public class TreeNode implements Comparable<TreeNode> {
 
 	}
 
-	public TreeNode(TreeNode parent, State currentState, int pathcost, int d, float f, String strategy) {
+	public TreeNode(TreeNode parent, State currentState, int d, int pathcost, String strategy) {
 		super();
 		this.parent = parent;
 		this.currentState = currentState;
@@ -37,11 +37,10 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 	}
 
-	public TreeNode(State currentState, TreeNode actualN, int depth, String strategy, float pathcost) {
+	public TreeNode(State currentState, TreeNode actualN, String strategy) {
 		this.currentState = currentState;
 		this.parent = actualN;
-		this.pathcost = pathcost;
-		this.d = depth;
+		this.d = actualN.getD() + 1;
 		Random rnd = new Random();
 		if (strategy.equals("BFS")) {
 			this.f = d;
@@ -112,11 +111,11 @@ public class TreeNode implements Comparable<TreeNode> {
 		this.pathcost = pathcost;
 	}
 
-	public LinkedList<State> getAction() {
+	public String getAction() {
 		return action;
 	}
 
-	public void setAction(LinkedList<State> action) {
+	public void setAction(String action) {
 		this.action = action;
 	}
 

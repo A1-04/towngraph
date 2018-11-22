@@ -13,16 +13,17 @@ import org.xml.sax.SAXException;
 
 import domain.Problem;
 import domain.TSFAlgorithm;
+import domain.TSFAlgorithm_v2;
 import domain.TreeNode;
 
 public class P3 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("-----\tTowngraph P3 (v4.0beta)\t-----");
 		select_strategy();
 		return;
 	}
 
-	public static void select_strategy() {
+	public static void select_strategy() throws IOException {
 		Scanner readt = new Scanner(System.in);
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
@@ -88,15 +89,9 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-
-		try {
-			sol = TSFAlgorithm.search(p, technique, depth, pruning);
-			toFile(sol, p);
-
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			select_strategy();
-		}
+		// sol = TSFAlgorithm.search(p, technique, depth, pruning);
+		sol = TSFAlgorithm_v2.search(p, technique, depth, 1, pruning);
+		toFile(sol, p);
 	}
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
@@ -111,17 +106,15 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
-				fw.write("Cost:" + solution.get(solution.size() - 1).getPathcost());
+				fw.write("Cost:" + solution.get(0).getPathcost());
 				fw.write(System.lineSeparator());
-				fw.write("Depth:" + solution.get(solution.size() - 1).getD());
+				fw.write("Depth:" + solution.get(0).getD());
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
-				for (int i = 0; i < solution.size() - 1; i++) {
-					fw.write(String.format("%d. Go from node %s to node %s", i + 1,
-							solution.get(i).getCurrentState().getActualNode().getID(),
-							solution.get(i + 1).getCurrentState().getActualNode().getID()));
+				int a = 0;
+				for (int i = solution.size() - 1; i >= 0; i--) {
+					fw.write((a++) + ". " + solution.get(i).getCurrentState().getActualNode().getID());
 					fw.write(System.lineSeparator());
-
 				}
 			}
 

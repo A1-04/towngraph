@@ -36,6 +36,7 @@ public class StateSpace {
 
 			// Copying the content of the parent list for security
 			for (Node i : o_list) {
+				Node aux = (i);
 				n_list.add(i);
 				aux_list.add(i);
 			}
