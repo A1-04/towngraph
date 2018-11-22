@@ -1,23 +1,21 @@
 package domain;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 
 public class Frontier {
-	private List<TreeNode> treenodes;
+	private PriorityQueue<TreeNode> treenodes;
 
 	public Frontier() {
 		createFrontier();
 	}
 
 	private void createFrontier() {
-		treenodes = new LinkedList<TreeNode>();
+		treenodes = new PriorityQueue<TreeNode>();
 	}
 
 	public void insert(TreeNode tn) {
 		treenodes.add(tn);
-		Collections.sort(treenodes);
 	}
 
 	public void insertList(LinkedList<TreeNode> nodesList) {
@@ -26,12 +24,12 @@ public class Frontier {
 		}
 	}
 
-	public List<TreeNode> getTreenodes() {
+	public PriorityQueue<TreeNode> getTreenodes() {
 		return treenodes;
 	}
 
 	public TreeNode remove() {
-		return treenodes.remove(0);
+		return treenodes.poll();
 	}
 
 	public boolean isEmpty() {

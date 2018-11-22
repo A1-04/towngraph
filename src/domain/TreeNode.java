@@ -138,13 +138,12 @@ public class TreeNode implements Comparable<TreeNode> {
 
 	@Override
 	public int compareTo(TreeNode t) {
-	    // TODO Auto-generated method stub
-	    if (this.getF() > t.getF()) {
-	      return 1;
-	    } else if (this.getF() < t.getF()) {
-	      return -1;
-	    } else
-	      return 0;
-	  }
+		if (this.getF() > t.getF()) {
+			return 1;
+		} else if (this.getF() < t.getF()) {
+			return -1;
+		} else
+			return 0;
+	}
 
 }
