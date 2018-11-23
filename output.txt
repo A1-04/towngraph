@@ -1,11 +1,11 @@
 -- Solution of the algorithm:
 
 Strategy: BFS
-Generated nodes: 5293
+Generated nodes: 3601
 Depth: 23
-Increment of Depth (Default): 10
+Increment of Depth (Default): 90
 Cost: 3583.648
-Time: 268 ms
+Time: 246 ms
 
 1. I am in 4331431334 and I go to 4331431346	 | Cost:71.161
 2. I am in 4331431346 and I go to 4845150944	 | Cost:124.317

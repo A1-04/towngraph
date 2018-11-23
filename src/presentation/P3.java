@@ -17,7 +17,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P3 (v4.1)\t-----");
+		System.out.println("-----\tTowngraph P3 (v4.1.1)\t-----");
 		select_strategy();
 		return;
 	}
@@ -27,7 +27,7 @@ public class P3 {
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
-		int depth = 0;
+		int depth = 0, inc_prof = 0;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
@@ -69,6 +69,20 @@ public class P3 {
 			select_strategy();
 		}
 
+		System.out.println("\n-- Now tell me the increment of depth:");
+		try {
+			inc_prof = readt.nextInt();
+			while (inc_prof < 0 || inc_prof > depth) {
+				System.out.print(
+						"The increment of depth cannot be lower than zero or higher than the maximum depth. Try again: ");
+				inc_prof = readt.nextInt();
+			}
+
+		} catch (Exception e) {
+			System.out.println("ERROR: You must insert a number. Restarting...");
+			select_strategy();
+		}
+
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
 		aux = readp.next();
 		while (!aux.equalsIgnoreCase("y") && !aux.equalsIgnoreCase("n")) {
@@ -89,7 +103,6 @@ public class P3 {
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
 		int[] n_generated = new int[1];
-		int inc_prof = 10;
 		long startTime = System.currentTimeMillis();
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
 		long endTime = System.currentTimeMillis() - startTime;
