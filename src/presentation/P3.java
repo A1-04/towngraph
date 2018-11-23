@@ -89,13 +89,15 @@ public class P3 {
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
 		int[] n_generated = new int[1];
+		int inc_prof = 10;
 		long startTime = System.currentTimeMillis();
-		sol = TSFAlgorithm.search(p, technique, depth, 100, pruning, n_generated);
+		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
 		long endTime = System.currentTimeMillis() - startTime;
-		toFile(sol, p, endTime, technique, n_generated);
+		toFile(sol, p, endTime, technique, n_generated, inc_prof);
 	}
 
-	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique, int[] n_generated) {
+	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique,
+			int[] n_generated, int inc_prof) {
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
@@ -107,15 +109,17 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
-				fw.write("Strategy:" + technique);
+				fw.write("Strategy: " + technique);
 				fw.write(System.lineSeparator());
-				fw.write("Generated nodes:" + n_generated[0]);
+				fw.write("Generated nodes: " + n_generated[0]);
 				fw.write(System.lineSeparator());
-				fw.write("Depth:" + solution.get(0).getD());
+				fw.write("Depth: " + solution.get(0).getD());
 				fw.write(System.lineSeparator());
-				fw.write("Cost:" + solution.get(0).getPathcost());
+				fw.write(("Increment of Depth (Default): " + inc_prof));
 				fw.write(System.lineSeparator());
-				fw.write("Time:" + endTime + " ms");
+				fw.write("Cost: " + solution.get(0).getPathcost());
+				fw.write(System.lineSeparator());
+				fw.write("Time: " + endTime + " ms");
 				fw.write(System.lineSeparator());
 				fw.write(System.lineSeparator());
 				int a = 1;
@@ -123,13 +127,7 @@ public class P3 {
 					fw.write((a++) + ". " + solution.get(i).getAction() + "\t | Cost:" + solution.get(i).getPathcost());
 					fw.write(System.lineSeparator());
 				}
-<<<<<<< HEAD
-				fw.write(System.lineSeparator());
-				fw.write("Cost of the solution: " + solution_cost );
-				fw.write(System.lineSeparator());
-				fw.write("Depth of the solution: " + solution.get(solution.size()-1).getD());
-=======
->>>>>>> 7809e70cb1740e4f531f70aaca8fdef83bc452b1
+
 			}
 
 			fw.close();

@@ -45,7 +45,7 @@ public class TSFReader {
 		JSONParser parser = new JSONParser();
 		File f = new File(".");
 		String[] ab = new String[3];
-		Object object = parser.parse(new FileReader(f.getCanonicalPath() + "/data/" + filename + ".json"));
+		Object object = parser.parse(new FileReader(f.getCanonicalPath() + "/test-examples/" + filename + ".json"));
 		Node n = new Node();
 		LinkedList<Node> listNodes = new LinkedList<Node>();
 		Object[] toReturn = new Object[2];
