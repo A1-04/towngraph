@@ -16,18 +16,18 @@ import domain.TSFAlgorithm;
 import domain.TreeNode;
 
 public class P3 {
-	public static void main(String[] args) {
-		System.out.println("-----\tTowngraph P3 (v4.0)\t-----");
+	public static void main(String[] args) throws IOException {
+		System.out.println("-----\tTowngraph P3 (v4.1)\t-----");
 		select_strategy();
 		return;
 	}
 
-	public static void select_strategy() {
+	public static void select_strategy() throws IOException {
 		Scanner readt = new Scanner(System.in);
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
-		int depth = 999;
+		int depth = 0;
 		String technique = "";
 		String aux = "";
 		boolean pruning = false;
@@ -36,7 +36,7 @@ public class P3 {
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
 		System.out.print("\n-- Insert the json filename: ");
-		Jname = read.next();
+		Jname = read.nextLine();
 		try {
 			p = new Problem(Jname);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
@@ -45,24 +45,28 @@ public class P3 {
 		}
 
 		System.out.println("\n-- Select an strategy to run the algorithm --");
-		System.out.print("Type the strategy (BFS, DFS, DLS, UCS or IDS): ");
+		System.out.print("Type the strategy (BFS, DFS, DLS, UCS, IDS, GS or A*): ");
 		technique = readt.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
 				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
-				&& !technique.equalsIgnoreCase("IDS")) {
+				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS")
+				&& !technique.equalsIgnoreCase("A*")) {
 			System.out.print("\nThat is not a valid technique. Try again: ");
 			technique = readt.next();
 		}
 
 		technique = technique.toUpperCase();
-		if (technique.equals("DLS") || technique.equals("IDS")) {
-			System.out.println("\n-- Tell me the maximum depth:");
-			try {
+		System.out.println("\n-- Tell me the maximum depth:");
+		try {
+			depth = readt.nextInt();
+			while (depth < 0) {
+				System.out.print("Please insert a valid number: ");
 				depth = readt.nextInt();
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				select_strategy();
 			}
+
+		} catch (Exception e) {
+			System.out.println("ERROR: You must insert a number. Restarting...");
+			select_strategy();
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
@@ -84,19 +88,14 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-
-		try {
-			sol = TSFAlgorithm.search(p, technique, depth, pruning);
-			toFile(sol, p);
-
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			select_strategy();
-		}
+		int[] n_generated = new int[1];
+		long startTime = System.currentTimeMillis();
+		sol = TSFAlgorithm.search(p, technique, depth, 100, pruning, n_generated);
+		long endTime = System.currentTimeMillis() - startTime;
+		toFile(sol, p, endTime, technique, n_generated);
 	}
 
-	public static void toFile(LinkedList<TreeNode> solution, Problem p) {
-		float solution_cost = 0;
+	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique, int[] n_generated) {
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
@@ -108,22 +107,35 @@ public class P3 {
 			if (solution == null) {
 				fw.write("There is no solution for this problem.");
 			} else {
-				for (int i = 0; i < solution.size() - 1; i++) {
-					fw.write(String.format("Go from node %s to node %s",
-							solution.get(i).getCurrentState().getActualNode().getID(),
-							solution.get(i + 1).getCurrentState().getActualNode().getID()));
+				fw.write("Strategy:" + technique);
+				fw.write(System.lineSeparator());
+				fw.write("Generated nodes:" + n_generated[0]);
+				fw.write(System.lineSeparator());
+				fw.write("Depth:" + solution.get(0).getD());
+				fw.write(System.lineSeparator());
+				fw.write("Cost:" + solution.get(0).getPathcost());
+				fw.write(System.lineSeparator());
+				fw.write("Time:" + endTime + " ms");
+				fw.write(System.lineSeparator());
+				fw.write(System.lineSeparator());
+				int a = 1;
+				for (int i = solution.size() - 2; i >= 0; i--) {
+					fw.write((a++) + ". " + solution.get(i).getAction() + "\t | Cost:" + solution.get(i).getPathcost());
 					fw.write(System.lineSeparator());
-
-					solution_cost += solution.get(i).getPathcost() + solution.get(i + 1).getPathcost();
 				}
+<<<<<<< HEAD
 				fw.write(System.lineSeparator());
 				fw.write("Cost of the solution: " + solution_cost );
 				fw.write(System.lineSeparator());
 				fw.write("Depth of the solution: " + solution.get(solution.size()-1).getD());
+=======
+>>>>>>> 7809e70cb1740e4f531f70aaca8fdef83bc452b1
 			}
 
 			fw.close();
 		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 

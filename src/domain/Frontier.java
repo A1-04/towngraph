@@ -1,42 +1,33 @@
 package domain;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.PriorityQueue;
 
 public class Frontier {
-	private List<TreeNode> treenodes;
+	private PriorityQueue<TreeNode> treenodes;
 
 	public Frontier() {
 		createFrontier();
 	}
 
 	private void createFrontier() {
-		treenodes = new LinkedList<TreeNode>();
+		treenodes = new PriorityQueue<TreeNode>();
 	}
 
 	public void insert(TreeNode tn) {
-		if (treenodes.isEmpty()) {
-			treenodes.add(tn);
-		} else {
-			for (int i = 0; i < treenodes.size(); i++) {
-				if (treenodes.get(i).getF() >= tn.getF()) {
-					treenodes.add(i, tn);
-					break;
-				} else if (tn.getF() > treenodes.get(treenodes.size() - 1).getF()) {
-					treenodes.add(tn);
-				}
-			}
-		}
+		treenodes.add(tn);
 	}
 
 	public void insertList(LinkedList<TreeNode> nodesList) {
-		for (TreeNode i : nodesList) {
-			insert(i);
-		}
+		treenodes.addAll(nodesList);
+	}
+
+	public PriorityQueue<TreeNode> getTreenodes() {
+		return treenodes;
 	}
 
 	public TreeNode remove() {
-		return treenodes.remove(0);
+		return treenodes.poll();
 	}
 
 	public boolean isEmpty() {

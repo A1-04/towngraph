@@ -1,157 +1,122 @@
 package domain;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TSFAlgorithm {
-	public static LinkedList<TreeNode> search(Problem p, String technique, int prof_max, boolean pruning)
-			throws IOException {
-		LinkedList<TreeNode> solution = new LinkedList<>();
-		try {
-			while (solution.isEmpty()) {
-				if (pruning) {
-					solution = bounded_search_pruning(p, technique, prof_max);
-				} else {
-					solution = bounded_search(p, technique, prof_max);
-				}
-			}
-		} catch (NullPointerException e) {
-			return null;
+	public static LinkedList<TreeNode> search(Problem p, String strategy, int prof_max, int inc_prof, boolean pruning, int[] n_generated) {
+		int prof_actual = inc_prof;
+		LinkedList<TreeNode> sol = new LinkedList<>();
+		while (sol.isEmpty() && prof_actual <= prof_max) {
+			sol = bounded_search(p, strategy, prof_actual, pruning, n_generated);
+			prof_actual += inc_prof;
 		}
-
-		return solution;
+		return sol;
 	}
 
-	public static LinkedList<TreeNode> bounded_search(Problem p, String technique, int depth) throws IOException {
-		boolean sol = false;
+	private static LinkedList<TreeNode> bounded_search(Problem p, String strategy, int prof_max, boolean pruning, int[] n_generated) {
 		Frontier fringe = new Frontier();
-		TreeNode firstn = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
-		fringe.insert(firstn);
-		TreeNode actualN = new TreeNode();
-		LinkedList<Object[]> succesorsList = new LinkedList<>();
-		TreeNode node = new TreeNode();
-		State s = new State();
-		Object[] thess = new Object[3];
-		TSFGraph g = new TSFGraph();
-		g = p.getSpace().getGraph();
-		Arc arc = new Arc();
-
-		while (!sol && !fringe.isEmpty()) {
-			actualN = fringe.remove();
-
-			if (p.isGoal(actualN.getCurrentState())) {
-				sol = true;
-				 } else if (depth > actualN.getD()) {
-				succesorsList = p.getSpace().successors(actualN.getCurrentState());
-				while (!succesorsList.isEmpty()) {
-					thess = succesorsList.remove();
-					if (actualN.getParent() == null) {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
-						fringe.insert(node);
-					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
-							.equals((((State) thess[1]).getActualNode().getID()))) {
-					} else {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
-						fringe.insert(node);
-					}
-				}
-			}
-		}
-		if (sol) {
-			return create_solution(actualN);
-		} else {
-			return null;
-		}
-	}
-
-	public static LinkedList<TreeNode> bounded_search_pruning(Problem p, String technique, int depth)
-			throws IOException {
+		TreeNode n_inicial = new TreeNode(null, p.getI_state(), 0, 0, strategy);
+		fringe.insert(n_inicial);
+		boolean sol = false;
+		TreeNode n_actual = new TreeNode();
 		Hashtable<String, Float> VL = new Hashtable<String, Float>();
-		boolean sol = false;
-		Frontier fringe = new Frontier();
-		TreeNode firstn = new TreeNode(null, p.getI_state(), 0, 0, 0, technique);
-		fringe.insert(firstn);
-		TreeNode actualN = new TreeNode();
-		LinkedList<Object[]> succesorsList = new LinkedList<>();
-		TreeNode node = new TreeNode();
-		State s = new State();
-		Object[] thess = new Object[3];
-		float aux = 0;
-		TSFGraph g = new TSFGraph();
-		g = p.getSpace().getGraph();
-		Arc arc = new Arc();
+		TSFGraph g = p.getSpace().getGraph();
 
 		while (!sol && !fringe.isEmpty()) {
-			actualN = fringe.remove();
-			if (!VL.containsKey(actualN.getCurrentState().getMD5())) {
-				VL.put(actualN.getCurrentState().getMD5(), actualN.getF());
-			}
+			n_actual = fringe.remove();
 
-			if (p.isGoal(actualN.getCurrentState())) {
-				sol = true;
-			} else if (depth > actualN.getD()) {
-				succesorsList = p.getSpace().successors(actualN.getCurrentState());
-				while (!succesorsList.isEmpty()) {
-					thess = succesorsList.remove();
-					if (actualN.getParent() == null) {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
-						fringe.insert(node);
-					} else if (actualN.getParent().getCurrentState().getActualNode().getID()
-							.equals((((State) thess[1]).getActualNode().getID()))) {
-					} else {
-						s = (State) thess[1];
-						arc = g.returnArc(
-								actualN.getCurrentState().getActualNode().getID() + " " + s.getActualNode().getID());
-						node = new TreeNode(s, actualN, actualN.getD() + 1, technique,
-								actualN.getPathcost() + Float.parseFloat(arc.getDistance()));
-						if (!VL.containsKey(node.getCurrentState().getMD5())) {
-							fringe.insert(node);
-						} else {
-							aux = VL.get(node.getCurrentState().getMD5());
-							if (Math.abs(node.getF()) < Math.abs(aux)) {
-								fringe.insert(node);
-								VL.replace(node.getCurrentState().getMD5(), aux, node.getF());
-							}
-						}
-
+			if (pruning) {
+				if (!VL.containsKey(n_actual.getCurrentState().getMD5())) {
+					VL.put(n_actual.getCurrentState().getMD5(), n_actual.getF());
+				} else {
+					float f_aux = VL.get(n_actual.getCurrentState().getMD5());
+					if (Math.abs(n_actual.getF()) <= Math.abs(f_aux)) {
+						VL.replace(n_actual.getCurrentState().getMD5(), f_aux, n_actual.getF());
 					}
+				}
+			}
+			if (p.isGoal(n_actual.getCurrentState())) {
+				sol = true;
+			} else {
+				LinkedList<Object[]> ls = p.getSpace().successors(n_actual.getCurrentState());
+				LinkedList<TreeNode> ln = makeListTreeNodes(ls, n_actual, prof_max, strategy, g, n_generated);
+				if (pruning) {
+					makePruning(ln, VL, fringe);
+				} else {
+					fringe.insertList(ln);
 				}
 			}
 		}
 
 		if (sol) {
-			return create_solution(actualN);
+			return createSolution(n_actual);
 		} else {
-			return null;
+			return new LinkedList<TreeNode>();
 		}
 	}
 
-	public static LinkedList<TreeNode> create_solution(TreeNode n_actual) throws IOException {
-		LinkedList<TreeNode> sol = new LinkedList<TreeNode>();
+	private static void makePruning(LinkedList<TreeNode> ln, Hashtable<String, Float> VL, Frontier fringe) {
+		Iterator<TreeNode> it = ln.iterator();
+		while (it.hasNext()) {
+			TreeNode n_aux = it.next();
+			if (!VL.containsKey(n_aux.getCurrentState().getMD5())) {
+				VL.put(n_aux.getCurrentState().getMD5(), n_aux.getF());
+				fringe.insert(n_aux);
+			} else {
+				float f_aux = VL.get(n_aux.getCurrentState().getMD5());
+				if (Math.abs(n_aux.getF()) <= Math.abs(f_aux)) {
+					VL.replace(n_aux.getCurrentState().getMD5(), f_aux, n_aux.getF());
+					fringe.insert(n_aux);
+				}
+			}
+		}
+	}
+
+	private static LinkedList<TreeNode> createSolution(TreeNode n_actual) {
+		LinkedList<TreeNode> sol = new LinkedList<>();
 		sol.add(n_actual);
 		while (n_actual.getParent() != null) {
 			sol.add(n_actual.getParent());
 			n_actual = n_actual.getParent();
 		}
-		Collections.reverse(sol);
-
 		return sol;
 	}
 
+	private static LinkedList<TreeNode> makeListTreeNodes(LinkedList<Object[]> ls, TreeNode n_actual, int prof_max,
+			String strategy, TSFGraph g, int[] n_generated) {
+		LinkedList<TreeNode> ln = new LinkedList<>();
+		Iterator<Object[]> it = ls.iterator();
+		while (it.hasNext()) {
+			Object[] it_object = it.next();
+			State aux = (State) it_object[1];
+			if (n_actual.getD() + 1 < prof_max) {
+				if (n_actual.getParent() == null) {
+					float cost = Float.parseFloat(g.returnArc(
+							n_actual.getCurrentState().getActualNode().getID() + " " + aux.getActualNode().getID())
+							.getDistance());
+					TreeNode tn = new TreeNode(aux, n_actual, strategy, cost);
+					fulfillTreeNode(g, n_actual, aux, tn, it_object);
+					ln.add(tn);
+					n_generated[0]++;
+				} else {
+					if (!n_actual.getParent().equals(aux)) {
+						float cost = Float.parseFloat(g.returnArc(
+								n_actual.getCurrentState().getActualNode().getID() + " " + aux.getActualNode().getID())
+								.getDistance());
+						TreeNode tn = new TreeNode(aux, n_actual, strategy, cost);
+						fulfillTreeNode(g, n_actual, aux, tn, it_object);
+						ln.add(tn);
+						n_generated[0]++;
+					}
+				}
+			}
+		}
+		return ln;
+	}
+
+	private static void fulfillTreeNode(TSFGraph g, TreeNode n_actual, State aux, TreeNode tn, Object[] it_object) {
+		tn.setAction((String) it_object[0]);
+	}
 }

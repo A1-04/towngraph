@@ -1,5 +1,6 @@
 -- Solution of the algorithm:
 
+<<<<<<< HEAD
 Go from node 3096311483 to node 3107942087
 Go from node 3107942087 to node 3107942086
 Go from node 3107942086 to node 3096311479
@@ -86,3 +87,34 @@ Go from node 3107976761 to node 3107976760
 
 Cost of the solution: 548639.6
 Depth of the solution: 83
+=======
+Strategy:BFS
+Generated nodes:3601
+Depth:23
+Cost:3583.648
+Time:132 ms
+
+1. I am in 4331431334 and I go to 4331431346	 | Cost:71.161
+2. I am in 4331431346 and I go to 4845150944	 | Cost:124.317
+3. I am in 4845150944 and I go to 4331489762	 | Cost:2116.2249
+4. I am in 4331489762 and I go to 4331489532	 | Cost:2280.1868
+5. I am in 4331489532 and I go to 946409139	 | Cost:2307.6929
+6. I am in 946409139 and I go to 4331489528	 | Cost:2340.1748
+7. I am in 4331489528 and I go to 946409156	 | Cost:2538.2659
+8. I am in 946409156 and I go to 4331489684	 | Cost:2559.9949
+9. I am in 4331489684 and I go to 4331489683	 | Cost:2593.9758
+10. I am in 4331489683 and I go to 4331489684	 | Cost:2627.9568
+11. I am in 4331489684 and I go to 946409158	 | Cost:2681.7588
+12. I am in 946409158 and I go to 946409159	 | Cost:2714.3447
+13. I am in 946409159 and I go to 4331489627	 | Cost:3097.1558
+14. I am in 4331489627 and I go to 4331489577	 | Cost:3149.6099
+15. I am in 4331489577 and I go to 4331489575	 | Cost:3182.889
+16. I am in 4331489575 and I go to 4331489577	 | Cost:3216.168
+17. I am in 4331489577 and I go to 4331489627	 | Cost:3268.622
+18. I am in 4331489627 and I go to 4331489570	 | Cost:3291.322
+19. I am in 4331489570 and I go to 4331489573	 | Cost:3344.025
+20. I am in 4331489573 and I go to 4331489564	 | Cost:3389.4128
+21. I am in 4331489564 and I go to 4331489656	 | Cost:3473.4229
+22. I am in 4331489656 and I go to 4331489667	 | Cost:3557.1099
+23. I am in 4331489667 and I go to 4762868814	 | Cost:3583.648
+>>>>>>> 7809e70cb1740e4f531f70aaca8fdef83bc452b1
