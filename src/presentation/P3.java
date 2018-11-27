@@ -144,7 +144,9 @@ public class P3 {
 				fw.write(System.lineSeparator());
 				int a = 1;
 				for (int i = solution.size() - 2; i >= 0; i--) {
-					fw.write((a++) + ". " + solution.get(i).getAction() + "\t | Cost:" + solution.get(i).getPathcost());
+					fw.write((a++) + ". " + solution.get(i).getAction()  + "\t("+ p.getSpace().getGraph().returnArc((solution.get(i).getParent().getCurrentState().getActualNode().getID() + " " + solution.get(i).getCurrentState().getActualNode().getID())).getName() +")");
+					fw.write(System.lineSeparator());
+					fw.write("--> Cost: " + solution.get(i).getPathcost());
 					fw.write(System.lineSeparator());
 				}
 

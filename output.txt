@@ -1,44 +1,63 @@
 -- Solution of the algorithm:
 
-Strategy: BFS
-Generated nodes: 79822
-Depth: 35
-Increment of Depth (Default): 10
-Cost: 10887.347
-Time: 709 ms
+Strategy: A*
+Generated nodes: 6492
+Depth: 27
+Increment of Depth (Default): 100
+Cost: 1640.56
+Time: 348 ms
 
-1. I am in 4331489739 and I go to 4331489738	 | Cost:48.137
-2. I am in 4331489738 and I go to 4331489532	 | Cost:78.059006
-3. I am in 4331489532 and I go to 946409139	 | Cost:105.565
-4. I am in 946409139 and I go to 4331489528	 | Cost:138.047
-5. I am in 4331489528 and I go to 4331489718	 | Cost:172.872
-6. I am in 4331489718 and I go to 4331489716	 | Cost:215.215
-7. I am in 4331489716 and I go to 4331489709	 | Cost:232.334
-8. I am in 4331489709 and I go to 4331489708	 | Cost:278.452
-9. I am in 4331489708 and I go to 4331489711	 | Cost:286.893
-10. I am in 4331489711 and I go to 4762868811	 | Cost:312.31302
-11. I am in 4762868811 and I go to 4331489550	 | Cost:412.61902
-12. I am in 4331489550 and I go to 4331489692	 | Cost:446.17203
-13. I am in 4331489692 and I go to 4331489662	 | Cost:522.01306
-14. I am in 4331489662 and I go to 4331489668	 | Cost:724.1791
-15. I am in 4331489668 and I go to 4331489662	 | Cost:926.3451
-16. I am in 4331489662 and I go to 4331489695	 | Cost:988.8081
-17. I am in 4331489695 and I go to 4331489665	 | Cost:993.1721
-18. I am in 4331489665 and I go to 4331489667	 | Cost:1017.9451
-19. I am in 4331489667 and I go to 4331489656	 | Cost:1101.6321
-20. I am in 4331489656 and I go to 4331489564	 | Cost:1185.6421
-21. I am in 4331489564 and I go to 4331489573	 | Cost:1231.03
-22. I am in 4331489573 and I go to 4331489570	 | Cost:1283.733
-23. I am in 4331489570 and I go to 4331489627	 | Cost:1306.433
-24. I am in 4331489627 and I go to 4331489577	 | Cost:1358.887
-25. I am in 4331489577 and I go to 4762868815	 | Cost:1420.19
-26. I am in 4762868815 and I go to 4331489577	 | Cost:1481.4929
-27. I am in 4331489577 and I go to 4331489627	 | Cost:1533.9469
-28. I am in 4331489627 and I go to 946409159	 | Cost:1916.7579
-29. I am in 946409159 and I go to 982621562	 | Cost:2021.423
-30. I am in 982621562 and I go to 4331489516	 | Cost:2104.4639
-31. I am in 4331489516 and I go to 982621804	 | Cost:10135.084
-32. I am in 982621804 and I go to 4928063639	 | Cost:10821.369
-33. I am in 4928063639 and I go to 4928063630	 | Cost:10853.961
-34. I am in 4928063630 and I go to 4928063624	 | Cost:10859.313
-35. I am in 4928063624 and I go to 4928063625	 | Cost:10887.347
+1. I am in 2040195062 and I go to 2040195058	(Calle Merlas)
+--> Cost:219.322
+2. I am in 2040195058 and I go to 1818952794	(Calle Ejido de San Juan)
+--> Cost:285.315
+3. I am in 1818952794 and I go to 959469726	(Calle Ejido de San Juan)
+--> Cost:328.681
+4. I am in 959469726 and I go to 2656970801	(Calle Ejido de San Juan)
+--> Cost:387.313
+5. I am in 2656970801 and I go to 2656970804	(Calle Ancha)
+--> Cost:392.13898
+6. I am in 2656970804 and I go to 2656970815	(Calle de Granada)
+--> Cost:413.03497
+7. I am in 2656970815 and I go to 4525404218	(Calle de Granada)
+--> Cost:414.78598
+8. I am in 4525404218 and I go to 4525404215	(Calle Andrés Cano)
+--> Cost:563.864
+9. I am in 4525404215 and I go to 4525404216	(Unnamed)
+--> Cost:585.255
+10. I am in 4525404216 and I go to 247678039	(Calle Ejido de la Magdalena)
+--> Cost:687.418
+11. I am in 247678039 and I go to 1005565986	(Calle de San Francisco)
+--> Cost:814.606
+12. I am in 1005565986 and I go to 5384084985	(Calle de Pedrero)
+--> Cost:922.66003
+13. I am in 5384084985 and I go to 4751644520	(Unnamed)
+--> Cost:936.481
+14. I am in 4751644520 and I go to 4751644518	(Unnamed)
+--> Cost:945.69
+15. I am in 4751644518 and I go to 4751644514	(Unnamed)
+--> Cost:964.111
+16. I am in 4751644514 and I go to 1966640629	(Calle del Conde de Barcelona)
+--> Cost:1080.323
+17. I am in 1966640629 and I go to 4751644514	(Calle del Conde de Barcelona)
+--> Cost:1196.535
+18. I am in 4751644514 and I go to 5384084985	(Unnamed)
+--> Cost:1214.961
+19. I am in 5384084985 and I go to 4751644520	(Unnamed)
+--> Cost:1228.7821
+20. I am in 4751644520 and I go to 1966640618	(Calle del Conde de Barcelona)
+--> Cost:1328.7661
+21. I am in 1966640618 and I go to 247682450	(Calle del Conde de Barcelona)
+--> Cost:1357.3601
+22. I am in 247682450 and I go to 247682452	(Ronda de San Francisco)
+--> Cost:1424.1051
+23. I am in 247682452 and I go to 1005569408	(Ronda de San Francisco)
+--> Cost:1490.435
+24. I am in 1005569408 and I go to 2054262656	(Calle de Carretería)
+--> Cost:1553.1951
+25. I am in 2054262656 and I go to 2051495834	(Calle de Carretería)
+--> Cost:1585.6901
+26. I am in 2051495834 and I go to 247682453	(Calle de Carretería)
+--> Cost:1631.8961
+27. I am in 247682453 and I go to 2656970826	(Calle Pedro de Oviedo)
+--> Cost:1640.56
