@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class TreeNode implements Comparable<TreeNode> {
@@ -28,9 +29,9 @@ public class TreeNode implements Comparable<TreeNode> {
 		} else if (strategy.equals("UCS")) {
 			this.f = pathcost;
 		} else if (strategy.equals("GS")) {
-			// f = h(currentState);
+			// f = h(currentState); We don't need this the first time
 		} else if (strategy.equals("A*")) {
-			// f = h(currentState) + this.pathcost;
+			// f = h(currentState) + this.pathcost; We don't need this the first time
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
@@ -49,23 +50,61 @@ public class TreeNode implements Comparable<TreeNode> {
 		} else if (strategy.equals("UCS")) {
 			this.f = this.pathcost;
 		} else if (strategy.equals("GS")) {
-			f = h(currentState);
+			f = h0(currentState);
 		} else if (strategy.equals("A*")) {
-			f = h(currentState) + this.pathcost;
+			f = h0(currentState) + this.pathcost;
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
 	}
 
-	private float h(State s) {
+	private float h0(State s) // Minimum distance to visit every node in the list from STATE.NODE(OSM)
+	{
 		return distance(parent.currentState.getActualNode(), s.getActualNode());
 	}
 
-	private float distance(Node node1, Node node2) {
+	private float h1(State s) // Minimum distance to visit every node in list for each one of the nodes in
+								// LIST + dmin
+	{
+		return distance(parent.currentState, currentState);
+	}
+
+	private float distance(State parent, State n_actual) // WIP
+	{
+		for (Node i : parent.getN_list()) {
+			float lng1 = Float.parseFloat(i.getX());
+			float lng2 = Float.parseFloat(n_actual.getActualNode().getX());
+			float lat1 = Float.parseFloat(i.getY());
+			float lat2 = Float.parseFloat(n_actual.getActualNode().getY());
+			float earth_radius = 6371009;
+
+			double phi1 = Math.toRadians(lat1);
+			double phi2 = Math.toRadians(lat2);
+			double d_phi = phi2 - phi1;
+
+			double theta1 = Math.toRadians(lng1);
+			double theta2 = Math.toRadians(lng2);
+			double d_theta = theta2 - theta1;
+
+			double h = Math.pow(Math.sin(d_phi / 2), 2)
+					+ Math.cos(phi1) * Math.cos(phi2) * Math.pow(Math.sin(d_theta / 2), 2);
+			h = Math.min(1.0, h);
+
+			double arc = 2 * Math.asin(Math.sqrt(h));
+
+			// return distance in units of earth_radius
+			double dist = arc * earth_radius;
+		}
+
+		return 0;
+	}
+
+	private float distance(Node node1, Node node2) // NEED A FIX, SEE H0
+	{
 		float lng1 = Float.parseFloat(node1.getX());
 		float lng2 = Float.parseFloat(node2.getX());
 		float lat1 = Float.parseFloat(node1.getY());
-		float lat2 = Float.parseFloat(node1.getY());
+		float lat2 = Float.parseFloat(node2.getY());
 		float earth_radius = 6371009;
 
 		double phi1 = Math.toRadians(lat1);
