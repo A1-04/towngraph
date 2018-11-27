@@ -1,32 +1,44 @@
 -- Solution of the algorithm:
 
 Strategy: BFS
-Generated nodes: 3601
-Depth: 23
-Increment of Depth (Default): 90
-Cost: 3583.648
-Time: 246 ms
+Generated nodes: 79822
+Depth: 35
+Increment of Depth (Default): 10
+Cost: 10887.347
+Time: 709 ms
 
-1. I am in 4331431334 and I go to 4331431346	 | Cost:71.161
-2. I am in 4331431346 and I go to 4845150944	 | Cost:124.317
-3. I am in 4845150944 and I go to 4331489762	 | Cost:2116.2249
-4. I am in 4331489762 and I go to 4331489532	 | Cost:2280.1868
-5. I am in 4331489532 and I go to 946409139	 | Cost:2307.6929
-6. I am in 946409139 and I go to 4331489528	 | Cost:2340.1748
-7. I am in 4331489528 and I go to 946409156	 | Cost:2538.2659
-8. I am in 946409156 and I go to 4331489684	 | Cost:2559.9949
-9. I am in 4331489684 and I go to 4331489683	 | Cost:2593.9758
-10. I am in 4331489683 and I go to 4331489684	 | Cost:2627.9568
-11. I am in 4331489684 and I go to 946409158	 | Cost:2681.7588
-12. I am in 946409158 and I go to 946409159	 | Cost:2714.3447
-13. I am in 946409159 and I go to 4331489627	 | Cost:3097.1558
-14. I am in 4331489627 and I go to 4331489577	 | Cost:3149.6099
-15. I am in 4331489577 and I go to 4331489575	 | Cost:3182.889
-16. I am in 4331489575 and I go to 4331489577	 | Cost:3216.168
-17. I am in 4331489577 and I go to 4331489627	 | Cost:3268.622
-18. I am in 4331489627 and I go to 4331489570	 | Cost:3291.322
-19. I am in 4331489570 and I go to 4331489573	 | Cost:3344.025
-20. I am in 4331489573 and I go to 4331489564	 | Cost:3389.4128
-21. I am in 4331489564 and I go to 4331489656	 | Cost:3473.4229
-22. I am in 4331489656 and I go to 4331489667	 | Cost:3557.1099
-23. I am in 4331489667 and I go to 4762868814	 | Cost:3583.648
+1. I am in 4331489739 and I go to 4331489738	 | Cost:48.137
+2. I am in 4331489738 and I go to 4331489532	 | Cost:78.059006
+3. I am in 4331489532 and I go to 946409139	 | Cost:105.565
+4. I am in 946409139 and I go to 4331489528	 | Cost:138.047
+5. I am in 4331489528 and I go to 4331489718	 | Cost:172.872
+6. I am in 4331489718 and I go to 4331489716	 | Cost:215.215
+7. I am in 4331489716 and I go to 4331489709	 | Cost:232.334
+8. I am in 4331489709 and I go to 4331489708	 | Cost:278.452
+9. I am in 4331489708 and I go to 4331489711	 | Cost:286.893
+10. I am in 4331489711 and I go to 4762868811	 | Cost:312.31302
+11. I am in 4762868811 and I go to 4331489550	 | Cost:412.61902
+12. I am in 4331489550 and I go to 4331489692	 | Cost:446.17203
+13. I am in 4331489692 and I go to 4331489662	 | Cost:522.01306
+14. I am in 4331489662 and I go to 4331489668	 | Cost:724.1791
+15. I am in 4331489668 and I go to 4331489662	 | Cost:926.3451
+16. I am in 4331489662 and I go to 4331489695	 | Cost:988.8081
+17. I am in 4331489695 and I go to 4331489665	 | Cost:993.1721
+18. I am in 4331489665 and I go to 4331489667	 | Cost:1017.9451
+19. I am in 4331489667 and I go to 4331489656	 | Cost:1101.6321
+20. I am in 4331489656 and I go to 4331489564	 | Cost:1185.6421
+21. I am in 4331489564 and I go to 4331489573	 | Cost:1231.03
+22. I am in 4331489573 and I go to 4331489570	 | Cost:1283.733
+23. I am in 4331489570 and I go to 4331489627	 | Cost:1306.433
+24. I am in 4331489627 and I go to 4331489577	 | Cost:1358.887
+25. I am in 4331489577 and I go to 4762868815	 | Cost:1420.19
+26. I am in 4762868815 and I go to 4331489577	 | Cost:1481.4929
+27. I am in 4331489577 and I go to 4331489627	 | Cost:1533.9469
+28. I am in 4331489627 and I go to 946409159	 | Cost:1916.7579
+29. I am in 946409159 and I go to 982621562	 | Cost:2021.423
+30. I am in 982621562 and I go to 4331489516	 | Cost:2104.4639
+31. I am in 4331489516 and I go to 982621804	 | Cost:10135.084
+32. I am in 982621804 and I go to 4928063639	 | Cost:10821.369
+33. I am in 4928063639 and I go to 4928063630	 | Cost:10853.961
+34. I am in 4928063630 and I go to 4928063624	 | Cost:10859.313
+35. I am in 4928063624 and I go to 4928063625	 | Cost:10887.347

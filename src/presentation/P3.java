@@ -17,12 +17,16 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P3 (v4.1.1)\t-----");
-		select_strategy();
+		System.out.println("-----\tTowngraph P4 (v4.1.1)\t-----");
+		int success = 0;
+		do {
+			success = select_strategy();
+		} while (success == 0);
+
 		return;
 	}
 
-	public static void select_strategy() throws IOException {
+	public static int select_strategy() throws IOException {
 		Scanner readt = new Scanner(System.in);
 		Scanner readp = new Scanner(System.in);
 		Scanner read = new Scanner(System.in);
@@ -32,6 +36,7 @@ public class P3 {
 		String aux = "";
 		boolean pruning = false;
 		Problem p = new Problem();
+		int[] n_generated = new int[1];
 
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
@@ -41,7 +46,7 @@ public class P3 {
 			p = new Problem(Jname);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
 			System.out.println(e.getMessage());
-			select_strategy();
+			return 0;
 		}
 
 		System.out.println("\n-- Select an strategy to run the algorithm --");
@@ -66,7 +71,7 @@ public class P3 {
 
 		} catch (Exception e) {
 			System.out.println("ERROR: You must insert a number. Restarting...");
-			select_strategy();
+			return 0;
 		}
 
 		System.out.println("\n-- Now tell me the increment of depth:");
@@ -80,7 +85,7 @@ public class P3 {
 
 		} catch (Exception e) {
 			System.out.println("ERROR: You must insert a number. Restarting...");
-			select_strategy();
+			return 0;
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
@@ -102,11 +107,13 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-		int[] n_generated = new int[1];
+
 		long startTime = System.currentTimeMillis();
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
 		long endTime = System.currentTimeMillis() - startTime;
 		toFile(sol, p, endTime, technique, n_generated, inc_prof);
+
+		return 1;
 	}
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique,
