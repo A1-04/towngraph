@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
+import domain.Node;
 import domain.Problem;
 import domain.TSFAlgorithm;
 import domain.TreeNode;
@@ -118,6 +119,7 @@ public class P3 {
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique,
 			int[] n_generated, int inc_prof) {
+		LinkedList<Node> rem = new LinkedList<Node>();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
 		try {
@@ -144,7 +146,19 @@ public class P3 {
 				fw.write(System.lineSeparator());
 				int a = 1;
 				for (int i = solution.size() - 2; i >= 0; i--) {
-					fw.write((a++) + ". " + solution.get(i).getAction()  + "\t("+ p.getSpace().getGraph().returnArc((solution.get(i).getParent().getCurrentState().getActualNode().getID() + " " + solution.get(i).getCurrentState().getActualNode().getID())).getName() +")");
+					fw.write((a++) + ". " + solution.get(i).getAction() + "\t("
+							+ p.getSpace().getGraph()
+									.returnArc((solution.get(i).getParent().getCurrentState().getActualNode().getID()
+											+ " " + solution.get(i).getCurrentState().getActualNode().getID()))
+									.getName()
+							+ ")");
+					fw.write(System.lineSeparator());
+					fw.write("Nodes remaining for visit: [ | ");
+					rem = solution.get(i).getCurrentState().getN_list();
+					for (int z = 0; z < rem.size(); z++) {
+						fw.write(rem.get(z).getID() + " | ");
+					}
+					fw.write("]");
 					fw.write(System.lineSeparator());
 					fw.write("--> Cost: " + solution.get(i).getPathcost());
 					fw.write(System.lineSeparator());
