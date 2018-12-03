@@ -1,5 +1,8 @@
 -- 3/12/18 --
 
+Towngraph P4 (v4.3.1beta)
+- GPX Parser rebased (now cleaner)
+
 Towngraph P4 (v4.3beta)
 - GPX Parser pre-implemented
 

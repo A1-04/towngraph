@@ -5,7 +5,7 @@ Generated nodes: 5552
 Depth: 27
 Increment of Depth (Default): 100
 Cost: 1640.56
-Time: 423 ms
+Time: 295 ms
 
 1. I am in 2040195062 and I go to 2040195058	(Calle Merlas)
 Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]

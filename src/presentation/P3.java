@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -12,12 +11,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
-import com.hs.gpxparser.GPXWriter;
-
 import domain.Node;
 import domain.Problem;
 import domain.TSFAlgorithm;
 import domain.TreeNode;
+import domain.GPXWriter;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
@@ -116,7 +114,9 @@ public class P3 {
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
 		long endTime = System.currentTimeMillis() - startTime;
 		toFile(sol, p, endTime, technique, n_generated, inc_prof);
-		// toGPX(sol);
+		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1)) == -1) {
+			System.out.println("-- There was an error creating the GPX file.");
+		}
 
 		return 1;
 	}
@@ -177,13 +177,6 @@ public class P3 {
 		}
 
 		System.out.println("\n-- Operation finished. Program closed.--");
-	}
-
-	public static void toGPX(LinkedList<TreeNode> solution) {
-		GPXWriter writer = new GPXWriter();
-		FileOutputStream out = new FileOutputStream("output.gpx");
-		writer.writeGPX(gpx, out);
-		out.close();
 	}
 
 }
