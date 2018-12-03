@@ -1,3 +1,7 @@
 -- 3/12/18 --
+
+Towngraph P4 (v4.3beta)
+- GPX Parser pre-implemented
+
 Towngraph P4 (v4.2beta)
 - Heuristic improved and H1 added (more efficient)

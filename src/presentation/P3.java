@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -11,6 +12,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
+import com.hs.gpxparser.GPXWriter;
+
 import domain.Node;
 import domain.Problem;
 import domain.TSFAlgorithm;
@@ -18,7 +21,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.2beta)\t-----");
+		System.out.println("-----\tTowngraph P4 (v4.3beta)\t-----");
 		int success = 0;
 		do {
 			success = select_strategy();
@@ -113,6 +116,7 @@ public class P3 {
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
 		long endTime = System.currentTimeMillis() - startTime;
 		toFile(sol, p, endTime, technique, n_generated, inc_prof);
+		// toGPX(sol);
 
 		return 1;
 	}
@@ -165,7 +169,6 @@ public class P3 {
 				}
 
 			}
-
 			fw.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -174,6 +177,13 @@ public class P3 {
 		}
 
 		System.out.println("\n-- Operation finished. Program closed.--");
+	}
+
+	public static void toGPX(LinkedList<TreeNode> solution) {
+		GPXWriter writer = new GPXWriter();
+		FileOutputStream out = new FileOutputStream("output.gpx");
+		writer.writeGPX(gpx, out);
+		out.close();
 	}
 
 }
