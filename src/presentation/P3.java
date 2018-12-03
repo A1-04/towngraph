@@ -17,7 +17,7 @@ import domain.TreeNode;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.1.1)\t-----");
+		System.out.println("-----\tTowngraph P4 (v4.2beta)\t-----");
 		int success = 0;
 		do {
 			success = select_strategy();
