@@ -96,7 +96,7 @@ public class P3 {
 		}
 
 		if (technique.equals("A*")) {
-			System.out.print("\n-- Now tell me the heuristic you want to use (0 = basic, 1 = complex): ");
+			System.out.print("\n-- Now tell me the heuristic you want to use (0 = basic, 1 = best): ");
 			try {
 				heuristic = read.nextInt();
 				while (heuristic < 0 || heuristic > 1) {
@@ -133,16 +133,17 @@ public class P3 {
 		long startTime = System.currentTimeMillis();
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated, heuristic);
 		long endTime = System.currentTimeMillis() - startTime;
-		toFile(sol, p, endTime, technique, n_generated, inc_prof, heuristic);
-		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1)) == -1) {
+		toFile(sol, p, endTime, technique, n_generated[0], inc_prof, heuristic);
+		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1), technique, n_generated[0], sol.get(0).getD(),
+				sol.get(0).getPathcost()) == -1) {
 			System.out.println("-- There was an error creating the GPX file.");
 		}
 
 		return 1;
 	}
 
-	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique,
-			int[] n_generated, int inc_prof, int heuristic) {
+	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique, int n_generated,
+			int inc_prof, int heuristic) {
 		LinkedList<Node> rem = new LinkedList<Node>();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
@@ -157,7 +158,7 @@ public class P3 {
 			} else {
 				fw.write("Strategy: " + technique);
 				fw.write(System.lineSeparator());
-				fw.write("Generated nodes: " + n_generated[0]);
+				fw.write("Generated nodes: " + n_generated);
 				fw.write(System.lineSeparator());
 				fw.write("Depth: " + solution.get(0).getD());
 				fw.write(System.lineSeparator());

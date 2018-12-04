@@ -11,10 +11,15 @@ import java.util.LinkedList;
 public class GPXWriter {
 	private static final String TAG = GPXWriter.class.getName();
 
-	public static int writePath(LinkedList<TreeNode> sol, TreeNode first) {
+	public static int writePath(LinkedList<TreeNode> sol, TreeNode first, String strategy, int n_generated, int depth,
+			float f) {
 		File file = new File("output.gpx");
 		String header = "<gpx version=\"1.1\" creator=\"The Special Flat\">\n";
-		if ((writeWPT(first, first.getCurrentState().getN_list(), header, file) == -1)
+
+		String desc = "\n<desc>\n" + "Strategy: " + strategy + "\n" + "Nodes generated: " + n_generated + "\n" + "Depth: "
+				+ depth + "\n" + "Cost: " + f + "\n</desc>\n";
+
+		if ((writeWPT(first, first.getCurrentState().getN_list(), header, desc, file) == -1)
 				|| (writeTRKPT(sol, file) == -1)) {
 			return -1;
 		}
@@ -22,7 +27,7 @@ public class GPXWriter {
 		return 0;
 	}
 
-	public static int writeWPT(TreeNode first, LinkedList<Node> start, String header, File file) {
+	public static int writeWPT(TreeNode first, LinkedList<Node> start, String header, String desc, File file) {
 		String segments = "\n<wpt lat=\"" + first.getCurrentState().getActualNode().getY() + "\" lon=\""
 				+ first.getCurrentState().getActualNode().getX() + "\"><name>" + "[I]"
 				+ first.getCurrentState().getActualNode().getID() + "</name></wpt>\n";
@@ -34,6 +39,7 @@ public class GPXWriter {
 		try {
 			FileWriter writer = new FileWriter(file, false);
 			writer.append(header);
+			writer.append(desc);
 			writer.append(segments);
 			writer.flush();
 			writer.close();

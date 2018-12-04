@@ -1,5 +1,9 @@
 -- 4/12/18 --
 
+Towngraph P4 (v4.3.3beta)
+- Heuristic now can be chosen
+- Description added in the .gpx file
+
 Towngraph P4 (v4.3.2beta)
 - Order of the graphic solution fixed
 - Increment of depth now is only asked when needed (IDS)
