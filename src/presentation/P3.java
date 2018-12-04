@@ -61,7 +61,7 @@ public class P3 {
 				System.out.println("-- There was an error creating the GPX file.");
 			}
 		} else
-			System.out.print("\n--There is no solution for this problem.--\n--Program closed.--");
+			System.out.print("\n-- There is no solution for this problem.--\n-- Program closed.--");
 		return 0;
 	}
 
