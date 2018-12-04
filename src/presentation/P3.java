@@ -19,18 +19,16 @@ import domain.GPXWriter;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.3.3beta)\t-----");
+		System.out.println("-----\tTowngraph P4 (v4.4beta)\t-----");
 		int success = 0;
 		do {
-			success = select_strategy();
+			success = menu();
 		} while (success == 0);
 
 		return;
 	}
 
-	public static int select_strategy() throws IOException {
-		Scanner readt = new Scanner(System.in);
-		Scanner readp = new Scanner(System.in);
+	public static int menu() throws IOException {
 		Scanner read = new Scanner(System.in);
 		String Jname = "";
 		int depth = 0, inc_prof = 0;
@@ -54,22 +52,22 @@ public class P3 {
 
 		System.out.println("\n-- Select an strategy to run the algorithm --");
 		System.out.print("Type the strategy (BFS, DFS, DLS, UCS, IDS, GS or A*): ");
-		technique = readt.next();
+		technique = read.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
 				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
 				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS")
 				&& !technique.equalsIgnoreCase("A*")) {
 			System.out.print("\nThat is not a valid technique. Try again: ");
-			technique = readt.next();
+			technique = read.next();
 		}
 
 		technique = technique.toUpperCase();
 		System.out.println("\n-- Tell me the maximum depth:");
 		try {
-			depth = readt.nextInt();
+			depth = read.nextInt();
 			while (depth < 0) {
 				System.out.print("Please insert a valid number: ");
-				depth = readt.nextInt();
+				depth = read.nextInt();
 			}
 
 		} catch (Exception e) {
@@ -80,11 +78,11 @@ public class P3 {
 		if (technique.equals("IDS")) {
 			System.out.print("\n-- Now tell me the increment of depth:");
 			try {
-				inc_prof = readt.nextInt();
+				inc_prof = read.nextInt();
 				while (inc_prof < 0 || inc_prof > depth) {
 					System.out.print(
 							"The increment of depth cannot be lower than zero or higher than the maximum depth. Try again: ");
-					inc_prof = readt.nextInt();
+					inc_prof = read.nextInt();
 				}
 
 			} catch (Exception e) {
@@ -101,7 +99,7 @@ public class P3 {
 				heuristic = read.nextInt();
 				while (heuristic < 0 || heuristic > 1) {
 					System.out.print("Please choose a valid heuristic: ");
-					heuristic = readt.nextInt();
+					heuristic = read.nextInt();
 				}
 
 			} catch (Exception e) {
@@ -111,10 +109,10 @@ public class P3 {
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
-		aux = readp.next();
+		aux = read.next();
 		while (!aux.equalsIgnoreCase("y") && !aux.equalsIgnoreCase("n")) {
 			System.out.print("\nThat is not a valid answer. Try again: ");
-			aux = readp.next();
+			aux = read.next();
 		}
 		if (aux.equalsIgnoreCase("y")) {
 			pruning = true;
