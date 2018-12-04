@@ -54,12 +54,14 @@ public class P3 {
 		long startTime = System.currentTimeMillis();
 		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated, heuristic);
 		long endTime = System.currentTimeMillis() - startTime;
-		toFile(sol, p, endTime, technique, n_generated[0], inc_prof, heuristic);
-		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1), technique, n_generated[0], sol.get(0).getD(),
-				sol.get(0).getPathcost()) == -1) {
-			System.out.println("-- There was an error creating the GPX file.");
-		}
-
+		if (!sol.isEmpty()) {
+			toFile(sol, p, endTime, technique, n_generated[0], inc_prof, heuristic);
+			if (GPXWriter.writePath(sol, sol.get(sol.size() - 1), technique, n_generated[0], sol.get(0).getD(),
+					sol.get(0).getPathcost()) == -1) {
+				System.out.println("-- There was an error creating the GPX file.");
+			}
+		} else
+			System.out.print("\n--There is no solution for this problem.--\n--Program closed.--");
 		return 0;
 	}
 
@@ -99,7 +101,7 @@ public class P3 {
 		System.out.println("\n-- Tell me the maximum depth:");
 		try {
 			depth = read.nextInt();
-			while (depth < 0) {
+			while (depth <= 0) {
 				System.out.print("Please insert a valid number: ");
 				depth = read.nextInt();
 			}
@@ -150,6 +152,8 @@ public class P3 {
 				System.out.println("ERROR: You must insert a valid number. Restarting...");
 				return -1;
 			}
+		} else {
+			return -2;
 		}
 		return heuristic;
 	}
