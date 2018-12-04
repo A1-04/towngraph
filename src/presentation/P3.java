@@ -76,18 +76,22 @@ public class P3 {
 			return 0;
 		}
 
-		System.out.println("\n-- Now tell me the increment of depth:");
-		try {
-			inc_prof = readt.nextInt();
-			while (inc_prof < 0 || inc_prof > depth) {
-				System.out.print(
-						"The increment of depth cannot be lower than zero or higher than the maximum depth. Try again: ");
+		if (technique.equals("IDS")) {
+			System.out.println("\n-- Now tell me the increment of depth:");
+			try {
 				inc_prof = readt.nextInt();
-			}
+				while (inc_prof < 0 || inc_prof > depth) {
+					System.out.print(
+							"The increment of depth cannot be lower than zero or higher than the maximum depth. Try again: ");
+					inc_prof = readt.nextInt();
+				}
 
-		} catch (Exception e) {
-			System.out.println("ERROR: You must insert a number. Restarting...");
-			return 0;
+			} catch (Exception e) {
+				System.out.println("ERROR: You must insert a number. Restarting...");
+				return 0;
+			}
+		} else {
+			inc_prof = depth;
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
@@ -141,8 +145,10 @@ public class P3 {
 				fw.write(System.lineSeparator());
 				fw.write("Depth: " + solution.get(0).getD());
 				fw.write(System.lineSeparator());
-				fw.write(("Increment of Depth (Default): " + inc_prof));
-				fw.write(System.lineSeparator());
+				if (technique.equals("IDS")) {
+					fw.write(("Increment of Depth: " + inc_prof));
+					fw.write(System.lineSeparator());
+				}
 				fw.write("Cost: " + solution.get(0).getPathcost());
 				fw.write(System.lineSeparator());
 				fw.write("Time: " + endTime + " ms");
