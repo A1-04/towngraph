@@ -46,11 +46,11 @@ public class GPXWriter {
 	public static int writeTRKPT(LinkedList<TreeNode> points, File file) {
 		String segments = "\n<trk>\n";
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		for (TreeNode l : points) {
-			segments += "<trkpt lat=\"" + l.getCurrentState().getActualNode().getY() + "\" lon=\""
-					+ l.getCurrentState().getActualNode().getX() + "\"><ele>" + 0 + "</ele>" + "<time>"
-					+ df.format(new Date()) + "</time>" + "<name>" + l.getCurrentState().getActualNode().getID()
-					+ "</name></trkpt>\n";
+		for (int i = points.size() - 1; i >= 0; i--) {
+			segments += "<trkpt lat=\"" + points.get(i).getCurrentState().getActualNode().getY() + "\" lon=\""
+					+ points.get(i).getCurrentState().getActualNode().getX() + "\"><ele>" + 0 + "</ele>" + "<time>"
+					+ df.format(new Date()) + "</time>" + "<name>"
+					+ points.get(i).getCurrentState().getActualNode().getID() + "</name></trkpt>\n";
 		}
 
 		String footer = "</trk></gpx>";

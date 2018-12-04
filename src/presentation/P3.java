@@ -19,7 +19,7 @@ import domain.GPXWriter;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.3beta)\t-----");
+		System.out.println("-----\tTowngraph P4 (v4.3)\t-----");
 		int success = 0;
 		do {
 			success = select_strategy();
