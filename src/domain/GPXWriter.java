@@ -13,7 +13,7 @@ public class GPXWriter {
 
 	public static int writePath(LinkedList<TreeNode> sol, TreeNode first) {
 		File file = new File("output.gpx");
-		String header = "<gpx version=\"1.1\" creator=\"The Special Flat\">";
+		String header = "<gpx version=\"1.1\" creator=\"The Special Flat\">\n";
 		if ((writeWPT(first, first.getCurrentState().getN_list(), header, file) == -1)
 				|| (writeTRKPT(sol, file) == -1)) {
 			return -1;
@@ -45,11 +45,11 @@ public class GPXWriter {
 
 	public static int writeTRKPT(LinkedList<TreeNode> points, File file) {
 		String segments = "\n<trk>\n";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		for (TreeNode l : points) {
 			segments += "<trkpt lat=\"" + l.getCurrentState().getActualNode().getY() + "\" lon=\""
-					+ l.getCurrentState().getActualNode().getX() + "\"><ele>" + 0 + "</ele>" + "\"><time>"
-					+ df.format(new Date()) + "</time>" + "\"><name>" + l.getCurrentState().getActualNode().getID()
+					+ l.getCurrentState().getActualNode().getX() + "\"><ele>" + 0 + "</ele>" + "<time>"
+					+ df.format(new Date()) + "</time>" + "<name>" + l.getCurrentState().getActualNode().getID()
 					+ "</name></trkpt>\n";
 		}
 
