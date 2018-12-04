@@ -71,8 +71,25 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 		return min_distance;
 	}
+	
+	private float h1(State s) // Need a fix
+	{
+		float min_distance = 0;
+		if (s.getN_list().size() != 0) {
+			min_distance = distance(parent.currentState.getActualNode(), s.getN_list().get(0));	
+			for (int i = 1; i < s.getN_list().size(); i++) {
+				float aux = distance(parent.currentState.getActualNode(), s.getN_list().get(i));
+				if (aux < min_distance) {
+					min_distance = aux;
+				}
+			}
+			
+		}
+		
+		return min_distance;
+	}
 
-	private float h1(State s) // Minimum distance to visit every node in list for each one of the nodes in
+	private float h2(State s) // Minimum distance to visit every node in list for each one of the nodes in
 								// LIST + dmin
 	{
 		float min_distance = 0;

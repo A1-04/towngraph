@@ -1,90 +1,89 @@
 -- Solution of the algorithm:
 
-Strategy: IDS
-Generated nodes: 3910
+Strategy: A*
+Generated nodes: 5552
 Depth: 27
-Increment of Depth: 10
-Cost: 3812.9407
-Time: 163 ms
+Cost: 1640.56
+Time: 535 ms
 
-1. I am in 4331431334 and I go to 4331431346	(Calle Dornajuelo)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 71.161
-2. I am in 4331431346 and I go to 4845150944	(Calle Dornajuelo)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 124.317
-3. I am in 4845150944 and I go to 4331489762	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2116.2249
-4. I am in 4331489762 and I go to 4331489532	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2280.1868
-5. I am in 4331489532 and I go to 946409139	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2307.6929
-6. I am in 946409139 and I go to 4331489528	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2340.1748
-7. I am in 4331489528 and I go to 946409156	(['Calle Caño', 'Calle Puente'])
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2538.2659
-8. I am in 946409156 and I go to 4331489684	(Calle del Álamo)
-Nodes remaining for visit: [ | 4331489575 | 4331489683 | 4762868814 | ]
---> Cost: 2559.9949
-9. I am in 4331489684 and I go to 4331489683	(Calle Cura)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 2593.9758
-10. I am in 4331489683 and I go to 4331489684	(Calle Cura)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 2627.9568
-11. I am in 4331489684 and I go to 946409158	(Calle del Álamo)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 2681.7588
-12. I am in 946409158 and I go to 946409159	(Calle del Álamo)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 2714.3447
-13. I am in 946409159 and I go to 4331489627	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3097.1558
-14. I am in 4331489627 and I go to 4331489570	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3119.8557
-15. I am in 4331489570 and I go to 4331489573	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3172.5586
-16. I am in 4331489573 and I go to 4331489564	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3217.9465
-17. I am in 4331489564 and I go to 4331489656	(Calle Gibraltar Español)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3301.9565
-18. I am in 4331489656 and I go to 4331489667	(Calle Gibraltar Español)
-Nodes remaining for visit: [ | 4331489575 | 4762868814 | ]
---> Cost: 3385.6436
-19. I am in 4331489667 and I go to 4762868814	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3412.1816
-20. I am in 4762868814 and I go to 4331489667	(Unnamed)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3438.7197
-21. I am in 4331489667 and I go to 4331489656	(Calle Gibraltar Español)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3522.4067
-22. I am in 4331489656 and I go to 4331489564	(Calle Gibraltar Español)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3606.4167
-23. I am in 4331489564 and I go to 4331489573	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3651.8047
-24. I am in 4331489573 and I go to 4331489570	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3704.5076
-25. I am in 4331489570 and I go to 4331489627	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3727.2075
-26. I am in 4331489627 and I go to 4331489577	(Calle Carretera)
-Nodes remaining for visit: [ | 4331489575 | ]
---> Cost: 3779.6616
-27. I am in 4331489577 and I go to 4331489575	(Calle Carretera)
+1. I am in 2040195062 and I go to 2040195058	(Calle Merlas)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 219.322
+2. I am in 2040195058 and I go to 1818952794	(Calle Ejido de San Juan)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 285.315
+3. I am in 1818952794 and I go to 959469726	(Calle Ejido de San Juan)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 328.681
+4. I am in 959469726 and I go to 2656970801	(Calle Ejido de San Juan)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 387.313
+5. I am in 2656970801 and I go to 2656970804	(Calle Ancha)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 392.13898
+6. I am in 2656970804 and I go to 2656970815	(Calle de Granada)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 413.03497
+7. I am in 2656970815 and I go to 4525404218	(Calle de Granada)
+Nodes remaining for visit: [ | 4525404215 | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 414.78598
+8. I am in 4525404218 and I go to 4525404215	(Calle Andrés Cano)
+Nodes remaining for visit: [ | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 563.864
+9. I am in 4525404215 and I go to 4525404216	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 585.255
+10. I am in 4525404216 and I go to 247678039	(Calle Ejido de la Magdalena)
+Nodes remaining for visit: [ | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 687.418
+11. I am in 247678039 and I go to 1005565986	(Calle de San Francisco)
+Nodes remaining for visit: [ | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 814.606
+12. I am in 1005565986 and I go to 5384084985	(Calle de Pedrero)
+Nodes remaining for visit: [ | 2656970826 | 4751644520 | 1966640629 | ]
+--> Cost: 922.66003
+13. I am in 5384084985 and I go to 4751644520	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | 1966640629 | ]
+--> Cost: 936.481
+14. I am in 4751644520 and I go to 4751644518	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | 1966640629 | ]
+--> Cost: 945.69
+15. I am in 4751644518 and I go to 4751644514	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | 1966640629 | ]
+--> Cost: 964.111
+16. I am in 4751644514 and I go to 1966640629	(Calle del Conde de Barcelona)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1080.323
+17. I am in 1966640629 and I go to 4751644514	(Calle del Conde de Barcelona)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1196.535
+18. I am in 4751644514 and I go to 5384084985	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1214.961
+19. I am in 5384084985 and I go to 4751644520	(Unnamed)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1228.7821
+20. I am in 4751644520 and I go to 1966640618	(Calle del Conde de Barcelona)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1328.7661
+21. I am in 1966640618 and I go to 247682450	(Calle del Conde de Barcelona)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1357.3601
+22. I am in 247682450 and I go to 247682452	(Ronda de San Francisco)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1424.1051
+23. I am in 247682452 and I go to 1005569408	(Ronda de San Francisco)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1490.435
+24. I am in 1005569408 and I go to 2054262656	(Calle de Carretería)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1553.1951
+25. I am in 2054262656 and I go to 2051495834	(Calle de Carretería)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1585.6901
+26. I am in 2051495834 and I go to 247682453	(Calle de Carretería)
+Nodes remaining for visit: [ | 2656970826 | ]
+--> Cost: 1631.8961
+27. I am in 247682453 and I go to 2656970826	(Calle Pedro de Oviedo)
 Nodes remaining for visit: [ | ]
---> Cost: 3812.9407
+--> Cost: 1640.56
