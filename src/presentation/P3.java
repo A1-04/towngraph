@@ -19,7 +19,7 @@ import domain.GPXWriter;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.3.2beta)\t-----");
+		System.out.println("-----\tTowngraph P4 (v4.3.3beta)\t-----");
 		int success = 0;
 		do {
 			success = select_strategy();
@@ -39,6 +39,7 @@ public class P3 {
 		boolean pruning = false;
 		Problem p = new Problem();
 		int[] n_generated = new int[1];
+		int heuristic = -1;
 
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
@@ -77,7 +78,7 @@ public class P3 {
 		}
 
 		if (technique.equals("IDS")) {
-			System.out.println("\n-- Now tell me the increment of depth:");
+			System.out.print("\n-- Now tell me the increment of depth:");
 			try {
 				inc_prof = readt.nextInt();
 				while (inc_prof < 0 || inc_prof > depth) {
@@ -92,6 +93,21 @@ public class P3 {
 			}
 		} else {
 			inc_prof = depth;
+		}
+
+		if (technique.equals("A*")) {
+			System.out.print("\n-- Now tell me the heuristic you want to use (0 = basic, 1 = complex): ");
+			try {
+				heuristic = read.nextInt();
+				while (heuristic < 0 || heuristic > 1) {
+					System.out.print("Please choose a valid heuristic: ");
+					heuristic = readt.nextInt();
+				}
+
+			} catch (Exception e) {
+				System.out.println("ERROR: You must insert a valid number. Restarting...");
+				return 0;
+			}
 		}
 
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
@@ -115,9 +131,9 @@ public class P3 {
 		}
 
 		long startTime = System.currentTimeMillis();
-		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated);
+		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated, heuristic);
 		long endTime = System.currentTimeMillis() - startTime;
-		toFile(sol, p, endTime, technique, n_generated, inc_prof);
+		toFile(sol, p, endTime, technique, n_generated, inc_prof, heuristic);
 		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1)) == -1) {
 			System.out.println("-- There was an error creating the GPX file.");
 		}
@@ -126,7 +142,7 @@ public class P3 {
 	}
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique,
-			int[] n_generated, int inc_prof) {
+			int[] n_generated, int inc_prof, int heuristic) {
 		LinkedList<Node> rem = new LinkedList<Node>();
 		System.out.println("\n-- Writing to an output file... --");
 		File f = new File("output.txt");
@@ -147,6 +163,9 @@ public class P3 {
 				fw.write(System.lineSeparator());
 				if (technique.equals("IDS")) {
 					fw.write(("Increment of Depth: " + inc_prof));
+					fw.write(System.lineSeparator());
+				} else if (technique.equals("A*")) {
+					fw.write(("Heuristic: H" + heuristic));
 					fw.write(System.lineSeparator());
 				}
 				fw.write("Cost: " + solution.get(0).getPathcost());

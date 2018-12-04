@@ -36,7 +36,7 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 	}
 
-	public TreeNode(State currentState, TreeNode actualN, String strategy, float pathcost) {
+	public TreeNode(State currentState, TreeNode actualN, String strategy, float pathcost, int h) {
 		this.currentState = currentState;
 		this.parent = actualN;
 		this.d = actualN.getD() + 1;
@@ -49,9 +49,18 @@ public class TreeNode implements Comparable<TreeNode> {
 		} else if (strategy.equals("UCS")) {
 			this.f = this.pathcost;
 		} else if (strategy.equals("GS")) {
-			f = h1(currentState);
+			if (h == 0) {
+				f = h0(currentState);
+			} else {
+				f = h1(currentState);
+			}
+
 		} else if (strategy.equals("A*")) {
-			f = h1(currentState) + this.pathcost;
+			if (h == 0) {
+				f = h0(currentState) + this.pathcost;
+			} else {
+				f = h1(currentState) + this.pathcost;
+			}
 		} else {
 			this.f = rnd.nextFloat() * 1000 + 1;
 		}
@@ -71,21 +80,21 @@ public class TreeNode implements Comparable<TreeNode> {
 		}
 		return min_distance;
 	}
-	
+
 	private float h1(State s) // Need a fix
 	{
 		float min_distance = 0;
 		if (s.getN_list().size() != 0) {
-			min_distance = distance(parent.currentState.getActualNode(), s.getN_list().get(0));	
+			min_distance = distance(parent.currentState.getActualNode(), s.getN_list().get(0));
 			for (int i = 1; i < s.getN_list().size(); i++) {
 				float aux = distance(parent.currentState.getActualNode(), s.getN_list().get(i));
 				if (aux < min_distance) {
 					min_distance = aux;
 				}
 			}
-			
+
 		}
-		
+
 		return min_distance;
 	}
 
