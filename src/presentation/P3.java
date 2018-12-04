@@ -19,40 +19,69 @@ import domain.GPXWriter;
 
 public class P3 {
 	public static void main(String[] args) throws IOException {
-		System.out.println("-----\tTowngraph P4 (v4.4beta)\t-----");
-		int success = 0;
+		System.out.println("-----\tTowngraph P4 (v5beta)\t-----");
+		int success = -1;
 		do {
 			success = menu();
-		} while (success == 0);
-
+		} while (success == -1);
 		return;
 	}
 
 	public static int menu() throws IOException {
-		Scanner read = new Scanner(System.in);
-		String Jname = "";
-		int depth = 0, inc_prof = 0;
-		String technique = "";
-		String aux = "";
-		boolean pruning = false;
-		Problem p = new Problem();
 		int[] n_generated = new int[1];
-		int heuristic = -1;
-
 		LinkedList<TreeNode> sol = new LinkedList<>();
 
+		Problem p = readJSON();
+		while (p == null)
+			p = readJSON();
+
+		String technique = selectStrategy();
+
+		int depth = selectDepth();
+		while (depth == -1)
+			depth = selectDepth();
+
+		int inc_prof = selectIncDepth(technique, depth);
+		while (inc_prof == -1)
+			inc_prof = selectIncDepth(technique, depth);
+
+		int heuristic = checkHeuristic(technique);
+		while (heuristic == -1)
+			heuristic = checkHeuristic(technique);
+
+		boolean pruning = checkPruning(technique, depth);
+
+		long startTime = System.currentTimeMillis();
+		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated, heuristic);
+		long endTime = System.currentTimeMillis() - startTime;
+		toFile(sol, p, endTime, technique, n_generated[0], inc_prof, heuristic);
+		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1), technique, n_generated[0], sol.get(0).getD(),
+				sol.get(0).getPathcost()) == -1) {
+			System.out.println("-- There was an error creating the GPX file.");
+		}
+
+		return 0;
+	}
+
+	private static Problem readJSON() {
+		Scanner read = new Scanner(System.in);
+		Problem p;
 		System.out.print("\n-- Insert the json filename: ");
-		Jname = read.nextLine();
+		String Jname = read.nextLine();
 		try {
 			p = new Problem(Jname);
 		} catch (IOException | ParseException | ParserConfigurationException | SAXException e) {
 			System.out.println(e.getMessage());
-			return 0;
+			return null;
 		}
+		return p;
+	}
 
+	private static String selectStrategy() {
+		Scanner read = new Scanner(System.in);
 		System.out.println("\n-- Select an strategy to run the algorithm --");
 		System.out.print("Type the strategy (BFS, DFS, DLS, UCS, IDS, GS or A*): ");
-		technique = read.next();
+		String technique = read.next();
 		while (!technique.equalsIgnoreCase("BFS") && !technique.equalsIgnoreCase("DFS")
 				&& !technique.equalsIgnoreCase("DLS") && !technique.equalsIgnoreCase("UCS")
 				&& !technique.equalsIgnoreCase("IDS") && !technique.equalsIgnoreCase("GS")
@@ -60,8 +89,13 @@ public class P3 {
 			System.out.print("\nThat is not a valid technique. Try again: ");
 			technique = read.next();
 		}
-
 		technique = technique.toUpperCase();
+		return technique;
+	}
+
+	private static int selectDepth() {
+		Scanner read = new Scanner(System.in);
+		int depth = -1;
 		System.out.println("\n-- Tell me the maximum depth:");
 		try {
 			depth = read.nextInt();
@@ -72,9 +106,14 @@ public class P3 {
 
 		} catch (Exception e) {
 			System.out.println("ERROR: You must insert a number. Restarting...");
-			return 0;
+			return -1;
 		}
+		return depth;
+	}
 
+	private static int selectIncDepth(String technique, int depth) {
+		Scanner read = new Scanner(System.in);
+		int inc_prof = -1;
 		if (technique.equals("IDS")) {
 			System.out.print("\n-- Now tell me the increment of depth:");
 			try {
@@ -87,12 +126,17 @@ public class P3 {
 
 			} catch (Exception e) {
 				System.out.println("ERROR: You must insert a number. Restarting...");
-				return 0;
+				return -1;
 			}
 		} else {
 			inc_prof = depth;
 		}
+		return inc_prof;
+	}
 
+	private static int checkHeuristic(String technique) {
+		Scanner read = new Scanner(System.in);
+		int heuristic = -1;
 		if (technique.equals("A*")) {
 			System.out.print("\n-- Now tell me the heuristic you want to use (0 = basic, 1 = best): ");
 			try {
@@ -104,12 +148,17 @@ public class P3 {
 
 			} catch (Exception e) {
 				System.out.println("ERROR: You must insert a valid number. Restarting...");
-				return 0;
+				return -1;
 			}
 		}
+		return heuristic;
+	}
 
+	private static boolean checkPruning(String technique, int depth) {
+		boolean pruning = false;
+		Scanner read = new Scanner(System.in);
 		System.out.print("\nYou type " + technique + ". Do you want pruning? (y for yes and n for no):  ");
-		aux = read.next();
+		String aux = read.next();
 		while (!aux.equalsIgnoreCase("y") && !aux.equalsIgnoreCase("n")) {
 			System.out.print("\nThat is not a valid answer. Try again: ");
 			aux = read.next();
@@ -127,17 +176,7 @@ public class P3 {
 			System.out.println("\n-- You choose " + technique
 					+ " without pruning. Running the algorithm... \t Maximum depth: " + depth + " --");
 		}
-
-		long startTime = System.currentTimeMillis();
-		sol = TSFAlgorithm.search(p, technique, depth, inc_prof, pruning, n_generated, heuristic);
-		long endTime = System.currentTimeMillis() - startTime;
-		toFile(sol, p, endTime, technique, n_generated[0], inc_prof, heuristic);
-		if (GPXWriter.writePath(sol, sol.get(sol.size() - 1), technique, n_generated[0], sol.get(0).getD(),
-				sol.get(0).getPathcost()) == -1) {
-			System.out.println("-- There was an error creating the GPX file.");
-		}
-
-		return 1;
+		return pruning;
 	}
 
 	public static void toFile(LinkedList<TreeNode> solution, Problem p, long endTime, String technique, int n_generated,

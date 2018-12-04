@@ -1,10 +1,11 @@
 -- Solution of the algorithm:
 
-Strategy: BFS
-Generated nodes: 82153
-Depth: 77
-Cost: 9075.635
-Time: 4331 ms
+Strategy: A*
+Generated nodes: 14746
+Depth: 83
+Heuristic: H1
+Cost: 7324.821
+Time: 1086 ms
 
 1. I am in 4080450611 and I go to 4080450631	(Camino del Cristo)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
@@ -15,225 +16,243 @@ Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
 3. I am in 4080450626 and I go to 4080450614	(Camino del Cristo)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
 --> Cost: 1392.1101
-4. I am in 4080450614 and I go to 4080450623	(Camino del Cristo)
+4. I am in 4080450614 and I go to 4080455213	(Camino de la Torrecilla)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 1678.7611
-5. I am in 4080450623 and I go to 4080455240	(Carretera Puertollano - Ciudad Real)
+--> Cost: 1516.6392
+5. I am in 4080455213 and I go to 4080455241	(Camino de la Torrecilla)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 2305.277
-6. I am in 4080455240 and I go to 255139835	(Carretera Puertollano - Ciudad Real)
+--> Cost: 1828.7141
+6. I am in 4080455241 and I go to 4080455240	(Camino de la Torrecilla)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 2603.021
-7. I am in 255139835 and I go to 824372815	(Carretera Puertollano - Ciudad Real)
+--> Cost: 2234.9722
+7. I am in 4080455240 and I go to 255139835	(Carretera Puertollano - Ciudad Real)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 2671.839
-8. I am in 824372815 and I go to 255139922	(Carretera Puertollano - Ciudad Real)
+--> Cost: 2532.716
+8. I am in 255139835 and I go to 824372815	(Carretera Puertollano - Ciudad Real)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3061.319
-9. I am in 255139922 and I go to 255140029	(Carretera Puertollano - Ciudad Real)
+--> Cost: 2601.5342
+9. I am in 824372815 and I go to 255139922	(Carretera Puertollano - Ciudad Real)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3089.9531
-10. I am in 255140029 and I go to 255139610	(Carretera Puertollano - Ciudad Real)
+--> Cost: 2991.0142
+10. I am in 255139922 and I go to 255140029	(Carretera Puertollano - Ciudad Real)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3166.621
-11. I am in 255139610 and I go to 824372750	(Unnamed)
+--> Cost: 3019.6482
+11. I am in 255140029 and I go to 255139610	(Carretera Puertollano - Ciudad Real)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3192.062
-12. I am in 824372750 and I go to 824372752	(Avenida de los Reyes Católicos)
+--> Cost: 3096.3162
+12. I am in 255139610 and I go to 824372750	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3258.613
-13. I am in 824372752 and I go to 818781464	(Avenida de los Reyes Católicos)
+--> Cost: 3121.757
+13. I am in 824372750 and I go to 824372752	(Avenida de los Reyes Católicos)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3411.1182
-14. I am in 818781464 and I go to 818780949	(Avenida de los Reyes Católicos)
+--> Cost: 3188.308
+14. I am in 824372752 and I go to 818781464	(Avenida de los Reyes Católicos)
 Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
---> Cost: 3494.8481
-15. I am in 818780949 and I go to 528058467	(Unnamed)
+--> Cost: 3340.813
+15. I am in 818781464 and I go to 818780949	(Avenida de los Reyes Católicos)
+Nodes remaining for visit: [ | 803292783 | 528058467 | 828479647 | ]
+--> Cost: 3424.543
+16. I am in 818780949 and I go to 528058467	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 3524.2212
-16. I am in 528058467 and I go to 818780918	(Unnamed)
+--> Cost: 3453.916
+17. I am in 528058467 and I go to 818780918	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 3563.0012
-17. I am in 818780918 and I go to 818780925	(Avenida de los Reyes Católicos)
+--> Cost: 3492.696
+18. I am in 818780918 and I go to 818780954	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 3733.6963
-18. I am in 818780925 and I go to 824372718	(Avenida de los Reyes Católicos)
+--> Cost: 3504.9631
+19. I am in 818780954 and I go to 818780945	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 3885.8472
-19. I am in 824372718 and I go to 824372717	(Avenida de los Reyes Católicos)
+--> Cost: 3529.2021
+20. I am in 818780945 and I go to 816488227	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 3988.6963
-20. I am in 824372717 and I go to 528058549	(Avenida de los Reyes Católicos)
+--> Cost: 3543.0842
+21. I am in 816488227 and I go to 818780948	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4134.346
-21. I am in 528058549 and I go to 528058500	(Avenida de los Reyes Católicos)
+--> Cost: 3568.8782
+22. I am in 818780948 and I go to 528058472	(Avenida de los Reyes Católicos)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4357.9834
-22. I am in 528058500 and I go to 161848214	(Unnamed)
+--> Cost: 3865.528
+23. I am in 528058472 and I go to 528058499	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4397.2563
-23. I am in 161848214 and I go to 528058523	(Unnamed)
+--> Cost: 3889.621
+24. I am in 528058499 and I go to 528058511	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4433.2153
-24. I am in 528058523 and I go to 1778319348	(Avenida de Jesús Garrido)
+--> Cost: 3918.6592
+25. I am in 528058511 and I go to 528058504	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4504.1694
-25. I am in 1778319348 and I go to 1778319338	(Avenida de Jesús Garrido)
+--> Cost: 3931.2932
+26. I am in 528058504 and I go to 417219043	(Calle de las Magnolias)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4670.3706
-26. I am in 1778319338 and I go to 801797258	(Avenida de Jesús Garrido)
+--> Cost: 4112.429
+27. I am in 417219043 and I go to 824373052	(Calle de las Magnolias)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 4818.2515
-27. I am in 801797258 and I go to 801797115	(Avenida de Jesús Garrido)
+--> Cost: 4224.9062
+28. I am in 824373052 and I go to 824373056	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5002.9634
-28. I am in 801797115 and I go to 801318112	(Calle Pantano Vicario)
+--> Cost: 4244.687
+29. I am in 824373056 and I go to 825474721	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5100.5034
-29. I am in 801318112 and I go to 801796992	(Avenida Lagunas de Ruidera)
+--> Cost: 4263.137
+30. I am in 825474721 and I go to 825474722	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5298.6616
-30. I am in 801796992 and I go to 764039329	(Avenida Lagunas de Ruidera)
+--> Cost: 4316.4404
+31. I am in 825474722 and I go to 825474723	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5504.8555
-31. I am in 764039329 and I go to 525959903	(Ronda de Granada)
+--> Cost: 4440.4463
+32. I am in 825474723 and I go to 3511136213	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5756.9116
-32. I am in 525959903 and I go to 801318069	(Unnamed)
+--> Cost: 4476.9604
+33. I am in 3511136213 and I go to 825474724	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5766.302
-33. I am in 801318069 and I go to 801318063	(Unnamed)
+--> Cost: 4488.0454
+34. I am in 825474724 and I go to 825474725	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5774.047
-34. I am in 801318063 and I go to 525959898	(Unnamed)
+--> Cost: 4538.3276
+35. I am in 825474725 and I go to 825474726	(Avenida del Descubrimiento de America)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5778.781
-35. I am in 525959898 and I go to 525959890	(Unnamed)
+--> Cost: 4624.1646
+36. I am in 825474726 and I go to 825474734	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5788.343
-36. I am in 525959890 and I go to 4441059318	(Calle Granada)
+--> Cost: 4639.8286
+37. I am in 825474734 and I go to 825474731	(Unnamed)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5792.1587
-37. I am in 4441059318 and I go to 525959755	(Calle Granada)
+--> Cost: 4651.5566
+38. I am in 825474731 and I go to 825474821	(Avenida Puente de Retama)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5903.4927
-38. I am in 525959755 and I go to 2689809926	(Unnamed)
+--> Cost: 4874.2505
+39. I am in 825474821 and I go to 825474813	(Avenida Puente de Retama)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 5917.4736
-39. I am in 2689809926 and I go to 2689809995	(Palma)
+--> Cost: 4886.8315
+40. I am in 825474813 and I go to 825474887	(Calle Puente del Molino del Emperador)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6070.3916
-40. I am in 2689809995 and I go to 528058542	(Avenida del Torreón del Alcázar)
+--> Cost: 4928.3438
+41. I am in 825474887 and I go to 825474891	(Calle Puente del Molino del Emperador)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6148.4136
-41. I am in 528058542 and I go to 803292248	(Calle de las Madrilas)
+--> Cost: 4968.629
+42. I am in 825474891 and I go to 825474888	(Calle Puente del Molino del Emperador)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6195.696
-42. I am in 803292248 and I go to 528058525	(Calle de las Madrilas)
+--> Cost: 5049.935
+43. I am in 825474888 and I go to 828479700	(Calle Puente del Molino del Emperador)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6236.8516
-43. I am in 528058525 and I go to 765309509	(Calle de la Mata)
+--> Cost: 5109.853
+44. I am in 828479700 and I go to 828479642	(Calle Puente del Molino del Emperador)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6254.9424
-44. I am in 765309509 and I go to 803292210	(Calle de la Mata)
+--> Cost: 5125.001
+45. I am in 828479642 and I go to 828479651	(Calle Zurbarán)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6293.0093
-45. I am in 803292210 and I go to 765309506	(Calle Conde de la Cañada)
+--> Cost: 5159.413
+46. I am in 828479651 and I go to 827212565	(Calle Zurbarán)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6464.3203
-46. I am in 765309506 and I go to 803292809	(Calle Corazón de María)
+--> Cost: 5180.312
+47. I am in 827212565 and I go to 828479659	(Calle Zurbarán)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6538.1865
-47. I am in 803292809 and I go to 803292781	(Calle Doctor Gerardo Sánchez Barrejón)
+--> Cost: 5197.392
+48. I am in 828479659 and I go to 828479663	(Calle Zurbarán)
 Nodes remaining for visit: [ | 803292783 | 828479647 | ]
---> Cost: 6603.51
-48. I am in 803292781 and I go to 803292783	(Calle del Refugio)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6610.3315
-49. I am in 803292783 and I go to 803292581	(Calle Pintar López Villaseñor)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6691.1523
-50. I am in 803292581 and I go to 803292583	(Calle Lirio)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6737.2295
-51. I am in 803292583 and I go to 803292778	(Calle Quevedo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6812.1143
-52. I am in 803292778 and I go to 803292811	(Calle Quevedo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6879.1694
-53. I am in 803292811 and I go to 812954573	(Callejón Huertos)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 6935.3735
-54. I am in 812954573 and I go to 812954600	(Callejón Huertos)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7029.3345
-55. I am in 812954600 and I go to 765309500	(Calle de la Paloma)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7106.8315
-56. I am in 765309500 and I go to 525959924	(['Calle de la Paloma', 'Calle Ruiz Morote'])
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7424.3066
-57. I am in 525959924 and I go to 804689060	(Calle San Francisco)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7509.2856
-58. I am in 804689060 and I go to 804689127	(Calle Montesa)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7688.6675
-59. I am in 804689127 and I go to 522198130	(Avenida del Rey Santo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7699.0176
-60. I am in 522198130 and I go to 522198137	(Avenida del Rey Santo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7770.5347
-61. I am in 522198137 and I go to 522198138	(Pasaje Gutiérrez Ortega)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7873.027
-62. I am in 522198138 and I go to 804689213	(Juan II)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 7950.167
-63. I am in 804689213 and I go to 522198135	(Juan II)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8003.027
-64. I am in 522198135 and I go to 806368848	(Calle Postas)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8106.748
-65. I am in 806368848 and I go to 2687227345	(Calle Postas)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8159.894
-66. I am in 2687227345 and I go to 2687227344	(Calle Postas)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8179.672
-67. I am in 2687227344 and I go to 804689428	(Calle Obispo Estenaga)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8270.522
-68. I am in 804689428 and I go to 528058478	(Calle Olivo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8277.6
-69. I am in 528058478 and I go to 806368787	(Bernardo Balbuena)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8356.683
-70. I am in 806368787 and I go to 528058476	(Bernardo Balbuena)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8452.478
-71. I am in 528058476 and I go to 798574811	(Unnamed)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8512.511
-72. I am in 798574811 and I go to 2687227351	(Calle Pío XII)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8528.835
-73. I am in 2687227351 and I go to 828480073	(Calle Pío XII)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8647.177
-74. I am in 828480073 and I go to 828480065	(Calle Guadálmez)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8764.328
-75. I am in 828480065 and I go to 828479971	(Calle Záncara)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8947.089
-76. I am in 828479971 and I go to 833754736	(Calle Camino del Campillo)
-Nodes remaining for visit: [ | 828479647 | ]
---> Cost: 8987.449
-77. I am in 833754736 and I go to 828479647	(Calle Camino del Campillo)
+--> Cost: 5243.565
+49. I am in 828479663 and I go to 828479648	(Calle Zurbarán)
+Nodes remaining for visit: [ | 803292783 | 828479647 | ]
+--> Cost: 5258.047
+50. I am in 828479648 and I go to 828479647	(Calle Beato Fernández de Ayala)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5287.713
+51. I am in 828479647 and I go to 833754736	(Calle Camino del Campillo)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5375.899
+52. I am in 833754736 and I go to 828479971	(Calle Camino del Campillo)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5416.259
+53. I am in 828479971 and I go to 828479974	(Calle Camino del Campillo)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5470.921
+54. I am in 828479974 and I go to 828479978	(Calle Camino del Campillo)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5505.361
+55. I am in 828479978 and I go to 828480036	(Calle Cigüela)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5624.776
+56. I am in 828480036 and I go to 798574810	(Calle Cigüela)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5735.104
+57. I am in 798574810 and I go to 828480043	(Ronda de Alarcos)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5770.088
+58. I am in 828480043 and I go to 162036484	(Ronda de Alarcos)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5820.441
+59. I am in 162036484 and I go to 806368928	(Ronda de Alarcos)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5853.652
+60. I am in 806368928 and I go to 806368921	(Ronda de Alarcos)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5883.56
+61. I am in 806368921 and I go to 162036478	(Ronda de Alarcos)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 5982.59
+62. I am in 162036478 and I go to 806369127	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6032.913
+63. I am in 806369127 and I go to 765350899	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6101.108
+64. I am in 765350899 and I go to 806368894	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6143.9697
+65. I am in 806368894 and I go to 806369110	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6217.609
+66. I am in 806369110 and I go to 806368885	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6230.964
+67. I am in 806368885 and I go to 806368896	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6292.183
+68. I am in 806368896 and I go to 806368906	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6314.6973
+69. I am in 806368906 and I go to 765350900	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6339.6895
+70. I am in 765350900 and I go to 522198135	(Calle Morería)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6385.4814
+71. I am in 522198135 and I go to 804689235	(Calle Postas)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6470.2007
+72. I am in 804689235 and I go to 806368904	(['Calle de los Reyes', 'Avenida Alfonso X El Sabio'])
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6523.093
+73. I am in 806368904 and I go to 522198143	(Calle de los Reyes)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6529.0537
+74. I am in 522198143 and I go to 522198145	(Paseo del Prado)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6664.9067
+75. I am in 522198145 and I go to 503708630	(['Calle Feria', 'Calle Caballeros'])
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6761.071
+76. I am in 503708630 and I go to 504665907	(Calle Calatrava)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6903.82
+77. I am in 504665907 and I go to 812954600	(Calle de la Paloma)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 6957.445
+78. I am in 812954600 and I go to 765309500	(Calle de la Paloma)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 7034.942
+79. I am in 765309500 and I go to 812954436	(Calle Libertad)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 7125.465
+80. I am in 812954436 and I go to 765309506	(Calle Libertad)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 7178.81
+81. I am in 765309506 and I go to 803292809	(Calle Corazón de María)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 7252.6763
+82. I am in 803292809 and I go to 803292781	(Calle Doctor Gerardo Sánchez Barrejón)
+Nodes remaining for visit: [ | 803292783 | ]
+--> Cost: 7317.999
+83. I am in 803292781 and I go to 803292783	(Calle del Refugio)
 Nodes remaining for visit: [ | ]
---> Cost: 9075.635
+--> Cost: 7324.821
