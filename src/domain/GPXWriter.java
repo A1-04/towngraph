@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.LinkedList;
 
 public class GPXWriter {
+	@SuppressWarnings("unused")
 	private static final String TAG = GPXWriter.class.getName();
 
 	public static int writePath(LinkedList<TreeNode> sol, TreeNode first, String strategy, int n_generated, int depth,
@@ -16,8 +17,8 @@ public class GPXWriter {
 		File file = new File("output.gpx");
 		String header = "<gpx version=\"1.1\" creator=\"The Special Flat\">\n";
 
-		String desc = "\n<desc>\n" + "Strategy: " + strategy + "\n" + "Nodes generated: " + n_generated + "\n" + "Depth: "
-				+ depth + "\n" + "Cost: " + f + "\n</desc>\n";
+		String desc = "\n<desc>\n" + "Strategy: " + strategy + "\n" + "Nodes generated: " + n_generated + "\n"
+				+ "Depth: " + depth + "\n" + "Cost: " + f + "\n</desc>\n";
 
 		if ((writeWPT(first, first.getCurrentState().getN_list(), header, desc, file) == -1)
 				|| (writeTRKPT(sol, file) == -1)) {
